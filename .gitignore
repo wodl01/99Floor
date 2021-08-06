@@ -89,3 +89,7 @@ Temp/
 Assembly-CSharp.csproj
 
 *.dwlt
+
+*.csproj
+
+*.sln
