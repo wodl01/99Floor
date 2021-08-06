@@ -85,3 +85,5 @@ Library/
 Temp/
 
 *.csproj
+
+*.sln
