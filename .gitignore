@@ -83,3 +83,7 @@ lint/tmp/
 Library/
 
 Temp/
+
+99Floor.sln
+
+Assembly-CSharp.csproj
