@@ -83,3 +83,5 @@ lint/tmp/
 Library/
 
 Temp/
+
+*.csproj
