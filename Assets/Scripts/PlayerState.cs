@@ -30,5 +30,5 @@ public class PlayerState : MonoBehaviour
     public float bulletSpeedPer;
     public float bulletRangePer;
     public int missPer;
-
+    public int godTime;
 }

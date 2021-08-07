@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     [SerializeField] PlayerState playerState;
+    [SerializeField] StageManager stageManager;
 
     [System.Serializable]
     public class Pool
@@ -39,6 +40,7 @@ public class PoolManager : MonoBehaviour
                 {
                     EnemyBasicScript enemy = curObj.GetComponent<EnemyBasicScript>();
                     enemy.pool = this;
+                    enemy.stageManager = stageManager;
                     enemy.player = playerState.player;
                 }
 

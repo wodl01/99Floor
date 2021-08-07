@@ -6,6 +6,7 @@ public class EnemyBasicScript : MonoBehaviour
 {
     [Header("Managers")]
     public PoolManager pool;
+    public StageManager stageManager;
 
     [Header("Inspector")]
     [SerializeField] Rigidbody2D rigid;
@@ -35,6 +36,8 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] float maxAttackCool;
     private void OnEnable()
     {
+        findPlayer = false;
+        canMove = true;
         curHealth = maxHealth;
     }
 
@@ -48,9 +51,14 @@ public class EnemyBasicScript : MonoBehaviour
 
             curHealth -= bulletScript.bulletDmg;
 
-
             if (curHealth <= 0)
+            {
+
+                stageManager.monsterAmount--;
+                stageManager.ClearCheck();
                 gameObject.SetActive(false);
+            }
+
         }
     }
 
@@ -73,41 +81,50 @@ public class EnemyBasicScript : MonoBehaviour
             curMoveCool = maxMoveCool;
             actCode = Random.Range(0, 9);
 
-            if (canMove)
-                curMoveSpeed = 0;
-            else if (findPlayer)
+            if (findPlayer)
                 curMoveSpeed = attackMoveSpeed;
             else
                 curMoveSpeed = freeMoveSpeed;
+
+            if (!canMove) curMoveSpeed = 0;
 
             switch (actCode)
             {
                 case 0:
                     rigid.velocity = new Vector2(0, 0);
+                    animator.SetBool("Move", false);
                     break;
                 case 1:
                     rigid.velocity = new Vector2(0, curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
                 case 2:
                     rigid.velocity = new Vector2(0, -curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
                 case 3:
                     rigid.velocity = new Vector2(curMoveSpeed, 0);
+                    animator.SetBool("Move", true);
                     break;
                 case 4:
                     rigid.velocity = new Vector2(-curMoveSpeed, 0);
+                    animator.SetBool("Move", true);
                     break;
                 case 5:
                     rigid.velocity = new Vector2(curMoveSpeed, curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
                 case 6:
                     rigid.velocity = new Vector2(curMoveSpeed, -curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
                 case 7:
                     rigid.velocity = new Vector2(-curMoveSpeed, curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
                 case 8:
                     rigid.velocity = new Vector2(-curMoveSpeed, -curMoveSpeed);
+                    animator.SetBool("Move", true);
                     break;
             }
         }

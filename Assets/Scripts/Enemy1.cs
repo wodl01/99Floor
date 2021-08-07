@@ -30,8 +30,13 @@ public class Enemy1 : MonoBehaviour
     }
     public void AttackFinish()
     {
-        enemyBasic.canMove = true;
         enemyBasic.animator.SetBool("Attack", false);
-        enemyBasic.curMoveCool = 0;
+        enemyBasic.canMove = true;
+        //enemyBasic.curMoveCool = 0;
+    }
+
+    public void Move()
+    {
+
     }
 }

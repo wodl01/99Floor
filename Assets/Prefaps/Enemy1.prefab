@@ -269,11 +269,11 @@ MonoBehaviour:
   canMove: 0
   actCode: 0
   freeMoveSpeed: 0.2
-  attackMoveSpeed: 0.5
+  attackMoveSpeed: 1
   curMoveCool: 0
   curAttackCool: 0
   maxMoveCool: 2
-  maxAttackCool: 3
+  maxAttackCool: 7
 --- !u!114 &4316513929658123705
 MonoBehaviour:
   m_ObjectHideFlags: 0
