@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public static PlayerState playerState;
+    public GameObject player;
 
     [Header("Player Life")]
     public int maxLife;
@@ -31,8 +31,4 @@ public class PlayerState : MonoBehaviour
     public float bulletRangePer;
     public int missPer;
 
-    private void Awake()
-    {
-        playerState = this;
-    }
 }

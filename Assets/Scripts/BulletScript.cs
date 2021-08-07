@@ -13,10 +13,7 @@ public class BulletScript : MonoBehaviour
     public float bulletSpeed;
     public float bulletDestroyTime;
 
-    private void Awake()
-    {
-        bulletDestroyTime = PlayerState.playerState.bulletDestroyTime;
-    }
+
     private void FixedUpdate()
     {
         if (bulletDestroyTime > 0)
@@ -38,6 +35,13 @@ public class BulletScript : MonoBehaviour
         }
         if(collision.tag == "Enemy")
         {
+            if (!isPlayerAttack) return;
+            gameObject.SetActive(false);
+            poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
+        }
+        if (collision.tag == "Player")
+        {
+            if (isPlayerAttack) return;
             gameObject.SetActive(false);
             poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
         }

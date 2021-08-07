@@ -15,14 +15,23 @@ public class Enemy1 : MonoBehaviour
     [Header("State")]
     [SerializeField] float speed;
 
-    public void FireToPlayer()
+    public void AttackStart()
     {
         enemyBasic.canMove = false;
     }
 
-    /*void FollowTarget()
+    public void Attack1()
     {
-        Vector2 followVector = Vector2.MoveTowards(transform.position, enemyBasic.player.transform.position, speed * Time.deltaTime);
-        rigid.MovePosition(followVector);
-    }*/
+        float angle = Mathf.Atan2(enemyBasic.player.transform.position.y - gameObject.transform.position.y, enemyBasic.player.transform.position.x - gameObject.transform.position.x) * Mathf.Rad2Deg;
+        BulletScript curBullet = enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, angle)).GetComponent<BulletScript>();
+        curBullet.isPlayerAttack = false;
+        curBullet.bulletDestroyTime = 2;
+        curBullet.bulletSpeed = 0.2f;
+    }
+    public void AttackFinish()
+    {
+        enemyBasic.canMove = true;
+        enemyBasic.animator.SetBool("Attack", false);
+        enemyBasic.curMoveCool = 0;
+    }
 }

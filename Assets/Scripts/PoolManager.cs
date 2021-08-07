@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+    [SerializeField] PlayerState playerState;
+
     [System.Serializable]
     public class Pool
     {
@@ -33,6 +35,14 @@ public class PoolManager : MonoBehaviour
                 if (curObj.tag == "Bullet")
                     curObj.GetComponent<BulletScript>().poolManager = this;
 
+                if (curObj.tag == "Enemy")
+                {
+                    EnemyBasicScript enemy = curObj.GetComponent<EnemyBasicScript>();
+                    enemy.pool = this;
+                    enemy.player = playerState.player;
+                }
+
+
                 curObj.SetActive(false);
                 objectPool.Enqueue(curObj);
             }
@@ -46,6 +56,19 @@ public class PoolManager : MonoBehaviour
 
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
+
+        curSpawnedOb.SetActive(true);
+
+        poolDictionary[tag].Enqueue(curSpawnedOb);
+
+        return curSpawnedOb;
+    }
+
+    public GameObject EnemyInstantiate(string tag, Vector3 position)
+    {
+        GameObject curSpawnedOb = poolDictionary[tag].Dequeue();
+
+        curSpawnedOb.transform.position = position;
 
         curSpawnedOb.SetActive(true);
 

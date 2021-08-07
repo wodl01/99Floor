@@ -88,8 +88,11 @@ public class PlayerControlScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Attack")
+        if(collision.tag == "Bullet")
         {
+            BulletScript hitedBullet = collision.GetComponent<BulletScript>();
+            if (hitedBullet.isPlayerAttack) return;
+
             Debug.Log("공격당함");
             int randomNum = Random.Range(0, 101);
             if (randomNum <= playerState.missPer) return;
