@@ -13,6 +13,7 @@ public class EnemyBasicScript : MonoBehaviour
     public Animator animator;
 
     [Header("Hp")]
+    [SerializeField] bool isDie;
     [SerializeField] float curHealth;
     [SerializeField] float maxHealth;
 
@@ -36,6 +37,7 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] float maxAttackCool;
     private void OnEnable()
     {
+        isDie = false;
         findPlayer = false;
         canMove = true;
         curHealth = maxHealth;
@@ -51,14 +53,13 @@ public class EnemyBasicScript : MonoBehaviour
 
             curHealth -= bulletScript.bulletDmg;
 
-            if (curHealth <= 0)
+            if (curHealth <= 0 && !isDie)
             {
-
+                isDie = true;
                 stageManager.monsterAmount--;
                 stageManager.ClearCheck();
                 gameObject.SetActive(false);
             }
-
         }
     }
 

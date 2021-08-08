@@ -13,7 +13,7 @@ public class Enemy2 : MonoBehaviour
     [SerializeField] Rigidbody2D rigid;
 
     [Header("State")]
-    [SerializeField] float speed;
+    [SerializeField] float rushSpeed;
 
     public void AttackStart()
     {
@@ -22,7 +22,8 @@ public class Enemy2 : MonoBehaviour
 
     public void Attack1()
     {
-        rigid.AddForce(new Vector2(500, 500));
+        Vector2 force = (enemyBasic.player.transform.position - transform.position) * rushSpeed;
+        rigid.AddForce(force);
     }
     public void AttackFinish()
     {
@@ -32,6 +33,6 @@ public class Enemy2 : MonoBehaviour
 
     public void Move()
     {
-
+        
     }
 }

@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     public PoolManager poolManager;
 
     [Header("BulletInfo")]
+    public bool canPassingThrough;
     public bool isPlayerAttack;
     public float bulletDmg;
     public float bulletSpeed;
@@ -30,18 +31,21 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.tag == "Wall")
         {
+            if(canPassingThrough) return;
             gameObject.SetActive(false);
             poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
         }
         if(collision.tag == "Enemy")
         {
             if (!isPlayerAttack) return;
+            if(canPassingThrough) return;
             gameObject.SetActive(false);
             poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
         }
         if (collision.tag == "Player")
         {
             if (isPlayerAttack) return;
+            if(canPassingThrough) return;
             gameObject.SetActive(false);
             poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
         }

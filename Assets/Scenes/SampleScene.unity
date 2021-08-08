@@ -2440,6 +2440,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1594737065, guid: 118160d052db6d44b9e4305916306d97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 893907203225920386, guid: 118160d052db6d44b9e4305916306d97,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2510,5 +2514,10 @@ PrefabInstance:
       propertyPath: stageManager
       value: 
       objectReference: {fileID: 2009622033}
+    - target: {fileID: 7326215222744615916, guid: 118160d052db6d44b9e4305916306d97,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1320500596}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 118160d052db6d44b9e4305916306d97, type: 3}

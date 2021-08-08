@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 0}
+  canPassingThrough: 0
   isPlayerAttack: 0
   bulletDmg: 1
   bulletSpeed: 0.52

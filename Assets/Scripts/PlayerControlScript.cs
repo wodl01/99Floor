@@ -64,6 +64,7 @@ public class PlayerControlScript : MonoBehaviour
             {
                 BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle)).GetComponent<BulletScript>();
                 curBullet.isPlayerAttack = true;
+                curBullet.canPassingThrough = false;
                 curBullet.bulletDmg = playerState.dmg;
                 curBullet.bulletSpeed = 0.3f * (playerState.bulletSpeedPer / 100);
                 curBullet.bulletDestroyTime = 0.2f * (100 / playerState.bulletRangePer);
@@ -77,6 +78,7 @@ public class PlayerControlScript : MonoBehaviour
                 {
                     BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle)).GetComponent<BulletScript>();
                     curBullet.isPlayerAttack = true;
+                    curBullet.canPassingThrough = false;
                     curBullet.bulletDmg = playerState.dmg;
                     curBullet.bulletSpeed = 0.3f * (playerState.bulletSpeedPer / 100);
                     curBullet.bulletDestroyTime = 0.2f * (100 / playerState.bulletRangePer);
@@ -93,7 +95,6 @@ public class PlayerControlScript : MonoBehaviour
             BulletScript hitedBullet = collision.GetComponent<BulletScript>();
             if (hitedBullet.isPlayerAttack) return;
 
-            Debug.Log("공격당함");
             int randomNum = Random.Range(0, 101);
             if (randomNum <= playerState.missPer) return;
 

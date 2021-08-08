@@ -25,6 +25,7 @@ public class Enemy1 : MonoBehaviour
         float angle = Mathf.Atan2(enemyBasic.player.transform.position.y - gameObject.transform.position.y, enemyBasic.player.transform.position.x - gameObject.transform.position.x) * Mathf.Rad2Deg;
         BulletScript curBullet = enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, angle)).GetComponent<BulletScript>();
         curBullet.isPlayerAttack = false;
+        curBullet.canPassingThrough = false;
         curBullet.bulletDestroyTime = 2;
         curBullet.bulletSpeed = 0.2f;
     }
