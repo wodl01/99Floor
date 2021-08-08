@@ -86,45 +86,41 @@ public class EnemyBasicScript : MonoBehaviour
             else
                 curMoveSpeed = freeMoveSpeed;
 
-            if (!canMove) curMoveSpeed = 0;
+            animator.SetBool("Move", true);
+            if (!canMove)
+            {
+                animator.SetBool("Move", false);
+                return;
+            }
 
             switch (actCode)
             {
                 case 0:
                     rigid.velocity = new Vector2(0, 0);
-                    animator.SetBool("Move", false);
                     break;
                 case 1:
                     rigid.velocity = new Vector2(0, curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
                 case 2:
                     rigid.velocity = new Vector2(0, -curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
                 case 3:
                     rigid.velocity = new Vector2(curMoveSpeed, 0);
-                    animator.SetBool("Move", true);
                     break;
                 case 4:
                     rigid.velocity = new Vector2(-curMoveSpeed, 0);
-                    animator.SetBool("Move", true);
                     break;
                 case 5:
                     rigid.velocity = new Vector2(curMoveSpeed, curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
                 case 6:
                     rigid.velocity = new Vector2(curMoveSpeed, -curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
                 case 7:
                     rigid.velocity = new Vector2(-curMoveSpeed, curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
                 case 8:
                     rigid.velocity = new Vector2(-curMoveSpeed, -curMoveSpeed);
-                    animator.SetBool("Move", true);
                     break;
             }
         }
