@@ -931,7 +931,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.94
+  orthographic size: 4.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -991,8 +991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1320500596}
-  maxLife: 3
-  life: 3
+  maxLife: 5
+  life: 5
   moveSpeed: 300
   moveSpeedPer: 100
   gold: 0
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   bulletAmount: 3
   bulletSumAngle: 20
   bulletSpeedPer: 100
-  bulletRangePer: 100
+  bulletRangePer: 20
   missPer: 0
   godTime: 0
 --- !u!4 &521118319
@@ -2354,9 +2354,11 @@ MonoBehaviour:
     AttackSpeed: 30
     Dmg: 0
     BulletAmount: 10
+    BulletSpeed: 0
     SumAngle: 0
     MoveSpeed: 10
     MissPer: 0
+    RangePer: 0
     BuyPrice: 20
     SellPrice: 10
   - Name: "\uB3CC\uB95C\uC758 \uACE0\uCD94\uCC38\uCE58"
@@ -2366,9 +2368,11 @@ MonoBehaviour:
     AttackSpeed: -200
     Dmg: 0
     BulletAmount: 1
+    BulletSpeed: 0
     SumAngle: 0
     MoveSpeed: 100
     MissPer: 0
+    RangePer: 0
     BuyPrice: 20
     SellPrice: 15
   - Name: "\uCC9C\uBC88\uCC14\uB9B0 \uC7AC\uD6C8"
@@ -2378,9 +2382,11 @@ MonoBehaviour:
     AttackSpeed: -20
     Dmg: 0
     BulletAmount: -1
+    BulletSpeed: 0
     SumAngle: 30
     MoveSpeed: -5
     MissPer: 4
+    RangePer: 0
     BuyPrice: 20
     SellPrice: 10
   - Name: "\uC815\uBE48\uC774 \uC804\uC790\uCF5C\uB77C"
@@ -2390,9 +2396,11 @@ MonoBehaviour:
     AttackSpeed: 9
     Dmg: 0
     BulletAmount: 2
+    BulletSpeed: 0
     SumAngle: 0
     MoveSpeed: 0
     MissPer: 0
+    RangePer: 0
     BuyPrice: 20
     SellPrice: 10
   - Name: "zl\uC874 \uB9C8\uC2A4\uD130 \uD6C8\uC758 \uAC80"
@@ -2402,9 +2410,11 @@ MonoBehaviour:
     AttackSpeed: 200
     Dmg: 0
     BulletAmount: 5
+    BulletSpeed: 0
     SumAngle: 120
     MoveSpeed: 10
     MissPer: 0
+    RangePer: 0
     BuyPrice: 50
     SellPrice: 100
   - Name: "\uC7BC\uBBFC\uAE30"
@@ -2414,9 +2424,11 @@ MonoBehaviour:
     AttackSpeed: 30
     Dmg: 0
     BulletAmount: 2
+    BulletSpeed: 0
     SumAngle: 0
     MoveSpeed: 0
     MissPer: 0
+    RangePer: 0
     BuyPrice: 20
     SellPrice: 5
 --- !u!4 &2060253130

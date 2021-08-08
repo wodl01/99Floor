@@ -66,8 +66,8 @@ public class PlayerControlScript : MonoBehaviour
                 curBullet.isPlayerAttack = true;
                 curBullet.canPassingThrough = false;
                 curBullet.bulletDmg = playerState.dmg;
-                curBullet.bulletSpeed = 0.3f * (playerState.bulletSpeedPer / 100);
-                curBullet.bulletDestroyTime = 0.2f * (100 / playerState.bulletRangePer);
+                curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
+                curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
             }
             else
             {
@@ -80,8 +80,8 @@ public class PlayerControlScript : MonoBehaviour
                     curBullet.isPlayerAttack = true;
                     curBullet.canPassingThrough = false;
                     curBullet.bulletDmg = playerState.dmg;
-                    curBullet.bulletSpeed = 0.3f * (playerState.bulletSpeedPer / 100);
-                    curBullet.bulletDestroyTime = 0.2f * (100 / playerState.bulletRangePer);
+                    curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
+                    curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
                     totalAngle += plusAngle;
                 }
             }

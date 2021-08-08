@@ -227,25 +227,44 @@ public class RandomBoxScript : MonoBehaviour
         if (itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed != 0)
         {
             bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "이동속도 " + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed + "%";
+                    itemNormalOptionTexts[i].text = "이동속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
                 }
             }
         }
+
         if (itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed != 0)
         {
             bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "공격속도 " + itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed + "%";
+                    itemNormalOptionTexts[i].text = "공격속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed + "%";
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
+        }
+
+        if (itemInfoManager.ItemInfos[selectedItemCode].Dmg != 0)
+        {
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].Dmg > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "데미지 " + plus + itemInfoManager.ItemInfos[selectedItemCode].Dmg;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -255,11 +274,12 @@ public class RandomBoxScript : MonoBehaviour
         if (itemInfoManager.ItemInfos[selectedItemCode].BulletAmount != 0)
         {
             bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].BulletAmount > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "총알개수 " + itemInfoManager.ItemInfos[selectedItemCode].BulletAmount;
+                    itemNormalOptionTexts[i].text = "탄환개수 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletAmount;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -270,11 +290,12 @@ public class RandomBoxScript : MonoBehaviour
         if (itemInfoManager.ItemInfos[selectedItemCode].SumAngle != 0)
         {
             bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].SumAngle > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "탄퍼짐 " + itemInfoManager.ItemInfos[selectedItemCode].SumAngle;
+                    itemNormalOptionTexts[i].text = "탄퍼짐 " + plus + itemInfoManager.ItemInfos[selectedItemCode].SumAngle;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -285,11 +306,44 @@ public class RandomBoxScript : MonoBehaviour
         if (itemInfoManager.ItemInfos[selectedItemCode].MissPer != 0)
         {
             bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MissPer > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "회피확률" + itemInfoManager.ItemInfos[selectedItemCode].MissPer + "%";
+                    itemNormalOptionTexts[i].text = "회피확률 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MissPer + "%";
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
+        }
+
+        if (itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed != 0)
+        {
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "탄환속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed + "%";
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
+        }
+
+        if (itemInfoManager.ItemInfos[selectedItemCode].RangePer != 0)
+        {
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].RangePer > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "탄환거리 " + plus + itemInfoManager.ItemInfos[selectedItemCode].RangePer + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
