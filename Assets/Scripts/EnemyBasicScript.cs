@@ -56,7 +56,7 @@ public class EnemyBasicScript : MonoBehaviour
             if (curHealth <= 0 && !isDie)
             {
                 isDie = true;
-                stageManager.monsterAmount--;
+                stageManager.enemyAmount--;
                 stageManager.ClearCheck();
                 gameObject.SetActive(false);
             }
