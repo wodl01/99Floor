@@ -6,6 +6,7 @@ public class PoolManager : MonoBehaviour
 {
     [SerializeField] PlayerState playerState;
     [SerializeField] StageManager stageManager;
+    [SerializeField] 
 
     [System.Serializable]
     public class Pool

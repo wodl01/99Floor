@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RandomBoxScript : MonoBehaviour
 {
     [Header("Manager")]
+    public StageManager stageManager;
     public ItemInfoManager itemInfoManager;
 
     [Header("BoxShape")]
@@ -126,12 +127,21 @@ public class RandomBoxScript : MonoBehaviour
     {
         if (canInteract && !isOpen && Input.GetKeyDown(KeyCode.F))
         {
-            isOpen = true;
-            //spriteRenderer.sprite = offSprite;
+            if (stageManager.boxCheckText.gameObject.activeSelf) return;
+            if (stageManager.allKill)
+            {
+                isOpen = true;
+                //spriteRenderer.sprite = offSprite;
 
-            buttonIconObject.SetActive(false);
+                buttonIconObject.SetActive(false);
 
-            RandomItemPick();
+                RandomItemPick();
+            }
+            else
+            {
+
+                StartCoroutine(stageManager.WarningText(0));
+            }
         }
         if (canInteract && itemOut && Input.GetKey(KeyCode.E))
         {

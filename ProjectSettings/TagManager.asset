@@ -46,6 +46,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
+  - name: TileMap
     uniqueID: 4156553399
+    locked: 0
+  - name: Player
+    uniqueID: 2605832035
+    locked: 0
+  - name: HideTileMap
+    uniqueID: 1941846385
+    locked: 0
+  - name: Ui
+    uniqueID: 1270783259
     locked: 0
