@@ -13,9 +13,10 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite onSprite;
     [SerializeField] Sprite offSprite;
+    [SerializeField] Sprite touchSprite;
 
 
-    [Header("BoxInteract")]
+   [Header("BoxInteract")]
     [SerializeField] bool canInteract;
     [SerializeField] bool isOpen;
     [SerializeField] bool itemOut;
@@ -93,7 +94,7 @@ public class RandomBoxScript : MonoBehaviour
 
             if (isOpen == false)
             {
-                //spriteRenderer.sprite = onSprite;
+                spriteRenderer.sprite = touchSprite;
                 buttonIconObject.SetActive(true);
             }
             else if (itemOut)
@@ -112,7 +113,7 @@ public class RandomBoxScript : MonoBehaviour
 
             if (isOpen == false)
             {
-                //spriteRenderer.sprite = offSprite;
+                spriteRenderer.sprite = offSprite;
                 buttonIconObject.SetActive(false);
             }
             else if (itemOut)
@@ -131,7 +132,7 @@ public class RandomBoxScript : MonoBehaviour
             if (stageManager.allKill)
             {
                 isOpen = true;
-                //spriteRenderer.sprite = offSprite;
+                spriteRenderer.sprite = onSprite;
 
                 buttonIconObject.SetActive(false);
 
