@@ -8,6 +8,8 @@ public class BoxPlaceManager : MonoBehaviour
     [SerializeField] ItemInfoManager itemInfoManager;
     [SerializeField] StageManager stageManager;
 
+    [SerializeField] List<GameObject> boxes;
+
     [SerializeField] GameObject normalBox;
     [SerializeField] GameObject[] normalBoxPos;
 
@@ -18,6 +20,14 @@ public class BoxPlaceManager : MonoBehaviour
             RandomBoxScript box = Instantiate(normalBox, normalBoxPos[i].transform.position, Quaternion.identity).GetComponent<RandomBoxScript>();
             box.itemInfoManager = itemInfoManager;
             box.stageManager = stageManager;
+
+            boxes.Add(box.gameObject);
         }
+    }
+
+    public void ClearBox()
+    {
+        for (int i = 0; i < boxes.Count; i++)
+            Destroy(boxes[i]);
     }
 }

@@ -20,6 +20,8 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] bool canInteract;
     [SerializeField] bool isOpen;
     [SerializeField] bool itemOut;
+    [SerializeField] bool itemExist;
+    [SerializeField] GameObject boxUiOb;
     [SerializeField] GameObject buttonIconObject;
     [SerializeField] GameObject itemInfoPanel;
     [SerializeField] GameObject itemSellPanel;
@@ -61,6 +63,7 @@ public class RandomBoxScript : MonoBehaviour
         itemInfoPanel.SetActive(false);
         itemSellPanel.SetActive(false);
         buttonIconObject.SetActive(false);
+        itemExist = true;
 
         for (int i = 0; i < itemInfoManager.ItemInfos.Count; i++)
         {
@@ -88,7 +91,7 @@ public class RandomBoxScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && itemExist)
         {
             canInteract = true;
 
@@ -107,7 +110,7 @@ public class RandomBoxScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && itemExist)
         {
             canInteract = false;
 
@@ -126,6 +129,8 @@ public class RandomBoxScript : MonoBehaviour
 
     private void Update()
     {
+        if (!itemExist) return;
+
         if (canInteract && !isOpen && Input.GetKeyDown(KeyCode.F))
         {
             if (stageManager.boxCheckText.gameObject.activeSelf) return;
@@ -139,20 +144,21 @@ public class RandomBoxScript : MonoBehaviour
                 RandomItemPick();
             }
             else
-            {
-
                 StartCoroutine(stageManager.WarningText(0));
-            }
         }
         if (canInteract && itemOut && Input.GetKey(KeyCode.E))
         {
             itemInfoManager.GetItem(selectedItemCode);
-            Destroy(gameObject);
+            boxUiOb.SetActive(false);
+            itemObject.SetActive(false);
+            itemExist = false;
         }
         else if (canInteract && itemOut && Input.GetKey(KeyCode.Q))
         {
             itemInfoManager.SellItem(selectedItemCode);
-            Destroy(gameObject);
+            boxUiOb.SetActive(false);
+            itemObject.SetActive(false);
+            itemExist = false;
         }
     }
 

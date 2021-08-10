@@ -972,6 +972,8 @@ MonoBehaviour:
   canInteract: 0
   isOpen: 0
   itemOut: 0
+  itemExist: 0
+  boxUiOb: {fileID: 5163199199243115662}
   buttonIconObject: {fileID: 7228821680201824827}
   itemInfoPanel: {fileID: 1976434472}
   itemSellPanel: {fileID: 7579502526948911872}

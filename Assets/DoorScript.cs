@@ -46,12 +46,11 @@ public class DoorScript : MonoBehaviour
             if (stageManager.boxCheckText.gameObject.activeSelf) return;
             if (stageManager.allKill)
             {
-                stageManager.PickMap();
+                StartCoroutine(stageManager.NextMapLoad());
                 buttonIconObject.SetActive(false);
             }
-
             else
-                stageManager.WarningText(1);
+                StartCoroutine(stageManager.WarningText(1));
         }
     }
 }

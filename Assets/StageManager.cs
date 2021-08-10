@@ -28,6 +28,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator stageClearAni;
+    [SerializeField] Animator fadeAni;
 
 
     private void Update()
@@ -40,6 +41,9 @@ public class StageManager : MonoBehaviour
         allKill = false;
         door.DoorOpen(false);
 
+        curMap.SetActive(false);
+
+        
         if(curStage < 30)
         {
             int randomCode = Random.Range(0, firstMaps.Count);
@@ -80,7 +84,7 @@ public class StageManager : MonoBehaviour
                 break;
         }
         boxCheckText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         boxCheckText.gameObject.SetActive(false);
     }
 
@@ -98,5 +102,14 @@ public class StageManager : MonoBehaviour
         stageClearAni.SetTrigger("Start");
         door.DoorOpen(true);
         allKill = true;
+    }
+
+    public IEnumerator NextMapLoad()
+    {
+        fadeAni.SetBool("Black", true);
+        yield return new WaitForSeconds(1);
+        curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().ClearBox();
+        PickMap();
+        fadeAni.SetBool("Black", false);
     }
 }
