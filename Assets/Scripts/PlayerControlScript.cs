@@ -11,7 +11,7 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField] PoolManager poolManager;
 
     [Header("Inspector")]
-    [SerializeField] Rigidbody2D rigid;
+    public Rigidbody2D rigid;
 
     [Header("Wall")]
     [SerializeField] bool isBorder;
@@ -34,7 +34,7 @@ public class PlayerControlScript : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
         
-        rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
+        //rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
 
 
         animator.SetInteger("AxisX", (int)inputX);
