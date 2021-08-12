@@ -49,7 +49,7 @@ public class StageManager : MonoBehaviour
             int randomCode = Random.Range(0, firstMaps.Count);
             firstMaps[randomCode].SetActive(true);
             curMap = firstMaps[randomCode];
-            curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().SpawnBox();
+            curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
             firstMaps.RemoveAt(randomCode);
 
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;

@@ -10,8 +10,25 @@ public class BoxPlaceManager : MonoBehaviour
 
     [SerializeField] List<GameObject> boxes;
 
+    [Header("Box")]
     [SerializeField] GameObject normalBox;
     [SerializeField] GameObject[] normalBoxPos;
+
+    [Header("Door")]
+    [SerializeField] GameObject door;
+    [SerializeField] GameObject doorPos;
+
+
+    public void PlaceObject()
+    {
+        SpawnBox();
+        SpawnDoor();
+    }
+
+    public void SpawnDoor()
+    {
+        door.transform.position = doorPos.transform.position - new Vector3(0, 2.115f, 0);
+    }
 
     public void SpawnBox()
     {
