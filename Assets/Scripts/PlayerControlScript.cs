@@ -90,7 +90,6 @@ public class PlayerControlScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
         if(collision.tag == "Bullet")
         {
             BulletScript hitedBullet = collision.GetComponent<BulletScript>();
@@ -112,6 +111,6 @@ public class PlayerControlScript : MonoBehaviour
             {
                 
             }
-        }*/
+        }
     }
 }

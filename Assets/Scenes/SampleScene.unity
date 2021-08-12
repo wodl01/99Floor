@@ -1195,7 +1195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1984.9633, y: 1137.0015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &293362554
@@ -1409,7 +1409,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c6606afadd8cf8a4f94a30ad3a7114a9, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
   m_FlipX: 0
@@ -5722,8 +5722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1320500596}
-  maxLife: 5
-  life: 5
+  maxLife: 3
+  life: 3
   moveSpeed: 300
   moveSpeedPer: 100
   gold: 0
@@ -5732,12 +5732,12 @@ MonoBehaviour:
   bulletDestroyTime: 1
   attackSpeedPer: 100
   dmg: 1
-  bulletAmount: 20
-  bulletSumAngle: 40
+  bulletAmount: 3
+  bulletSumAngle: 20
   bulletSpeedPer: 100
   bulletRangePer: 100
   missPer: 0
-  godTime: 0
+  godTime: 1
 --- !u!4 &521118319
 Transform:
   m_ObjectHideFlags: 0
@@ -17858,18 +17858,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.05608502, y: -1.1235275}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.600311, y: 0.780776}
   m_EdgeRadius: 0
 --- !u!50 &1320500599
 Rigidbody2D:
@@ -17949,8 +17949,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d69472278836bf749bc96c2dc80a9832, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 5d788183afb4d0d41aa935e2b7fd95ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26578,90 +26578,92 @@ MonoBehaviour:
   playerState: {fileID: 521118318}
   inventory: {fileID: 123699368}
   ItemInfos:
-  - Name: "\uADDC\uD604\uC758 \uC8FC\uBA39"
-    Grade: 0
-    ItemInfo: "\uAE40\uD574 \uBD88\uC8FC\uBA39 \uADDC\uD604\uC758 \uC8FC\uBA39\uC774\uB2E4"
-    ItemShape: {fileID: 21300000, guid: 93413d5f8ea35b346a165d335f313ab4, type: 3}
-    AttackSpeed: 30
-    Dmg: 0
-    BulletAmount: 10
+  - Name: "\uB098\uBB34\uAC80"
+    Grade: 3
+    ItemInfo: "\uBC84\uB824\uC9C4 \uB098\uBB34\uAC80\uC774\uB2E4"
+    ItemShape: {fileID: 21300000, guid: a54c9898760ef3440b2daa7d12b08a96, type: 3}
+    AttackSpeed: 0
+    Dmg: 2
+    BulletAmount: 0
     BulletSpeed: 0
     SumAngle: 0
-    MoveSpeed: 10
+    MoveSpeed: 0
     MissPer: 0
     RangePer: 0
     BuyPrice: 20
     SellPrice: 10
-  - Name: "\uB3CC\uB95C\uC758 \uACE0\uCD94\uCC38\uCE58"
-    Grade: 2
-    ItemInfo: "\uB9F5\uB2E4 \uC2DC\uBC14"
-    ItemShape: {fileID: 21300000, guid: 335699d327e5b2d47a9281f4216b9d22, type: 3}
-    AttackSpeed: -200
-    Dmg: 0
+  - Name: "\uBAA8\uD5D8\uAC00\uC758 \uC2E0\uBC1C"
+    Grade: 3
+    ItemInfo: "\uCC9C\uC73C\uB85C \uB418\uC5B4\uC788\uACE0 \uB0A1\uC740 \uB290\uB08C\uC774
+      \uB09C\uB2E4"
+    ItemShape: {fileID: 21300000, guid: dd4761b5fb179de47b36d623e719b7a5, type: 3}
+    AttackSpeed: 0
+    Dmg: -1
     BulletAmount: 1
     BulletSpeed: 0
     SumAngle: 0
-    MoveSpeed: 100
+    MoveSpeed: 30
     MissPer: 0
     RangePer: 0
     BuyPrice: 20
     SellPrice: 15
-  - Name: "\uCC9C\uBC88\uCC14\uB9B0 \uC7AC\uD6C8"
-    Grade: 3
-    ItemInfo: "\uC774\uAC70 \uC785\uACE0 \uBABB\uADF8\uB9AC\uBA74 \uCC14\uB9B0\uB2E4"
-    ItemShape: {fileID: 21300000, guid: 9d0493b68d50d154c9828fd657740c87, type: 3}
-    AttackSpeed: -20
-    Dmg: 0
-    BulletAmount: -1
+  - Name: "\uC4F8\uB9CC\uD55C \uD654\uC0B4"
+    Grade: 2
+    ItemInfo: "\uB0A0\uCE74\uB86D\uAC8C \uC798 \uC815\uB3C8\uB41C \uD654\uC0B4\uC774\uB2E4"
+    ItemShape: {fileID: 21300000, guid: 0ef688b0db3829841bff763b745767fa, type: 3}
+    AttackSpeed: 30
+    Dmg: 1
+    BulletAmount: 0
     BulletSpeed: 0
-    SumAngle: 30
-    MoveSpeed: -5
-    MissPer: 4
-    RangePer: 0
-    BuyPrice: 20
-    SellPrice: 10
-  - Name: "\uC815\uBE48\uC774 \uC804\uC790\uCF5C\uB77C"
-    Grade: 1
-    ItemInfo: "\uCF5C\uB77C \uB9DB\uC788\uB2E4"
-    ItemShape: {fileID: 21300000, guid: 2263355f76f1ed54bb2c304aa910cbe7, type: 3}
-    AttackSpeed: 9
-    Dmg: 0
-    BulletAmount: 2
-    BulletSpeed: 0
-    SumAngle: 0
+    SumAngle: -10
     MoveSpeed: 0
     MissPer: 0
     RangePer: 0
     BuyPrice: 20
     SellPrice: 10
-  - Name: "zl\uC874 \uB9C8\uC2A4\uD130 \uD6C8\uC758 \uAC80"
-    Grade: 0
-    ItemInfo: "\uC608\uB4E4\uC544 \uB9DE\uAE30\uC2EB\uC73C\uBA74 \uC791\uC5C5\uD558\uC790^^"
-    ItemShape: {fileID: 21300000, guid: 29c467de091b63a4d9dff615c49d4d4b, type: 3}
-    AttackSpeed: 200
+  - Name: "\uB0A1\uC740 \uB9DD\uD1A0"
+    Grade: 2
+    ItemInfo: "\uB0A1\uC544\uC11C \uCC22\uC5B4\uC9C4 \uB9DD\uD1A0\uC774\uB2E4"
+    ItemShape: {fileID: 21300000, guid: 9cba44e13d521e044bcb7fba0897d021, type: 3}
+    AttackSpeed: 40
     Dmg: 0
-    BulletAmount: 5
+    BulletAmount: 2
     BulletSpeed: 0
-    SumAngle: 120
+    SumAngle: 0
+    MoveSpeed: 0
+    MissPer: 20
+    RangePer: 0
+    BuyPrice: 20
+    SellPrice: 10
+  - Name: "\uBC18\uC9DD\uC774\uB294 \uAC80"
+    Grade: 1
+    ItemInfo: "\uC704\uD611\uC801\uC778 \uAC80\uC774\uB2E4 \uC740\uC740\uD558\uAC8C
+      \uBE5B\uC774\uB09C\uB2E4"
+    ItemShape: {fileID: 21300000, guid: 29c467de091b63a4d9dff615c49d4d4b, type: 3}
+    AttackSpeed: 40
+    Dmg: 3
+    BulletAmount: 1
+    BulletSpeed: 0
+    SumAngle: 10
     MoveSpeed: 10
     MissPer: 0
     RangePer: 0
     BuyPrice: 50
-    SellPrice: 100
-  - Name: "\uC7BC\uBBFC\uAE30"
+    SellPrice: 45
+  - Name: "\uBC31\uAE30\uC0AC\uC758 \uAC80"
     Grade: 0
-    ItemInfo: "\uC4F0\uB8F9\uC4F0\uB8F9\uB8FB\uBE1F\uBD80\uC2A4\u315C\uC2B5\uC218\u3161\uC6B0\u3161\u3147\uC229"
-    ItemShape: {fileID: 21300000, guid: ee7e712db8b811c4cb81b5e519532f2f, type: 3}
-    AttackSpeed: 30
-    Dmg: 0
+    ItemInfo: "\uC804\uC124\uB85C \uB0B4\uB824\uC624\uB294 \uC2E0\uBE44\uD55C \uAC80\uC774\uB2E4!"
+    ItemShape: {fileID: 21300000, guid: 29afdf74273922545a3e8a3ce5377d8b, type: 3}
+    AttackSpeed: 50
+    Dmg: 3
     BulletAmount: 2
-    BulletSpeed: 0
+    BulletSpeed: 20
     SumAngle: 0
     MoveSpeed: 0
-    MissPer: 0
+    MissPer: 5
     RangePer: 0
     BuyPrice: 20
-    SellPrice: 5
+    SellPrice: 100
 --- !u!4 &2060253130
 Transform:
   m_ObjectHideFlags: 0
@@ -26995,7 +26997,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c6606afadd8cf8a4f94a30ad3a7114a9, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
   m_FlipX: 0
