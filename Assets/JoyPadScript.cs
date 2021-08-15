@@ -48,6 +48,7 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private void Update()
     {
+        if (player.isTest) return;
         if (isInput)
             MoveCharacter(inputDirection);
         else

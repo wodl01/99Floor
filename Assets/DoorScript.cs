@@ -14,6 +14,11 @@ public class DoorScript : MonoBehaviour
     [SerializeField] bool canInteract;
     [SerializeField] GameObject buttonIconObject;
 
+
+    private void Start()
+    {
+        buttonIconObject.SetActive(false);
+    }
     public void DoorOpen(bool state)
     {
         ani.SetBool("Open", state);

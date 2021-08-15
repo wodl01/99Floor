@@ -53,6 +53,8 @@ public class EnemyBasicScript : MonoBehaviour
 
             curHealth -= bulletScript.bulletDmg;
 
+            findPlayer = true;
+
             if (curHealth <= 0 && !isDie)
             {
                 isDie = true;

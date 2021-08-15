@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControlScript : MonoBehaviour
 {
+    public bool isTest;
+
     [SerializeField] GameObject[] lifeOb;
 
     [Header("Managers & Scripts")]
@@ -31,10 +33,11 @@ public class PlayerControlScript : MonoBehaviour
 
     void Move()
     {
+        if (!isTest) return;
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
         
-        //rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
+        rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
 
 
         animator.SetInteger("AxisX", (int)inputX);
@@ -42,6 +45,39 @@ public class PlayerControlScript : MonoBehaviour
         animator.SetInteger("AxisY", (int)inputY);
     }
 
+    public void MobileFarAttack(float direction)
+    {
+        if (playerState.curShotCoolTime <= 0)
+        {
+            playerState.curShotCoolTime = playerState.totalShotCoolTime * (100 / playerState.attackSpeedPer);
+
+            if (playerState.bulletAmount == 1)
+            {
+                BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180)).GetComponent<BulletScript>();
+                curBullet.isPlayerAttack = true;
+                curBullet.canPassingThrough = false;
+                curBullet.bulletDmg = playerState.dmg;
+                curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
+                curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+            }
+            else
+            {
+                plusAngle = playerState.bulletSumAngle / (playerState.bulletAmount - 1); //60
+                totalAngle = -playerState.bulletSumAngle / 2; //-60
+
+                for (int i = 0; i < playerState.bulletAmount; i++)
+                {
+                    BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0,direction + totalAngle + 180)).GetComponent<BulletScript>();
+                    curBullet.isPlayerAttack = true;
+                    curBullet.canPassingThrough = false;
+                    curBullet.bulletDmg = playerState.dmg;
+                    curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
+                    curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+                    totalAngle += plusAngle;
+                }
+            }
+        }
+    }
     void FarAttack()
     {
         if (playerState.curShotCoolTime >= 0)
