@@ -22,17 +22,13 @@ public class Enemy2 : MonoBehaviour
 
     public void Attack1()
     {
-        Vector2 force = (enemyBasic.player.transform.position - transform.position) * rushSpeed;
-        rigid.AddForce(force);
+        float angle = Mathf.Atan2(enemyBasic.player.transform.position.y - gameObject.transform.position.y, enemyBasic.player.transform.position.x - gameObject.transform.position.x) * Mathf.Rad2Deg;
+        Vector3 force = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+        rigid.AddForce(force * rushSpeed);
     }
     public void AttackFinish()
     {
         enemyBasic.animator.SetBool("Attack", false);
         enemyBasic.canMove = true;
-    }
-
-    public void Move()
-    {
-        
     }
 }

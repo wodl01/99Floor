@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1594737066}
   - component: {fileID: 1594737069}
   - component: {fileID: 1594737068}
-  - component: {fileID: 1594737067}
   - component: {fileID: 7563921117758309528}
+  - component: {fileID: 8543705438305885576}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Bullet
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1594737065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 893907203225920386}
   m_RootOrder: 2
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d69472278836bf749bc96c2dc80a9832, type: 3}
-  m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 0.3019608}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 0.32156864}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,32 +100,6 @@ MonoBehaviour:
   bulletDmg: 0
   bulletSpeed: 0
   bulletDestroyTime: 0
---- !u!61 &1594737067
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594737065}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &7563921117758309528
 Rigidbody2D:
   serializedVersion: 4
@@ -147,6 +121,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &8543705438305885576
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594737065}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.09
 --- !u!1 &763314135692120266
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +185,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.46
+  m_Radius: 5.33
 --- !u!50 &7591014941994947492
 Rigidbody2D:
   serializedVersion: 4
@@ -230,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBasic: {fileID: 7326215222744615916}
+  enemy2: {fileID: 4706857916023809777}
 --- !u!1 &2107108453391194551
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,8 +286,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1689135261
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d69472278836bf749bc96c2dc80a9832, type: 3}
   m_Color: {r: 0.6936547, g: 0.8726415, b: 0.6839622, a: 1}
@@ -440,7 +431,7 @@ MonoBehaviour:
   bulletSprite: {fileID: 0}
   bulletSize: {x: 0, y: 0}
   rigid: {fileID: 8027650994923828622}
-  rushSpeed: 400
+  rushSpeed: 1000
 --- !u!95 &4706857916023809776
 Animator:
   serializedVersion: 3

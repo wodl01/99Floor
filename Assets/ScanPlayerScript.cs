@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ScanPlayerScript : MonoBehaviour
 {
+    [Header("Basic")]
     [SerializeField] EnemyBasicScript enemyBasic;
+
+    [Header("MonsterScripts")]
+    [SerializeField] Enemy2 enemy2;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,5 +16,8 @@ public class ScanPlayerScript : MonoBehaviour
         {
             enemyBasic.findPlayer = true;
         }
+
+
     }
+
 }
