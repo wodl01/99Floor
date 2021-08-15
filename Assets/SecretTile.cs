@@ -26,11 +26,11 @@ public class SecretTile : MonoBehaviour
 
     void Update()
     {
-        if (isTriggered && !isRevealing && DistanceToBounds() <= distanceToReveal)
+        if (isTriggered && !isRevealing )
         {
             isRevealing = true;
         }
-        else if (!isTriggered && isRevealing && DistanceToBounds() > distanceToReveal)
+        else if (!isTriggered && isRevealing)
         {
             isRevealing = false;
         }
