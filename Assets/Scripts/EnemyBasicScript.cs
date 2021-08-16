@@ -18,7 +18,7 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] float maxHealth;
 
     [Header("Shape")]
-    [SerializeField] SpriteRenderer spriteRenderer;
+    //[SerializeField] SpriteRenderer spriteRenderer;
 
     [Header("Target")]
     public GameObject player;
@@ -26,6 +26,7 @@ public class EnemyBasicScript : MonoBehaviour
 
     [Header("Move")]
     public bool canMove;
+    [SerializeField] bool goDiagonal;
     [SerializeField] int actCode;
     float curMoveSpeed;
 
@@ -35,6 +36,14 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] float curAttackCool;
     [SerializeField] float maxMoveCool;
     [SerializeField] float maxAttackCool;
+
+    [Header("Attack Info")]
+    public bool isSpecialBullet;
+    public Sprite attackSprite;
+    public Vector2 attackSize;
+    public Vector2 attackBoxSize;
+    public Vector2 attackBoxOffset;
+
     private void OnEnable()
     {
         isDie = false;
@@ -82,7 +91,7 @@ public class EnemyBasicScript : MonoBehaviour
         if (curMoveCool < 0)
         {
             curMoveCool = maxMoveCool;
-            actCode = Random.Range(0, 9);
+            actCode = Random.Range(0, goDiagonal ? 9 : 5);
 
             if (findPlayer)
                 curMoveSpeed = attackMoveSpeed;

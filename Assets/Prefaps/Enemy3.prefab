@@ -152,8 +152,8 @@ SpriteRenderer:
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c488e94e3a94e5b44b655ae8e966b6a4, type: 3}
-  m_Color: {r: 1, g: 0.8726415, b: 0.8806014, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d69472278836bf749bc96c2dc80a9832, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,8 +175,8 @@ GameObject:
   - component: {fileID: 4792861291533243007}
   - component: {fileID: 3804696048150624636}
   - component: {fileID: 5210570290415889437}
-  - component: {fileID: 2605736204274372611}
-  - component: {fileID: 114832516417490088}
+  - component: {fileID: 114529738620233412}
+  - component: {fileID: 6455799160172093657}
   m_Layer: 8
   m_Name: Enemy3
   m_TagString: Enemy
@@ -262,22 +262,54 @@ MonoBehaviour:
   pool: {fileID: 0}
   stageManager: {fileID: 0}
   rigid: {fileID: 4792861291533243007}
-  animator: {fileID: 2605736204274372611}
+  animator: {fileID: 6455799160172093657}
   isDie: 0
   curHealth: 0
   maxHealth: 10
-  spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0
+  goDiagonal: 0
   actCode: 0
-  freeMoveSpeed: 0.2
-  attackMoveSpeed: 1
+  freeMoveSpeed: 1
+  attackMoveSpeed: 4
   curMoveCool: 0
   curAttackCool: 0
-  maxMoveCool: 2
-  maxAttackCool: 7
---- !u!95 &2605736204274372611
+  maxMoveCool: 1
+  maxAttackCool: 2
+--- !u!114 &114529738620233412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7833525195928518975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0700e8c92188a4546b2f4959ddd90ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoveStartAttack: 0
+  canMoveFinishAttack: 1
+  isShot: 1
+  isSpawn: 0
+  isDash: 0
+  angleToPlayer: 0
+  posToPlayer: 0
+  canPassingThrough: 0
+  bulletAmount: 4
+  attackAngle:
+  - 45
+  - 135
+  - -45
+  - -135
+  bulletSumAngle: 0
+  bulletDmg: 1
+  bulletDestroyTime: 2
+  bulletSpeed: 0.2
+  bulletSpwanRadius: {x: 0, y: 0}
+  dashSpeed: 0
+--- !u!95 &6455799160172093657
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -287,7 +319,7 @@ Animator:
   m_GameObject: {fileID: 7833525195928518975}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9aa430e8d08e23640bd7ecf6d313c11d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 948ebb36352888f44b1736cdabfbaa65, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -296,15 +328,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114832516417490088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7833525195928518975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 710e6ec9e8e09344da6e0fc8225b6174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

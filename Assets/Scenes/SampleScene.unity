@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0441df944c36441bea63bbc98c8302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterCode: 1
+  monsterCode: 2
 --- !u!1 &73934580
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0441df944c36441bea63bbc98c8302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterCode: 2
+  monsterCode: 5
 --- !u!1 &116317821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,6 +1547,18 @@ MonoBehaviour:
     amount: 100
   - name: Enemy2
     prefab: {fileID: 4706857916023809742, guid: 118160d052db6d44b9e4305916306d97,
+      type: 3}
+    amount: 100
+  - name: Enemy3
+    prefab: {fileID: 7833525195928518975, guid: 54150de23d750774bb5a60847b4a89c9,
+      type: 3}
+    amount: 100
+  - name: Enemy4
+    prefab: {fileID: 7833525195928518975, guid: a65aba71153bb4445ade54d4edfc7cd6,
+      type: 3}
+    amount: 100
+  - name: Enemy5
+    prefab: {fileID: 7833525195928518975, guid: bacd9d9e5764e2b4aa02845476c1e0b0,
       type: 3}
     amount: 100
 --- !u!4 &371053717
@@ -11855,7 +11867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &847712878
 Transform:
   m_ObjectHideFlags: 0
@@ -21537,7 +21549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0441df944c36441bea63bbc98c8302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterCode: 2
+  monsterCode: 5
 --- !u!1 &1020546795
 GameObject:
   m_ObjectHideFlags: 0
@@ -28924,7 +28936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0441df944c36441bea63bbc98c8302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterCode: 1
+  monsterCode: 2
 --- !u!1 &1333411389
 GameObject:
   m_ObjectHideFlags: 0
@@ -42115,7 +42127,7 @@ GameObject:
   - component: {fileID: 2052597366}
   m_Layer: 0
   m_Name: HideTilemap
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
