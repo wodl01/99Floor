@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBasic: {fileID: 5210570290415889437}
+  enemy2: {fileID: 0}
 --- !u!1 &3520029328247832134
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ GameObject:
   - component: {fileID: 4792861291533243007}
   - component: {fileID: 3804696048150624636}
   - component: {fileID: 5210570290415889437}
-  - component: {fileID: 4316513929658123705}
+  - component: {fileID: 114819472356274616}
   - component: {fileID: 2605736204274372611}
   m_Layer: 8
   m_Name: Enemy1
@@ -265,10 +266,10 @@ MonoBehaviour:
   isDie: 0
   curHealth: 0
   maxHealth: 10
-  spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0
+  goDiagonal: 1
   actCode: 0
   freeMoveSpeed: 0.2
   attackMoveSpeed: 1
@@ -276,7 +277,7 @@ MonoBehaviour:
   curAttackCool: 0
   maxMoveCool: 2
   maxAttackCool: 7
---- !u!114 &4316513929658123705
+--- !u!114 &114819472356274616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,14 +286,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7833525195928518975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f453deab0bad904eb5a2aef727afab4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0700e8c92188a4546b2f4959ddd90ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBasic: {fileID: 5210570290415889437}
-  bulletSprite: {fileID: 0}
-  bulletSize: {x: 0, y: 0}
-  rigid: {fileID: 4792861291533243007}
-  speed: 0
+  canMoveStartAttack: 0
+  canMoveFinishAttack: 1
+  isShot: 1
+  isSpawn: 0
+  isDash: 0
+  angleToPlayerShot: 1
+  angleToPlayerDash: 0
+  canPassingThrough: 0
+  bulletAmount: 1
+  attackAngle:
+  - 0
+  bulletSumAngle: 0
+  bulletDmg: 1
+  bulletDestroyTime: 2
+  bulletSpeed: 0.2
+  bulletSpwanRadius: {x: 0, y: 0}
+  dashSpeed: 0
 --- !u!95 &2605736204274372611
 Animator:
   serializedVersion: 3

@@ -53,18 +53,24 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject BulletInstantiate(string tag, Vector3 position, Quaternion rotation)
+    public GameObject BulletInstantiate(string tag, Vector3 position, Quaternion rotation, bool isPlayerAttack, bool canPassingThrough, float dmg, float distroyTime, float bulletSpeed)
     {
-        GameObject curSpawnedOb = poolDictionary[tag].Dequeue();
+        BulletScript curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<BulletScript>();
 
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
 
-        curSpawnedOb.SetActive(true);
+        curSpawnedOb.isPlayerAttack = isPlayerAttack;
+        curSpawnedOb.canPassingThrough = canPassingThrough;
+        curSpawnedOb.bulletDmg = dmg;
+        curSpawnedOb.bulletDestroyTime = distroyTime;
+        curSpawnedOb.bulletSpeed = bulletSpeed;
 
-        poolDictionary[tag].Enqueue(curSpawnedOb);
+        curSpawnedOb.gameObject.SetActive(true);
 
-        return curSpawnedOb;
+        poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
+
+        return curSpawnedOb.gameObject;
     }
 
     public GameObject EnemyInstantiate(string tag, Vector3 position)

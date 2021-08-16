@@ -53,12 +53,10 @@ public class PlayerControlScript : MonoBehaviour
 
             if (playerState.bulletAmount == 1)
             {
-                BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180)).GetComponent<BulletScript>();
-                curBullet.isPlayerAttack = true;
-                curBullet.canPassingThrough = false;
-                curBullet.bulletDmg = playerState.dmg;
-                curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
-                curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+                float dmg = playerState.dmg;
+                float speed = 0.15f * (playerState.bulletSpeedPer / 100);
+                float destroyTime = (playerState.bulletRangePer / 100);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180), true, false, dmg, destroyTime, speed);
             }
             else
             {
@@ -67,12 +65,11 @@ public class PlayerControlScript : MonoBehaviour
 
                 for (int i = 0; i < playerState.bulletAmount; i++)
                 {
-                    BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0,direction + totalAngle + 180)).GetComponent<BulletScript>();
-                    curBullet.isPlayerAttack = true;
-                    curBullet.canPassingThrough = false;
-                    curBullet.bulletDmg = playerState.dmg;
-                    curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
-                    curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+                    float dmg = playerState.dmg;
+                    float speed = 0.15f * (playerState.bulletSpeedPer / 100);
+                    float destroyTime = (playerState.bulletRangePer / 100);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), true, false, dmg, destroyTime, speed);
+                   
                     totalAngle += plusAngle;
                 }
             }
@@ -98,12 +95,11 @@ public class PlayerControlScript : MonoBehaviour
 
             if (playerState.bulletAmount == 1)
             {
-                BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle)).GetComponent<BulletScript>();
-                curBullet.isPlayerAttack = true;
-                curBullet.canPassingThrough = false;
-                curBullet.bulletDmg = playerState.dmg;
-                curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
-                curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+                float dmg = playerState.dmg;
+                float speed = 0.15f * (playerState.bulletSpeedPer / 100);
+                float destroyTime = (playerState.bulletRangePer / 100);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle), true, false, dmg, destroyTime, speed);
+
             }
             else
             {
@@ -112,12 +108,11 @@ public class PlayerControlScript : MonoBehaviour
 
                 for (int i = 0; i < playerState.bulletAmount; i++)
                 {
-                    BulletScript curBullet = poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle)).GetComponent<BulletScript>();
-                    curBullet.isPlayerAttack = true;
-                    curBullet.canPassingThrough = false;
-                    curBullet.bulletDmg = playerState.dmg;
-                    curBullet.bulletSpeed = 0.15f * (playerState.bulletSpeedPer / 100);
-                    curBullet.bulletDestroyTime = (playerState.bulletRangePer / 100);
+                    float dmg = playerState.dmg;
+                    float speed = 0.15f * (playerState.bulletSpeedPer / 100);
+                    float destroyTime = (playerState.bulletRangePer / 100);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle), true, false, dmg, destroyTime, speed);
+
                     totalAngle += plusAngle;
                 }
             }
