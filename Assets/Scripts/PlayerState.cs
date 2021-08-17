@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    public static PlayerState playerState;
     public GameObject player;
+
+    private void Start() => playerState = this;
 
     [Header("Player Life")]
     public int maxLife;

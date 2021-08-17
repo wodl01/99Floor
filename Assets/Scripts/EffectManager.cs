@@ -5,16 +5,35 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite[] effectSprite;
+    public Sprite[] effectSprites;
+    public float spriteCycleTime;
+
+    int curSpriteNum;
+    float curCycleTime;
 
     private void OnEnable()
     {
-        StartCoroutine(EffectAni());
+
+        curSpriteNum = 0;
+        curCycleTime = spriteCycleTime;
     }
 
-    IEnumerator EffectAni()
+    public void Update()
     {
-        yield return new WaitForSeconds(0.2f);
-        gameObject.SetActive(false);
+        if(curCycleTime > 0)
+        curCycleTime -= Time.deltaTime;
+
+        if(curCycleTime <= 0)
+        {
+            curCycleTime = spriteCycleTime;
+
+            spriteRenderer.sprite = effectSprites[curSpriteNum];
+            curSpriteNum++;
+
+            if(effectSprites[curSpriteNum] == null)
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

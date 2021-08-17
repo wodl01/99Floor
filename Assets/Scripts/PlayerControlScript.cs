@@ -119,29 +119,23 @@ public class PlayerControlScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void PlayerHit(int damage)
     {
-        if(collision.tag == "Bullet")
+        int randomNum = Random.Range(0, 101);
+        if (randomNum <= playerState.missPer) return;
+
+        playerState.life -= damage;
+        for (int i = 0; i < playerState.maxLife; i++)
         {
-            BulletScript hitedBullet = collision.GetComponent<BulletScript>();
-            if (hitedBullet.isPlayerAttack) return;
+            lifeOb[i].SetActive(false);
+        }
+        for (int i = 0; i < playerState.life; i++)
+        {
+            lifeOb[i].SetActive(true);
+        }
+        if (playerState.life == 0)
+        {
 
-            int randomNum = Random.Range(0, 101);
-            if (randomNum <= playerState.missPer) return;
-
-            playerState.life--;
-            for (int i = 0; i < playerState.maxLife; i++)
-            {
-                lifeOb[i].SetActive(false);
-            }
-            for (int i = 0; i < playerState.life; i++)
-            {
-                lifeOb[i].SetActive(true);
-            }
-            if(playerState.life == 0)
-            {
-                
-            }
         }
     }
 }

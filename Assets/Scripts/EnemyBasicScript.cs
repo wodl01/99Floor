@@ -52,25 +52,18 @@ public class EnemyBasicScript : MonoBehaviour
         curHealth = maxHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void EnemyHit(float damage)
     {
-        if (collision.tag == "Bullet")
+        curHealth -= damage;
+
+        findPlayer = true;
+
+        if (curHealth <= 0 && !isDie)
         {
-            BulletScript bulletScript = collision.GetComponent<BulletScript>();
-
-            if (!bulletScript.isPlayerAttack) return;
-
-            curHealth -= bulletScript.bulletDmg;
-
-            findPlayer = true;
-
-            if (curHealth <= 0 && !isDie)
-            {
-                isDie = true;
-                stageManager.enemyAmount--;
-                stageManager.ClearCheck();
-                gameObject.SetActive(false);
-            }
+            isDie = true;
+            stageManager.enemyAmount--;
+            stageManager.ClearCheck();
+            gameObject.SetActive(false);
         }
     }
 
