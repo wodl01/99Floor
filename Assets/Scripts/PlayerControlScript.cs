@@ -40,9 +40,7 @@ public class PlayerControlScript : MonoBehaviour
         rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
 
 
-        animator.SetInteger("AxisX", (int)inputX);
 
-        animator.SetInteger("AxisY", (int)inputY);
     }
 
     public void MobileFarAttack(float direction)

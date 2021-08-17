@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [SerializeField] PlayerAniManager playerAni;
     [SerializeField] PlayerControlScript player;
     [SerializeField] PlayerState playerState;
 
@@ -18,12 +19,13 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private float leverRange;
 
     private Vector2 inputDirection;
+    [SerializeField] float rotation;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         ControlJoySticklever(eventData);
         isInput = true;
-
+        playerAni.movePadActive = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -36,6 +38,7 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         lever.anchoredPosition = Vector2.zero;
 
         isInput = false;
+        playerAni.movePadActive = false;
     }
 
     private void ControlJoySticklever(PointerEventData eventData)
@@ -44,6 +47,9 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         var inputVector = inputpos.magnitude < leverRange ? inputpos : inputpos.normalized * leverRange;
         lever.anchoredPosition = inputVector;
         inputDirection = inputVector / leverRange;
+
+        rotation = Mathf.Atan2(rectTransform.transform.position.y - lever.transform.position.y, rectTransform.transform.position.x - lever.transform.position.x) * Mathf.Rad2Deg;
+        playerAni.moveRotate = rotation;
     }
 
     private void Update()

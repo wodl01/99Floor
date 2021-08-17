@@ -39,6 +39,7 @@ public class BulletScript : MonoBehaviour
             if (!isPlayerAttack) return;
             if(canPassingThrough) return;
 
+            DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(0);
         }
@@ -47,6 +48,7 @@ public class BulletScript : MonoBehaviour
             if (isPlayerAttack) return;
             if(canPassingThrough) return;
 
+            DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(1);
         }
