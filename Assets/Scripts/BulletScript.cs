@@ -15,6 +15,9 @@ public class BulletScript : MonoBehaviour
     public float bulletDestroyTime;
     [SerializeField] GameObject hitedOb;
 
+    [Header("Test")]
+    [SerializeField] Sprite[] destroyEffects;
+
     private void FixedUpdate()
     {
         if (bulletDestroyTime > 0)
@@ -80,7 +83,7 @@ public class BulletScript : MonoBehaviour
 
     public void DestroyBullet()
     {
-        poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity);
+        poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, false, true, new Vector2(0, 0), 0.05f, destroyEffects);
         gameObject.SetActive(false);
     }
 }

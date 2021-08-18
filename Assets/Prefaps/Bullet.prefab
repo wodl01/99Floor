@@ -130,6 +130,12 @@ MonoBehaviour:
   bulletDmg: 1
   bulletSpeed: 0.52
   bulletDestroyTime: 0
+  hitedOb: {fileID: 0}
+  destroyEffects:
+  - {fileID: 21300000, guid: 144584a941cc53349bb16929e8382a97, type: 3}
+  - {fileID: 21300002, guid: 144584a941cc53349bb16929e8382a97, type: 3}
+  - {fileID: 21300004, guid: 144584a941cc53349bb16929e8382a97, type: 3}
+  - {fileID: 21300006, guid: 144584a941cc53349bb16929e8382a97, type: 3}
 --- !u!61 &892921674017952991
 BoxCollider2D:
   m_ObjectHideFlags: 0

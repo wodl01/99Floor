@@ -86,17 +86,25 @@ public class PoolManager : MonoBehaviour
         return curSpawnedOb;
     }
 
-    public GameObject EffectInstantiate(string tag, Vector3 position, Quaternion rotation)
+    public GameObject EffectInstantiate(string tag, Vector3 position, Quaternion rotation, bool isFollow, bool isReveling, Vector2 followPos, float spriteCycleTime, Sprite[] sprites)
     {
-        GameObject curSpawnedOb = poolDictionary[tag].Dequeue();
+        EffectManager curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<EffectManager>();
+
+        curSpawnedOb.isFollow = isFollow;
+        curSpawnedOb.isRevealing = isReveling;
+        curSpawnedOb.followPos = followPos;
+        curSpawnedOb.spriteCycleTime = spriteCycleTime;
+        curSpawnedOb.maxSpriteNum = sprites.Length;
+
+        for (int i = 0; i < sprites.Length; i++) curSpawnedOb.effectSprites[i] = sprites[i];
 
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
 
-        curSpawnedOb.SetActive(true);
+        curSpawnedOb.gameObject.SetActive(true);
 
-        poolDictionary[tag].Enqueue(curSpawnedOb);
+        poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
 
-        return curSpawnedOb;
+        return curSpawnedOb.gameObject;
     }
 }

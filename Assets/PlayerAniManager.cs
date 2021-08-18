@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAniManager : MonoBehaviour
 {
+    [SerializeField] PlayerControlScript player;
     [SerializeField] Animator playerAni;
     [SerializeField] SpriteRenderer sprite;
 
@@ -39,6 +40,14 @@ public class PlayerAniManager : MonoBehaviour
                 x = 1;
                 y = 0;
                 sprite.flipX = false;
+            }
+            if(Mathf.Abs(attackRotate) > 90)
+            {
+                player.isLookLeft = true;
+            }
+            else
+            {
+                player.isLookLeft = false;
             }
             playerAni.SetInteger("AxisX", x);
             playerAni.SetInteger("AxisY", y);

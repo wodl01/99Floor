@@ -97,6 +97,8 @@ public class ItemInfoManager : MonoBehaviour
             playerState.bulletRangePer = 0;
         else
             playerState.bulletRangePer += ItemInfos[ItemCode].RangePer;
+
+        inventory.ItemListUpdate(ItemCode);
     }
 
     public void SellItem(int ItemCode)

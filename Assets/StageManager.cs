@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] PlayerState playerState;
     [SerializeField] DoorScript door;
 
+    [SerializeField] Transform pos;
+
     [Header("Stage")]
     [SerializeField] List<GameObject> firstMaps;
     [SerializeField] GameObject curMap;
@@ -52,7 +54,7 @@ public class StageManager : MonoBehaviour
             curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
             firstMaps.RemoveAt(randomCode);
 
-            playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
+            playerState.player.transform.position = pos.position;
             SpawnEnemy();
         }
     }
@@ -81,6 +83,9 @@ public class StageManager : MonoBehaviour
                 break;
             case 1:
                 boxCheckText.text = "스테이지를 클리어 해주십시오.";
+                break;
+            case 2:
+                boxCheckText.text = "Gold가 부족합니다.";
                 break;
         }
         boxCheckText.gameObject.SetActive(true);

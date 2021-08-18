@@ -92,12 +92,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f943623b488688d4fa8b39d0086e6398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFollow: 0
+  isRevealing: 0
+  revealingSpeed: 4
+  followPos: {x: 0, y: 0}
   spriteRenderer: {fileID: 4283384154770384477}
   effectSprites:
-  - {fileID: 21300000, guid: 144584a941cc53349bb16929e8382a97, type: 3}
-  - {fileID: 21300002, guid: 144584a941cc53349bb16929e8382a97, type: 3}
-  - {fileID: 21300004, guid: 144584a941cc53349bb16929e8382a97, type: 3}
-  - {fileID: 21300006, guid: 144584a941cc53349bb16929e8382a97, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  spriteCycleTime: 0.05
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spriteCycleTime: 0
+  maxSpriteNum: 0
