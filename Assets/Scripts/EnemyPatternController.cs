@@ -18,13 +18,16 @@ public class EnemyPatternController : MonoBehaviour
     [SerializeField] bool angleToPlayerDash;
 
     [SerializeField] bool canPassingThrough;
+    [SerializeField] bool canHoming;
     [SerializeField] int bulletAmount;
     [SerializeField] float[] attackAngle;
     [SerializeField] float bulletSumAngle;
     [SerializeField] float bulletDmg;
+    [SerializeField] float homingPower;
     [SerializeField] float bulletDestroyTime;
     [SerializeField] float bulletSpeed;
     [SerializeField] Vector2 bulletSpwanRadius;
+
 
     [SerializeField] float dashSpeed;
 
@@ -54,7 +57,8 @@ public class EnemyPatternController : MonoBehaviour
             for (int i = 0; i < bulletAmount; i++)
             {
                 Vector3 randomRadius = new Vector2(Random.Range(-bulletSpwanRadius.x, bulletSpwanRadius.x), Random.Range(-bulletSpwanRadius.y, bulletSpwanRadius.y));
-                pool.BulletInstantiate("Bullet1", transform.position + randomRadius, Quaternion.identity, false, canPassingThrough, bulletDmg, bulletDestroyTime, bulletSpeed);
+                GameObject bullet = pool.BulletInstantiate("Bullet1", transform.position + randomRadius, Quaternion.identity, false, canPassingThrough, canHoming,enemyBasic.attackSize, enemyBasic.attackBoxSize, bulletDmg,homingPower, bulletDestroyTime, bulletSpeed);
+                bullet.GetComponent<BulletScript>().bulletHost = gameObject;
             }
         }
         else if(isShot)
@@ -68,13 +72,18 @@ public class EnemyPatternController : MonoBehaviour
             if(attackAngle.Length == 1)
                 for (int i = 0; i < bulletAmount; i++)
                 {
-                    pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, totalAngle + mainAngle), false, canPassingThrough, bulletDmg, bulletDestroyTime, bulletSpeed);
+                    GameObject bullet = pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, totalAngle + mainAngle), false, canPassingThrough,canHoming, enemyBasic.attackSize, enemyBasic.attackBoxSize, bulletDmg, homingPower, bulletDestroyTime, bulletSpeed);
+                    bullet.GetComponent<BulletScript>().bulletHost = gameObject;
 
                     totalAngle += plusAngle;
                 }
             else
                 for (int i = 0; i < attackAngle.Length; i++)
-                    pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, attackAngle[i] + mainAngle), false, canPassingThrough, bulletDmg, bulletDestroyTime, bulletSpeed);
+                {
+                    GameObject bullet = pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, attackAngle[i] + mainAngle), false, canPassingThrough, canHoming, enemyBasic.attackSize, enemyBasic.attackBoxSize, bulletDmg, homingPower, bulletDestroyTime, bulletSpeed);
+                    bullet.GetComponent<BulletScript>().bulletHost = gameObject;
+                }
+                    
 
         }
     }

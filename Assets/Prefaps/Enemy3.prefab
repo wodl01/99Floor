@@ -277,6 +277,11 @@ MonoBehaviour:
   curAttackCool: 0
   maxMoveCool: 1
   maxAttackCool: 2
+  isSpecialBullet: 0
+  attackSprite: {fileID: 0}
+  attackSize: {x: 0.4, y: 0.4}
+  attackBoxSize: {x: 2.79, y: 0.38}
+  attackBoxOffset: {x: 0, y: 0}
 --- !u!114 &114529738620233412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,9 +299,10 @@ MonoBehaviour:
   isShot: 1
   isSpawn: 0
   isDash: 0
-  angleToPlayer: 0
-  posToPlayer: 0
+  angleToPlayerShot: 0
+  angleToPlayerDash: 0
   canPassingThrough: 0
+  canHoming: 0
   bulletAmount: 4
   attackAngle:
   - 45
@@ -305,6 +311,7 @@ MonoBehaviour:
   - -135
   bulletSumAngle: 0
   bulletDmg: 1
+  homingPower: 0
   bulletDestroyTime: 2
   bulletSpeed: 0.2
   bulletSpwanRadius: {x: 0, y: 0}

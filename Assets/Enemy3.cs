@@ -22,10 +22,10 @@ public class Enemy3 : MonoBehaviour
 
     public void Attack1()
     {
-        enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, 45), false, false, 1, 2, 0.13f);
-        enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, 135), false, false, 1, 2, 0.13f);
-        enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, -45), false, false, 1, 2, 0.13f);
-        enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, -135), false, false, 1, 2, 0.13f);
+        //enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, 45), false, false, 1, 2, 0.13f);
+        //enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, 135), false, false, 1, 2, 0.13f);
+        //enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, -45), false, false, 1, 2, 0.13f);
+        //enemyBasic.pool.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, -135), false, false, 1, 2, 0.13f);
     }
     public void AttackFinish()
     {

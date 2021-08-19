@@ -6,20 +6,41 @@ public class BulletScript : MonoBehaviour
 {
     [Header("Scirpts")]
     public PoolManager poolManager;
+    public ItemPassiveManager passive;
+
+    [Header("Inspector")]
+    [SerializeField] Rigidbody2D rigid;
+    public BoxCollider2D boxCol;
 
     [Header("BulletInfo")]
+    public GameObject bulletHost;
+    public GameObject target;
     public bool canPassingThrough;
     public bool isPlayerAttack;
+    public bool isHoming;
     public float bulletDmg;
     public float bulletSpeed;
+    public float homingPower;
     public float bulletDestroyTime;
     [SerializeField] GameObject hitedOb;
 
     [Header("Test")]
     [SerializeField] Sprite[] destroyEffects;
 
+
     private void FixedUpdate()
     {
+        if (isHoming && target != null)
+        {
+            Vector2 direction = transform.position - target.transform.position;
+
+            direction.Normalize();
+
+            float cross = Vector3.Cross(direction, transform.right).z;
+
+            rigid.angularVelocity = cross * homingPower;
+        }
+
         if (bulletDestroyTime > 0)
         {
             bulletDestroyTime -= Time.deltaTime;
@@ -36,15 +57,18 @@ public class BulletScript : MonoBehaviour
         {
             if(canPassingThrough) return;
             DestroyBullet();
+            EffectOn();
         }
         if(collision.tag == "Enemy")
         {
             if (!isPlayerAttack) return;
-            if(canPassingThrough) return;
 
+            if(!canPassingThrough)
             DestroyBullet();
+
             hitedOb = collision.gameObject;
             Damaging(0);
+            EffectOn();
         }
         if (collision.tag == "PlayerHitBox")
         {
@@ -54,11 +78,13 @@ public class BulletScript : MonoBehaviour
             DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(1);
+            EffectOn();
         }
         if(collision.tag == "BrokenOb")
         {
             hitedOb = collision.gameObject;
             Damaging(2);
+            EffectOn();
         }
     }
 
@@ -71,7 +97,9 @@ public class BulletScript : MonoBehaviour
                 enemy.EnemyHit(bulletDmg);
                 break;
             case 1:
-                hitedOb.GetComponent<PlayerControlScript>().PlayerHit((int)bulletDmg);
+                hitedOb.gameObject.GetComponent<PlayerHitBoxScript>().PlayerHit((int)bulletDmg);
+                if (passive.Passive_2)
+                    bulletHost.GetComponent<EnemyBasicScript>().EnemyHit(20);
                 break;
             case 2:
                 BrokenObjectScript ob = hitedOb.GetComponent<BrokenObjectScript>();
@@ -83,7 +111,11 @@ public class BulletScript : MonoBehaviour
 
     public void DestroyBullet()
     {
-        poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, false, true, new Vector2(0, 0), 0.05f, destroyEffects);
         gameObject.SetActive(false);
+    }
+
+    public void EffectOn()
+    {
+        poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, new Vector2(0.8f, 0.8f), false, true, new Vector2(0, 0), 0.05f, destroyEffects);
     }
 }

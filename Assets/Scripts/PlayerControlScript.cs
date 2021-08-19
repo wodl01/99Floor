@@ -6,11 +6,10 @@ public class PlayerControlScript : MonoBehaviour
 {
     public bool isTest;
 
-    [SerializeField] GameObject[] lifeOb;
-
     [Header("Managers & Scripts")]
     [SerializeField] PlayerState playerState;
     [SerializeField] PoolManager poolManager;
+    [SerializeField] ItemPassiveManager passive;
 
     [Header("Inspector")]
     public Rigidbody2D rigid;
@@ -22,6 +21,8 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("WeaponFire")]
+    [SerializeField] Vector2 bulletScale;
+    [SerializeField] Vector2 boxSize;
     float plusAngle;
     float basicAngle;
     float totalAngle;
@@ -46,9 +47,6 @@ public class PlayerControlScript : MonoBehaviour
         float inputY = Input.GetAxisRaw("Vertical");
         
         rigid.velocity = new Vector2(inputX, inputY) * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
-
-
-
     }
 
     public void MobileFarAttack(float direction)
@@ -65,7 +63,7 @@ public class PlayerControlScript : MonoBehaviour
                 float dmg = playerState.dmg;
                 float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                 float destroyTime = (playerState.bulletRangePer / 100);
-                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180), true, false, dmg, destroyTime, speed);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180), true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
 
             }
             else
@@ -78,7 +76,7 @@ public class PlayerControlScript : MonoBehaviour
                     float dmg = playerState.dmg;
                     float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                     float destroyTime = (playerState.bulletRangePer / 100);
-                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), true, false, dmg, destroyTime, speed);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), true, passive.Passive_4,passive.Passive_5,bulletScale, boxSize, dmg, 200, destroyTime, speed);
 
 
                     totalAngle += plusAngle;
@@ -112,7 +110,7 @@ public class PlayerControlScript : MonoBehaviour
                 float dmg = playerState.dmg;
                 float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                 float destroyTime = (playerState.bulletRangePer / 100);
-                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle), true, false, dmg, destroyTime, speed);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle), true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
 
             }
             else
@@ -125,7 +123,7 @@ public class PlayerControlScript : MonoBehaviour
                     float dmg = playerState.dmg;
                     float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                     float destroyTime = (playerState.bulletRangePer / 100);
-                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle), true, false, dmg, destroyTime, speed);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle), true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
 
                     totalAngle += plusAngle;
                 }
@@ -142,59 +140,39 @@ public class PlayerControlScript : MonoBehaviour
             case 0:
                 if (isLookLeft)
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0,0,basicAngle), true, false, transform.position, 0.1f, ThrowEffects1).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0,0,basicAngle), new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects1).GetComponent<SpriteRenderer>();
                     sprite.flipX = true;
                 }
                 else
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), true, false, transform.position, 0.1f, ThrowEffects1).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects1).GetComponent<SpriteRenderer>();
                     sprite.flipX = false;
                 }
                 break;
             case 1:
                 if (isLookLeft)
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), true, false, transform.position, 0.1f, ThrowEffects2).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects2).GetComponent<SpriteRenderer>();
                     sprite.flipX = true;
                 }
                 else
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), true, false, transform.position, 0.1f, ThrowEffects2).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.Euler(0, 0, basicAngle), new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects2).GetComponent<SpriteRenderer>();
                     sprite.flipX = false;
                 }
                 break;
             case 2:
                 if (isLookLeft)
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, true, false, transform.position, 0.1f, ThrowEffects3).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects3).GetComponent<SpriteRenderer>();
                     sprite.flipX = true;
                 }
                 else
                 {
-                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, true, false, transform.position, 0.1f, ThrowEffects3).GetComponent<SpriteRenderer>();
+                    SpriteRenderer sprite = poolManager.EffectInstantiate("Effect", transform.position, Quaternion.identity, new Vector2(0.35f, 0.35f), true, false, transform.position, 0.1f, ThrowEffects3).GetComponent<SpriteRenderer>();
                     sprite.flipX = false;
                 }
                 break;
-        }
-    }
-
-    public void PlayerHit(int damage)
-    {
-        int randomNum = Random.Range(0, 101);
-        if (randomNum <= playerState.missPer) return;
-
-        playerState.life -= damage;
-        for (int i = 0; i < playerState.maxLife; i++)
-        {
-            lifeOb[i].SetActive(false);
-        }
-        for (int i = 0; i < playerState.life; i++)
-        {
-            lifeOb[i].SetActive(true);
-        }
-        if (playerState.life == 0)
-        {
-
         }
     }
 }

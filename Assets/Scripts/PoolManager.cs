@@ -6,7 +6,7 @@ public class PoolManager : MonoBehaviour
 {
     [SerializeField] PlayerState playerState;
     [SerializeField] StageManager stageManager;
-    [SerializeField] 
+    [SerializeField] ItemPassiveManager passiveManager;
 
     [System.Serializable]
     public class Pool
@@ -53,18 +53,28 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject BulletInstantiate(string tag, Vector3 position, Quaternion rotation, bool isPlayerAttack, bool canPassingThrough, float dmg, float distroyTime, float bulletSpeed)
+    public GameObject BulletInstantiate(string tag, Vector3 position, Quaternion rotation, bool isPlayerAttack, bool canPassingThrough, bool isHoming, Vector2 scale, Vector2 boxSize, float dmg, float homingPower, float distroyTime, float bulletSpeed)
     {
         BulletScript curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<BulletScript>();
 
+        curSpawnedOb.passive = passiveManager;
+
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
+        curSpawnedOb.transform.localScale = scale;
+
+        curSpawnedOb.boxCol.size = boxSize;
 
         curSpawnedOb.isPlayerAttack = isPlayerAttack;
+        curSpawnedOb.isHoming = isHoming;
         curSpawnedOb.canPassingThrough = canPassingThrough;
         curSpawnedOb.bulletDmg = dmg;
+        curSpawnedOb.homingPower = homingPower;
         curSpawnedOb.bulletDestroyTime = distroyTime;
         curSpawnedOb.bulletSpeed = bulletSpeed;
+
+        curSpawnedOb.target = null;
+        if (!isPlayerAttack) curSpawnedOb.target = playerState.player;
 
         curSpawnedOb.gameObject.SetActive(true);
 
@@ -86,7 +96,7 @@ public class PoolManager : MonoBehaviour
         return curSpawnedOb;
     }
 
-    public GameObject EffectInstantiate(string tag, Vector3 position, Quaternion rotation, bool isFollow, bool isReveling, Vector2 followPos, float spriteCycleTime, Sprite[] sprites)
+    public GameObject EffectInstantiate(string tag, Vector3 position, Quaternion rotation, Vector2 scale, bool isFollow, bool isReveling, Vector2 followPos, float spriteCycleTime, Sprite[] sprites)
     {
         EffectManager curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<EffectManager>();
 
@@ -100,6 +110,7 @@ public class PoolManager : MonoBehaviour
 
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
+        curSpawnedOb.transform.localScale = scale;
 
         curSpawnedOb.gameObject.SetActive(true);
 
