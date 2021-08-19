@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
             hitedOb = collision.gameObject;
             Damaging(0);
         }
-        if (collision.tag == "Player")
+        if (collision.tag == "PlayerHitBox")
         {
             if (isPlayerAttack) return;
             if(canPassingThrough) return;

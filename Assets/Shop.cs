@@ -40,7 +40,7 @@ public class Shop : MonoBehaviour
     [SerializeField] Text[] itemSpecialOptionTexts;
     [SerializeField] Text itemSellPriceText;
 
-    private void Start()
+    private void OnEnable()
     {
         itemInfoPanel.SetActive(false);
         for (int i = 0; i < itemInfo.ItemInfos.Count; i++)

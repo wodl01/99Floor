@@ -10,7 +10,7 @@ public class AttackJoyPad : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] PlayerControlScript player;
     [SerializeField] PlayerState playerState;
 
-    [SerializeField] private bool isInput;
+    public bool isInput;
 
     [SerializeField] RectTransform lever;
     [SerializeField] RectTransform rectTransform;
@@ -19,7 +19,7 @@ public class AttackJoyPad : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private float leverRange;
 
     [SerializeField] Vector2 inputDirection;
-    [SerializeField] float rotation;
+    public float rotation;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
