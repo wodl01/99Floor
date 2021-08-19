@@ -54,7 +54,7 @@ public class StageManager : MonoBehaviour
             curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
             firstMaps.RemoveAt(randomCode);
 
-            playerState.player.transform.position = pos.position;
+            playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
         }
     }
