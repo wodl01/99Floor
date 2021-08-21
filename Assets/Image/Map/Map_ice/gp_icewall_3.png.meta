@@ -1,7 +1,15 @@
 fileFormatVersion: 2
 guid: dc8c6e96d1b74a24dbc9bc3e294ceeba
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: gp_icewall_3_0
+    21300002: gp_icewall_3_1
+    21300004: gp_icewall_3_2
+    21300006: gp_icewall_3_3
+    21300008: gp_icewall_3_4
+    21300010: gp_icewall_3_5
+    21300012: gp_icewall_3_6
+    21300014: gp_icewall_3_7
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -71,7 +79,167 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: gp_icewall_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17dedc13acb8ed4449a96e477d1e4702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1a4571a5a0eaf4e92588e05d79385e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c9633c5c6eda5419ff06c32b486548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79fc67cf29ce12247a1c41e054d3b89f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b111f9a465dcfd459459f141b047f02
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e028d272c950b4842bdd6c77b12d7f4d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35dee00388555ee488bbde59128c2623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gp_icewall_3_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0.75
+        width: 16
+        height: 16.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471152536aa47144692a951bee23a517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
