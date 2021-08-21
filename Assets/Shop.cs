@@ -37,7 +37,7 @@ public class Shop : MonoBehaviour
     [SerializeField] Text itemGradeText;
     [SerializeField] Text itemInfoText;
     [SerializeField] Text[] itemNormalOptionTexts;
-    [SerializeField] Text[] itemSpecialOptionTexts;
+    [SerializeField] GameObject[] itemPassiveTexts;
     [SerializeField] Text itemSellPriceText;
 
     private void OnEnable()
@@ -156,9 +156,9 @@ public class Shop : MonoBehaviour
         }
 
         for (int i = 0; i < itemNormalOptionTexts.Length; i++)
-        {
             itemNormalOptionTexts[i].gameObject.SetActive(false);
-        }
+        for (int i = 0; i < itemPassiveTexts.Length; i++)
+            itemPassiveTexts[i].SetActive(false);
 
         if (itemInfo.ItemInfos[selectedItemCode].MoveSpeed != 0)
         {
@@ -286,6 +286,13 @@ public class Shop : MonoBehaviour
                 }
             }
         }
+
+        if (itemInfo.ItemInfos[selectedItemCode].PassiveNum.Length != 0)
+        {
+            for (int i = 0; i < itemInfo.ItemInfos[selectedItemCode].PassiveNum.Length; i++)
+                itemPassiveTexts[itemInfo.ItemInfos[selectedItemCode].PassiveNum[i] - 1].SetActive(true);
+        }
+
 
         itemSellPriceText.text = "구매:-" + itemInfo.ItemInfos[selectedItemCode].BuyPrice.ToString() + "G";
         itemSellPriceText.color = playerState.gold >= itemInfo.ItemInfos[selectedItemCode].BuyPrice ? Color.green : Color.red;

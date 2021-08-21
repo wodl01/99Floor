@@ -212,6 +212,7 @@ MonoBehaviour:
   poolManager: {fileID: 0}
   passive: {fileID: 0}
   rigid: {fileID: 6927001188302544515}
+  spriteRender: {fileID: 8892805046505385953}
   boxCol: {fileID: 892921674017952991}
   bulletHost: {fileID: 0}
   target: {fileID: 0}

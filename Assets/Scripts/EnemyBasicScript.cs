@@ -7,9 +7,10 @@ public class EnemyBasicScript : MonoBehaviour
     [Header("Managers")]
     public PoolManager pool;
     public StageManager stageManager;
+    public ItemPassiveManager passive;
 
     [Header("Inspector")]
-    [SerializeField] Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     public Animator animator;
 
     [Header("Hp")]
@@ -62,6 +63,9 @@ public class EnemyBasicScript : MonoBehaviour
         {
             isDie = true;
             stageManager.enemyAmount--;
+
+            if (passive.Passive_6) pool.BulletInstantiate("Explosion_1", transform.position, Quaternion.identity, null, true, true, false, passive.scale_6, new Vector2(1, 1), passive.dmg_6, 0, 10, 0);
+            
             stageManager.ClearCheck();
             gameObject.SetActive(false);
         }

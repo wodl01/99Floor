@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6019287031181837035}
   m_Layer: 10
   m_Name: Piece_Plant
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokeWaitTime: 5
   fadeSpeed: 3
+  brokeTime: 8

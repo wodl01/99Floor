@@ -57,6 +57,7 @@ MonoBehaviour:
   rigid: {fileID: 3297629069347502166}
   isBorder: 0
   animator: {fileID: 3297629069347502164}
+  bulletSprite: {fileID: 21300004, guid: 3da3b17f43c973f45a91446d5c82c2a6, type: 3}
   bulletScale: {x: 0.4, y: 0.4}
   boxSize: {x: 2.79, y: 0.38}
   ThrowEffects1:

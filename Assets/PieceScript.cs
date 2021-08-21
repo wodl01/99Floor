@@ -9,6 +9,8 @@ public class PieceScript : MonoBehaviour
     [SerializeField] float brokeWaitTime;
     [SerializeField] float fadeSpeed;
 
+    [SerializeField] float brokeTime;
+
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -17,12 +19,15 @@ public class PieceScript : MonoBehaviour
     private void Update()
     {
         brokeWaitTime -= Time.deltaTime;
+        brokeTime -= Time.deltaTime;
         if(brokeWaitTime <= 0)
         {
             Color color = sprite.color;
             color.a = Mathf.Lerp(color.a, 0, fadeSpeed * Time.deltaTime);
             sprite.color = color;
-            if (color.a == 0) Destroy(gameObject);
         }
+
+        if(brokeTime <= 0)
+            Destroy(gameObject);
     }
 }

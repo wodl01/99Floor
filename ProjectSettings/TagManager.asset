@@ -12,6 +12,7 @@ TagManager:
   - BrokenOb
   - PlayerHitBox
   - HomingRader
+  - Piece
   layers:
   - Default
   - TransparentFX

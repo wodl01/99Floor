@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 886830364821717415}
   - component: {fileID: 632677675348528975}
   - component: {fileID: 1870109041850018659}
+  - component: {fileID: 129933106084620335}
   m_Layer: 0
   m_Name: Explosion_1
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +116,8 @@ MonoBehaviour:
   poolManager: {fileID: 0}
   passive: {fileID: 0}
   rigid: {fileID: 0}
+  spriteRender: {fileID: 886830364821717415}
+  boxCol: {fileID: 0}
   bulletHost: {fileID: 0}
   target: {fileID: 0}
   canPassingThrough: 0
@@ -126,3 +129,19 @@ MonoBehaviour:
   bulletDestroyTime: 0
   hitedOb: {fileID: 0}
   destroyEffects: []
+--- !u!58 &129933106084620335
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726154270962710722}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.06

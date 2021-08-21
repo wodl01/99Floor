@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
 
     [Header("Inspector")]
     [SerializeField] Rigidbody2D rigid;
+    public SpriteRenderer spriteRender;
     public BoxCollider2D boxCol;
 
     [Header("BulletInfo")]
@@ -82,6 +83,8 @@ public class BulletScript : MonoBehaviour
         }
         if(collision.tag == "BrokenOb")
         {
+            if (!canPassingThrough)
+                DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(2);
             EffectOn();
@@ -103,7 +106,6 @@ public class BulletScript : MonoBehaviour
                 break;
             case 2:
                 BrokenObjectScript ob = hitedOb.GetComponent<BrokenObjectScript>();
-                if (!ob.isPassingBy) DestroyBullet();
                 ob.BrokenObHit(gameObject, bulletDmg);
                 break;
         }

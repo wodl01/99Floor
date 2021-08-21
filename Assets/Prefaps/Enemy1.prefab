@@ -278,7 +278,7 @@ MonoBehaviour:
   maxMoveCool: 2
   maxAttackCool: 7
   isSpecialBullet: 0
-  attackSprite: {fileID: 0}
+  attackSprite: {fileID: 21300002, guid: 3da3b17f43c973f45a91446d5c82c2a6, type: 3}
   attackSize: {x: 0.4, y: 0.4}
   attackBoxSize: {x: 2.79, y: 0.38}
   attackBoxOffset: {x: 0, y: 0}

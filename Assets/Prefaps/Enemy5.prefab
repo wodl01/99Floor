@@ -181,6 +181,7 @@ MonoBehaviour:
   poolManager: {fileID: 0}
   passive: {fileID: 0}
   rigid: {fileID: 0}
+  boxCol: {fileID: 0}
   bulletHost: {fileID: 0}
   target: {fileID: 0}
   canPassingThrough: 1
@@ -424,7 +425,7 @@ MonoBehaviour:
   maxMoveCool: 4
   maxAttackCool: 12
   isSpecialBullet: 0
-  attackSprite: {fileID: 0}
+  attackSprite: {fileID: 21300004, guid: 3da3b17f43c973f45a91446d5c82c2a6, type: 3}
   attackSize: {x: 0.4, y: 0.4}
   attackBoxSize: {x: 2.79, y: 0.38}
   attackBoxOffset: {x: 0, y: 0}

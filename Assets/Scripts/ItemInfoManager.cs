@@ -6,6 +6,7 @@ public class ItemInfoManager : MonoBehaviour
 {
     public PlayerState playerState;
     [SerializeField] InventoryManager inventory;
+    [SerializeField] ItemPassiveManager passiveManager;
 
     [System.Serializable]
     public class Items
@@ -22,6 +23,7 @@ public class ItemInfoManager : MonoBehaviour
         public int MoveSpeed;
         public int MissPer;
         public int RangePer;
+        public int[] PassiveNum;
         public int BuyPrice;
         public int SellPrice;
     }
@@ -99,6 +101,29 @@ public class ItemInfoManager : MonoBehaviour
             playerState.bulletRangePer += ItemInfos[ItemCode].RangePer;
 
         inventory.ItemListUpdate(ItemCode);
+
+
+        for (int i = 0; i < ItemInfos[ItemCode].PassiveNum.Length; i++)
+        {
+            switch (ItemInfos[ItemCode].PassiveNum[i])
+            {
+                case 1:
+                    passiveManager.Passive_1 = true;
+                    break;
+                case 2:
+                    passiveManager.Passive_2 = true;
+                    break;
+                case 3:
+                    passiveManager.Passive_3 = true;
+                    break;
+                case 4:
+                    passiveManager.Passive_4 = true;
+                    break;
+                case 5:
+                    passiveManager.Passive_5 = true;
+                    break;
+            }
+        }
     }
 
     public void SellItem(int ItemCode)

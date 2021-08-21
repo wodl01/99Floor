@@ -52,7 +52,7 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] Text itemGradeText;
     [SerializeField] Text itemInfoText;
     [SerializeField] Text[] itemNormalOptionTexts;
-    [SerializeField] Text[] itemSpecialOptionTexts;
+    [SerializeField] GameObject[] itemPassiveTexts;
     [SerializeField] Text itemSellPriceText;
 
     [Header("BoxAnimation")]
@@ -237,9 +237,10 @@ public class RandomBoxScript : MonoBehaviour
         }
 
         for (int i = 0; i < itemNormalOptionTexts.Length; i++)
-        {
             itemNormalOptionTexts[i].gameObject.SetActive(false);
-        }
+        for (int i = 0; i < itemPassiveTexts.Length; i++)
+            itemPassiveTexts[i].SetActive(false);
+
 
         if (itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed != 0)
         {
@@ -366,6 +367,12 @@ public class RandomBoxScript : MonoBehaviour
 
                 }
             }
+        }
+
+        if (itemInfoManager.ItemInfos[selectedItemCode].PassiveNum.Length != 0)
+        {
+            for (int i = 0; i < itemInfoManager.ItemInfos[selectedItemCode].PassiveNum.Length; i++)
+                itemPassiveTexts[itemInfoManager.ItemInfos[selectedItemCode].PassiveNum[i] - 1].SetActive(true);
         }
 
         itemSellPriceText.text = "+" + itemInfoManager.ItemInfos[selectedItemCode].SellPrice.ToString() + "G";
