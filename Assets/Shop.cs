@@ -101,6 +101,7 @@ public class Shop : MonoBehaviour
         {
             canInteract = true;
             itemInfoPanel.SetActive(true);
+            InteractManager.inter.SetInfo(0, gameObject, true, false);
             ItemInfoUpdate();
         }
     }
@@ -110,13 +111,15 @@ public class Shop : MonoBehaviour
         if (collision.tag == "Player" && !isSoldOut)
         {
             canInteract = false;
+            InteractManager.inter.SetInfo(0, gameObject, false, false);
             itemInfoPanel.SetActive(false);
         }
     }
 
-    private void Update()
+
+    public void BuyItem()
     {
-        if(canInteract && !isSoldOut && Input.GetKeyDown(KeyCode.F))
+        if (canInteract && !isSoldOut)
         {
             if (playerState.gold >= itemInfo.ItemInfos[selectedItemCode].BuyPrice)
             {

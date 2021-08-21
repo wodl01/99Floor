@@ -122,6 +122,12 @@ public class ItemInfoManager : MonoBehaviour
                 case 5:
                     passiveManager.Passive_5 = true;
                     break;
+                case 6:
+                    passiveManager.Passive_6 = true;
+                    break;
+                case 7:
+                    passiveManager.Passive_7 = true;
+                    break;
             }
         }
     }

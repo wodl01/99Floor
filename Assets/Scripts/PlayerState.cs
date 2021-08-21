@@ -7,7 +7,7 @@ public class PlayerState : MonoBehaviour
     public static PlayerState playerState;
     public GameObject player;
 
-    private void Start() => playerState = this;
+    private void Awake() => playerState = this;
 
     [Header("Player Life")]
     public int maxLife;
@@ -19,6 +19,8 @@ public class PlayerState : MonoBehaviour
 
     [Header("Goods")]
     public int gold;
+    public int key;
+    public int bomb;
 
     [Header("Bullet Basic")]
     public float curShotCoolTime;

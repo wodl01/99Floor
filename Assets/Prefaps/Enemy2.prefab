@@ -95,11 +95,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 0}
+  passive: {fileID: 0}
+  rigid: {fileID: 0}
+  spriteRender: {fileID: 0}
+  boxCol: {fileID: 0}
+  bulletHost: {fileID: 0}
+  target: {fileID: 0}
   canPassingThrough: 1
   isPlayerAttack: 0
+  isHoming: 0
   bulletDmg: 0
   bulletSpeed: 0
+  homingPower: 0
   bulletDestroyTime: 0
+  hitedOb: {fileID: 0}
+  destroyEffects: []
 --- !u!50 &7563921117758309528
 Rigidbody2D:
   serializedVersion: 4
@@ -399,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
   stageManager: {fileID: 0}
+  passive: {fileID: 0}
   rigid: {fileID: 8027650994923828622}
   animator: {fileID: 4706857916023809776}
   isDie: 0
@@ -415,6 +426,11 @@ MonoBehaviour:
   curAttackCool: 0
   maxMoveCool: 2
   maxAttackCool: 15
+  isSpecialBullet: 0
+  attackSprite: {fileID: 0}
+  attackSize: {x: 0, y: 0}
+  attackBoxSize: {x: 0, y: 0}
+  attackBoxOffset: {x: 0, y: 0}
 --- !u!114 &114864454001957500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0700e8c92188a4546b2f4959ddd90ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletName: Bullet1
   canMoveStartAttack: 1
   canMoveFinishAttack: 1
   isShot: 0
@@ -435,11 +452,13 @@ MonoBehaviour:
   angleToPlayerShot: 0
   angleToPlayerDash: 1
   canPassingThrough: 0
+  canHoming: 0
   bulletAmount: 0
   attackAngle:
   - 0
   bulletSumAngle: 0
   bulletDmg: 0
+  homingPower: 0
   bulletDestroyTime: 0
   bulletSpeed: 0
   bulletSpwanRadius: {x: 0, y: 0}

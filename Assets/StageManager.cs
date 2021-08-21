@@ -76,21 +76,28 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator WarningText(int warningCode)
     {
-        switch (warningCode)
+        if (!boxCheckText.gameObject.activeSelf)
         {
-            case 0:
-                boxCheckText.text = "적을 모두 무찌르십시오.";
-                break;
-            case 1:
-                boxCheckText.text = "스테이지를 클리어 해주십시오.";
-                break;
-            case 2:
-                boxCheckText.text = "Gold가 부족합니다.";
-                break;
+            switch (warningCode)
+            {
+                case 0:
+                    boxCheckText.text = "적을 모두 무찌르십시오.";
+                    break;
+                case 1:
+                    boxCheckText.text = "스테이지를 클리어 해주십시오.";
+                    break;
+                case 2:
+                    boxCheckText.text = "Gold가 부족합니다.";
+                    break;
+                case 3:
+                    boxCheckText.text = "상자를 열기위한 열쇠가 부족합니다.";
+                    break;
+            }
+            boxCheckText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+            boxCheckText.gameObject.SetActive(false);
         }
-        boxCheckText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-        boxCheckText.gameObject.SetActive(false);
+        
     }
 
     public void ClearCheck()

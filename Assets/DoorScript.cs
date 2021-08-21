@@ -30,6 +30,7 @@ public class DoorScript : MonoBehaviour
         {
             canInteract = true;
             buttonIconObject.SetActive(true);
+            InteractManager.inter.SetInfo(4, gameObject, true, false);
         }
 
     }
@@ -40,13 +41,13 @@ public class DoorScript : MonoBehaviour
         {
             canInteract = false;
             buttonIconObject.SetActive(false);
+            InteractManager.inter.SetInfo(0, gameObject, false, false);
         }
-
     }
 
-    private void Update()
+    public void UseDoor()
     {
-        if(canInteract && Input.GetKeyDown(KeyCode.F))
+        if (canInteract)
         {
             if (stageManager.boxCheckText.gameObject.activeSelf) return;
             if (stageManager.allKill)

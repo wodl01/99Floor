@@ -17,6 +17,7 @@ public class PlayerAniManager : MonoBehaviour
     int y;
     private void Update()
     {
+        if (!player.canMove) return;
         if (attackPadActive)
         {
             if (Mathf.Abs(attackRotate) <= 45 && Mathf.Abs(attackRotate) > -45)
@@ -76,6 +77,14 @@ public class PlayerAniManager : MonoBehaviour
                 x = 1;
                 y = 0;
                 sprite.flipX = false;
+            }
+            if (Mathf.Abs(moveRotate) > 90)
+            {
+                player.isLookLeft = true;
+            }
+            else
+            {
+                player.isLookLeft = false;
             }
             playerAni.SetInteger("AxisX", x);
             playerAni.SetInteger("AxisY", y);

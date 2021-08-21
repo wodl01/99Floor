@@ -261,8 +261,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
   stageManager: {fileID: 0}
+  passive: {fileID: 0}
   rigid: {fileID: 4792861291533243007}
-  animator: {fileID: 0}
+  animator: {fileID: 5881289262609008855}
   isDie: 0
   curHealth: 0
   maxHealth: 10
@@ -278,9 +279,9 @@ MonoBehaviour:
   maxMoveCool: 2
   maxAttackCool: 7
   isSpecialBullet: 0
-  attackSprite: {fileID: 0}
-  attackSize: {x: 0, y: 0}
-  attackBoxSize: {x: 0, y: 0}
+  attackSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  attackSize: {x: 3, y: 3}
+  attackBoxSize: {x: 1, y: 1}
   attackBoxOffset: {x: 0, y: 0}
 --- !u!114 &114819472356274616
 MonoBehaviour:
@@ -294,10 +295,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0700e8c92188a4546b2f4959ddd90ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletName: Bullet2
   canMoveStartAttack: 0
   canMoveFinishAttack: 1
-  isShot: 1
-  isSpawn: 0
+  isShot: 0
+  isSpawn: 1
   isDash: 0
   angleToPlayerShot: 1
   angleToPlayerDash: 0
@@ -309,9 +311,9 @@ MonoBehaviour:
   bulletSumAngle: 0
   bulletDmg: 1
   homingPower: 0
-  bulletDestroyTime: 2
-  bulletSpeed: 0.2
-  bulletSpwanRadius: {x: 0, y: 0}
+  bulletDestroyTime: 10
+  bulletSpeed: 0
+  bulletSpwanRadius: {x: 2, y: 2}
   dashSpeed: 0
 --- !u!95 &5881289262609008855
 Animator:

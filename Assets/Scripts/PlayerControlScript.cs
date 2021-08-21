@@ -10,9 +10,14 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField] PlayerState playerState;
     [SerializeField] PoolManager poolManager;
     [SerializeField] ItemPassiveManager passive;
+    [SerializeField] PlayerAniManager playerAni;
+    [SerializeField] InventoryManager inventory;
+    public PlayerHitBoxScript hitboxScript;
 
     [Header("Inspector")]
     public Rigidbody2D rigid;
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] CircleCollider2D hitBox;
 
     [Header("Wall")]
     [SerializeField] bool isBorder;
@@ -21,6 +26,8 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("WeaponFire")]
+    [SerializeField] GameObject bomb;
+    [SerializeField] float bombThrowPower;
     [SerializeField] Sprite bulletSprite;
     [SerializeField] Vector2 bulletScale;
     [SerializeField] Vector2 boxSize;
@@ -33,12 +40,24 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField] Sprite[] ThrowEffects2;
     [SerializeField] Sprite[] ThrowEffects3;
 
+    [Header("Roll")]
+    [SerializeField] float rollCoolTime;
+    [SerializeField] float curRollCool;
+    [SerializeField] float rollDuringTime;
+    [SerializeField] float rollPower;
+
     [Header("CurState")]
+    public bool canMove;
     public bool isLookLeft;
     private void FixedUpdate()
     {
         Move();
         FarAttack();
+
+        if(curRollCool >= 0) curRollCool -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space)) InputRollBtn();
+        if (Input.GetKeyDown(KeyCode.R)) UseBomb();
     }
 
     void Move()
@@ -130,6 +149,45 @@ public class PlayerControlScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void InputRollBtn()
+    {
+        if (curRollCool > 0 || !playerAni.movePadActive) return;
+        StartCoroutine(Roll());
+        curRollCool = rollCoolTime;
+    }
+
+    IEnumerator Roll()
+    {
+        canMove = false;
+        rigid.velocity = new Vector2(0, 0);
+        Vector3 force = Quaternion.AngleAxis(playerAni.moveRotate, Vector3.forward) * Vector3.right;
+        rigid.AddForce(-force * ((playerState.moveSpeedPer * rollPower) / 100));
+
+        animator.SetBool("Roll", true);
+        hitBox.enabled = false;
+        sprite.flipX = !isLookLeft;
+
+        yield return new WaitForSeconds(rollDuringTime);
+        animator.SetBool("Roll", false);
+        hitBox.enabled = true;
+        canMove = true;
+    }
+
+    public void UseBomb()
+    {
+        if (playerState.bomb > 0)
+        {
+            playerState.bomb -= 1;
+            GameObject bombOb = Instantiate(bomb, transform.position, Quaternion.identity);
+            if (playerAni.movePadActive)
+            {
+                Vector3 force = Quaternion.AngleAxis(playerAni.moveRotate, Vector3.forward) * Vector3.right;
+                bombOb.GetComponent<Rigidbody2D>().AddForce(-force * bombThrowPower);
+            }
+        }
+        inventory.BombIconUpdate();
     }
 
     public void RandomEffect()

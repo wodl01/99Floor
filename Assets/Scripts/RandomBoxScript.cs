@@ -8,6 +8,12 @@ public class RandomBoxScript : MonoBehaviour
     [Header("Manager")]
     public StageManager stageManager;
     public ItemInfoManager itemInfoManager;
+    [SerializeField] PlayerState playerState;
+
+    [Header("BoxState")]
+    [SerializeField] bool devil;
+    [SerializeField] bool holy;
+    [SerializeField] bool needKey;
 
     [Header("BoxShape")]
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -16,7 +22,7 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] Sprite touchSprite;
 
 
-   [Header("BoxInteract")]
+    [Header("BoxInteract")]
     [SerializeField] bool canInteract;
     [SerializeField] bool isOpen;
     [SerializeField] bool itemOut;
@@ -39,6 +45,8 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] Color rareColor;
     [SerializeField] Color epicColor;
     [SerializeField] Color legendColor;
+    [SerializeField] Color devilColor;
+    [SerializeField] Color holyColor;
 
     [Header("ItemCode")]
     [SerializeField] int selectedItemCode;
@@ -46,6 +54,8 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] List<int> rareItemCodes;
     [SerializeField] List<int> epicItemCodes;
     [SerializeField] List<int> legendItemCodes;
+    [SerializeField] List<int> devilItemCodes;
+    [SerializeField] List<int> holyItemCodes;
 
     [Header("ItemInfoPanel")]
     [SerializeField] Text itemNameText;
@@ -59,6 +69,8 @@ public class RandomBoxScript : MonoBehaviour
     [SerializeField] Animator boxAnimator;
     private void Start()
     {
+        playerState = PlayerState.playerState;
+
         itemObject.SetActive(false);
         itemInfoPanel.SetActive(false);
         itemSellPanel.SetActive(false);
@@ -69,6 +81,12 @@ public class RandomBoxScript : MonoBehaviour
         {
             switch (itemInfoManager.ItemInfos[i].Grade)
             {
+                case -2:
+                    devilItemCodes.Add(i);
+                    break;
+                case -1:
+                    holyItemCodes.Add(i);
+                    break;
                 case 0:
                     legendItemCodes.Add(i);
                     break;
@@ -98,11 +116,13 @@ public class RandomBoxScript : MonoBehaviour
             if (isOpen == false)
             {
                 spriteRenderer.sprite = touchSprite;
+                InteractManager.inter.SetInfo(0, gameObject, true, false);
                 buttonIconObject.SetActive(true);
             }
             else if (itemOut)
             {
                 ItemInfoUpdate();
+                InteractManager.inter.SetInfo(1, gameObject, true, true);
                 itemInfoPanel.SetActive(true);
                 itemSellPanel.SetActive(true);
             }
@@ -118,20 +138,37 @@ public class RandomBoxScript : MonoBehaviour
             {
                 spriteRenderer.sprite = offSprite;
                 buttonIconObject.SetActive(false);
+                InteractManager.inter.SetInfo(0, gameObject, false, false);
             }
             else if (itemOut)
             {
                 itemInfoPanel.SetActive(false);
                 itemSellPanel.SetActive(false);
+                InteractManager.inter.SetInfo(0, gameObject, false, false);
             }
         }
     }
 
-    private void Update()
+    public void OpenBox()
     {
         if (!itemExist) return;
 
-        if (canInteract && !isOpen && Input.GetKeyDown(KeyCode.F))
+        if (needKey)
+        {
+            if (playerState.key > 0)
+            {
+                playerState.key--;
+                InventoryManager.inventory.KeyIconUpdate();
+            }
+
+            else
+            {
+                StartCoroutine(stageManager.WarningText(3));
+                return;
+            }
+        }
+
+        if (canInteract && !isOpen)
         {
             if (stageManager.boxCheckText.gameObject.activeSelf) return;
             if (stageManager.allKill)
@@ -141,53 +178,69 @@ public class RandomBoxScript : MonoBehaviour
 
                 buttonIconObject.SetActive(false);
 
+                InteractManager.inter.SetInfo(0, gameObject, false, false);
                 RandomItemPick();
             }
             else
                 StartCoroutine(stageManager.WarningText(0));
         }
-        if (canInteract && itemOut && Input.GetKey(KeyCode.E))
+    }
+    public void GetItem()
+    {
+        if (!itemExist) return;
+        if (canInteract && itemOut)
         {
             itemInfoManager.GetItem(selectedItemCode);
             boxUiOb.SetActive(false);
             itemObject.SetActive(false);
             itemExist = false;
+            InteractManager.inter.SetInfo(0, gameObject, false, false);
         }
-        else if (canInteract && itemOut && Input.GetKey(KeyCode.Q))
+    }
+    public void SellItem()
+    {
+        if (!itemExist) return;
+        if (canInteract && itemOut)
         {
             itemInfoManager.SellItem(selectedItemCode);
             boxUiOb.SetActive(false);
             itemObject.SetActive(false);
             itemExist = false;
+            InteractManager.inter.SetInfo(0, gameObject, false, false);
         }
     }
 
     void RandomItemPick()
     {
-        int randomRate = Random.Range(0, 101);
-        if (0 <= randomRate && randomRate < normalPer)
+        if(devil) selectedItemCode = devilItemCodes[Random.Range(0,devilItemCodes.Count)];
+        else if (holy) selectedItemCode = holyItemCodes[Random.Range(0, holyItemCodes.Count)];
+        else
         {
-            int randomItemNum = Random.Range(0, normalItemCodes.Count);
-            selectedItemCode = normalItemCodes[randomItemNum];
-            Debug.Log("일반");
-        }
-        else if (normalPer <= randomRate && randomRate < normalPer + rarePer)
-        {
-            int randomItemNum = Random.Range(0, rareItemCodes.Count);
-            selectedItemCode = rareItemCodes[randomItemNum];
-            Debug.Log("레어");
-        }
-        else if (normalPer + rarePer <= randomRate && randomRate < normalPer + rarePer + epicPer)
-        {
-            int randomItemNum = Random.Range(0, epicItemCodes.Count);
-            selectedItemCode = epicItemCodes[randomItemNum];
-            Debug.Log("서사");
-        }
-        else if (normalPer + rarePer + epicPer <= randomRate && randomRate < normalPer + rarePer + epicPer + legendPer)
-        {
-            int randomItemNum = Random.Range(0, legendItemCodes.Count);
-            selectedItemCode = legendItemCodes[randomItemNum];
-            Debug.Log("레전");
+            int randomRate = Random.Range(0, 101);
+            if (0 <= randomRate && randomRate < normalPer)
+            {
+                int randomItemNum = Random.Range(0, normalItemCodes.Count);
+                selectedItemCode = normalItemCodes[randomItemNum];
+                Debug.Log("일반");
+            }
+            else if (normalPer <= randomRate && randomRate < normalPer + rarePer)
+            {
+                int randomItemNum = Random.Range(0, rareItemCodes.Count);
+                selectedItemCode = rareItemCodes[randomItemNum];
+                Debug.Log("레어");
+            }
+            else if (normalPer + rarePer <= randomRate && randomRate < normalPer + rarePer + epicPer)
+            {
+                int randomItemNum = Random.Range(0, epicItemCodes.Count);
+                selectedItemCode = epicItemCodes[randomItemNum];
+                Debug.Log("서사");
+            }
+            else if (normalPer + rarePer + epicPer <= randomRate && randomRate < normalPer + rarePer + epicPer + legendPer)
+            {
+                int randomItemNum = Random.Range(0, legendItemCodes.Count);
+                selectedItemCode = legendItemCodes[randomItemNum];
+                Debug.Log("레전");
+            }
         }
 
         itemSpriteRenderer.sprite = itemInfoManager.ItemInfos[selectedItemCode].ItemShape;
@@ -202,6 +255,7 @@ public class RandomBoxScript : MonoBehaviour
         if (canInteract)
         {
             ItemInfoUpdate();
+            InteractManager.inter.SetInfo(1, gameObject, true, true);
             itemInfoPanel.SetActive(true);
             itemSellPanel.SetActive(true);
         }
@@ -218,6 +272,14 @@ public class RandomBoxScript : MonoBehaviour
         itemInfoText.text = itemInfoManager.ItemInfos[selectedItemCode].ItemInfo;
         switch (itemInfoManager.ItemInfos[selectedItemCode].Grade)
         {
+            case -2:
+                itemGradeText.text = "공허";
+                itemGradeText.color = devilColor;
+                break;
+            case -1:
+                itemGradeText.text = "천공";
+                itemGradeText.color = holyColor;
+                break;
             case 0:
                 itemGradeText.text = "전설";
                 itemGradeText.color = legendColor;

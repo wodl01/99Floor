@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
   stageManager: {fileID: 0}
+  passive: {fileID: 0}
   rigid: {fileID: 4792861291533243007}
   animator: {fileID: 2605736204274372611}
   isDie: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0700e8c92188a4546b2f4959ddd90ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletName: Bullet1
   canMoveStartAttack: 0
   canMoveFinishAttack: 1
   isShot: 1

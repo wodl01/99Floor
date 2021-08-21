@@ -63,6 +63,7 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     void MoveCharacter(Vector2 direction)
     {
+        if(player.canMove)
         player.rigid.velocity = direction * Time.deltaTime * playerState.moveSpeed * (playerState.moveSpeedPer / 100);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+
     [SerializeField] PlayerState playerState;
     [SerializeField] StageManager stageManager;
     [SerializeField] ItemPassiveManager passiveManager;
@@ -59,6 +60,7 @@ public class PoolManager : MonoBehaviour
 
         curSpawnedOb.passive = passiveManager;
 
+        if(sprite != null)
         curSpawnedOb.spriteRender.sprite = sprite;
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;

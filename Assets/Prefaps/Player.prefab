@@ -50,13 +50,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411495ccba5bec429f74cb4fa44843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
   playerState: {fileID: 0}
   poolManager: {fileID: 0}
   passive: {fileID: 0}
+  playerAni: {fileID: 3297629069347502170}
+  inventory: {fileID: 0}
+  hitboxScript: {fileID: 8683615625131575240}
   rigid: {fileID: 3297629069347502166}
+  sprite: {fileID: 3204419004606747484}
+  hitBox: {fileID: 1335130669648540539}
   isBorder: 0
   animator: {fileID: 3297629069347502164}
+  bomb: {fileID: 1806363512923535561, guid: 47c75d18228962549bcdca915f04bda2, type: 3}
+  bombThrowPower: 600
   bulletSprite: {fileID: 21300004, guid: 3da3b17f43c973f45a91446d5c82c2a6, type: 3}
   bulletScale: {x: 0.4, y: 0.4}
   boxSize: {x: 2.79, y: 0.38}
@@ -72,6 +79,11 @@ MonoBehaviour:
   - {fileID: 21300012, guid: 9ed1fa9ddb2f3d740a2d2100dcb70b60, type: 3}
   - {fileID: 21300014, guid: 9ed1fa9ddb2f3d740a2d2100dcb70b60, type: 3}
   - {fileID: 21300016, guid: 9ed1fa9ddb2f3d740a2d2100dcb70b60, type: 3}
+  rollCoolTime: 0.7
+  curRollCool: 0
+  rollDuringTime: 0.2
+  rollPower: 700
+  canMove: 1
   isLookLeft: 0
 --- !u!50 &3297629069347502166
 Rigidbody2D:
@@ -185,8 +197,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3297629069518709093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.06, z: 0}
+  m_LocalScale: {x: 1.5241, y: 1.5241, z: 1.5241}
   m_Children: []
   m_Father: {fileID: 3297629069347502171}
   m_RootOrder: 2
@@ -220,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: {fileID: 0}
-  passiveManager: {fileID: 0}
   lifeOb:
   - {fileID: 0}
   - {fileID: 0}

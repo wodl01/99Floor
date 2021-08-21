@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHitBoxScript : MonoBehaviour
 {
     [SerializeField] PlayerState playerState;
-    [SerializeField] ItemPassiveManager passiveManager;
+    ItemPassiveManager passiveManager;
     [SerializeField] GameObject[] lifeOb;
 
     [SerializeField] CircleCollider2D hitBox;
@@ -82,4 +82,12 @@ public class PlayerHitBoxScript : MonoBehaviour
             spriteRender.color = new Color(1, 1, 1, alpha);
         }
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "PublicDamageBullet")
+        {
+            PlayerHit((int)collision.GetComponent<GroupBulletManager>().playerDamage);
+        }
+    }*/
 }
