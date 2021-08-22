@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class EnemySpawnManager : MonoBehaviour
 {
     [Header("Managers")]
-    [SerializeField] PoolManager pool;
-    [SerializeField] StageManager stageManager;
+    PoolManager pool;
+    StageManager stageManager;
 
     [Header("Enemy")]
     public SpawnPoint[] enemySpawnPoint;
+
+    private void Start()
+    {
+        pool = PoolManager.pool;
+        stageManager = StageManager.stageManager;
+    }
 }

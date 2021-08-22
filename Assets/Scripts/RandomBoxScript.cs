@@ -72,6 +72,8 @@ public class RandomBoxScript : MonoBehaviour
     {
         playerState = PlayerState.playerState;
         interactManager = InteractManager.inter;
+        stageManager = StageManager.stageManager;
+        itemInfoManager = ItemInfoManager.itemInfo;
 
         itemObject.SetActive(false);
         itemInfoPanel.SetActive(false);

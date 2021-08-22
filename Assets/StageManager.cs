@@ -11,10 +11,9 @@ public class StageManager : MonoBehaviour
     [SerializeField] PlayerState playerState;
     [SerializeField] DoorScript door;
 
-    [SerializeField] Transform pos;
-
     [Header("Stage")]
     [SerializeField] List<GameObject> firstMaps;
+    [SerializeField] List<GameObject> secondMaps;
     [SerializeField] GameObject curMap;
 
     public int curStage;
@@ -51,13 +50,24 @@ public class StageManager : MonoBehaviour
         curMap.SetActive(false);
 
         
-        if(curStage < 30)
+        if(curStage <= 30)
         {
             int randomCode = Random.Range(0, firstMaps.Count);
             firstMaps[randomCode].SetActive(true);
             curMap = firstMaps[randomCode];
             curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
             firstMaps.RemoveAt(randomCode);
+
+            playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
+            SpawnEnemy();
+        }
+        else if(curStage > 30 && curStage <= 60)
+        {
+            int randomCode = Random.Range(0, secondMaps.Count);
+            secondMaps[randomCode].SetActive(true);
+            curMap = secondMaps[randomCode];
+            curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
+            secondMaps.RemoveAt(randomCode);
 
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();

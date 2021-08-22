@@ -5,8 +5,8 @@ using UnityEngine;
 public class BoxPlaceManager : MonoBehaviour
 {
     [Header("Manager")]
-    [SerializeField] ItemInfoManager itemInfoManager;
-    [SerializeField] StageManager stageManager;
+    ItemInfoManager itemInfoManager;
+    StageManager stageManager;
 
     [SerializeField] List<GameObject> boxes;
 
@@ -18,6 +18,11 @@ public class BoxPlaceManager : MonoBehaviour
     [SerializeField] GameObject door;
     [SerializeField] GameObject doorPos;
 
+    private void Start()
+    {
+        itemInfoManager = ItemInfoManager.itemInfo;
+        stageManager = StageManager.stageManager;
+    }
 
     public void PlaceObject()
     {

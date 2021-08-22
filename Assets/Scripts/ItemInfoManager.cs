@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemInfoManager : MonoBehaviour
 {
+    public static ItemInfoManager itemInfo;
+
     public PlayerState playerState;
     [SerializeField] InventoryManager inventory;
     [SerializeField] ItemPassiveManager passiveManager;
@@ -29,6 +31,8 @@ public class ItemInfoManager : MonoBehaviour
     }
 
     public List<Items> ItemInfos;
+
+    void Awake() => itemInfo = this;
 
     public void GetItem(int ItemCode)
     {
