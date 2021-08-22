@@ -8,6 +8,7 @@ public class UsefulItemScript : MonoBehaviour
 
     PlayerState playerState;
     [SerializeField] int itemNum;
+    [SerializeField] int plusNum;
 
     private void Start()
     {
@@ -24,18 +25,20 @@ public class UsefulItemScript : MonoBehaviour
                 case 0:
                     if(playerState.key != 3)
                     {
-                        playerState.key += 1;
-                        inventory.KeyIconUpdate();
+                        inventory.KeyIconUpdate(plusNum);
                         Destroy(gameObject);
                     }
                     break;
                 case 1:
                     if (playerState.bomb != 3)
                     {
-                        playerState.bomb += 1;
-                        inventory.BombIconUpdate();
+                        inventory.BombIconUpdate(plusNum);
                         Destroy(gameObject);
                     }
+                    break;
+                case 2:
+                    inventory.GoldAmountUpdate(plusNum);
+                    Destroy(gameObject);
                     break;
             }
         }

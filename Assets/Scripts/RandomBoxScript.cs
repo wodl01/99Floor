@@ -7,6 +7,7 @@ public class RandomBoxScript : MonoBehaviour
 {
     [Header("Manager")]
     public StageManager stageManager;
+    InteractManager interactManager;
     public ItemInfoManager itemInfoManager;
     [SerializeField] PlayerState playerState;
 
@@ -70,6 +71,7 @@ public class RandomBoxScript : MonoBehaviour
     private void Start()
     {
         playerState = PlayerState.playerState;
+        interactManager = InteractManager.inter;
 
         itemObject.SetActive(false);
         itemInfoPanel.SetActive(false);
@@ -156,21 +158,18 @@ public class RandomBoxScript : MonoBehaviour
         if (needKey)
         {
             if (playerState.key > 0)
-            {
-                playerState.key--;
-                InventoryManager.inventory.KeyIconUpdate();
-            }
+                InventoryManager.inventory.KeyIconUpdate(-1);
 
             else
             {
-                StartCoroutine(stageManager.WarningText(3));
+                StartCoroutine(interactManager.WarningText(3));
                 return;
             }
         }
 
         if (canInteract && !isOpen)
         {
-            if (stageManager.boxCheckText.gameObject.activeSelf) return;
+            //if (interactManager.boxCheckText.gameObject.activeSelf) return;
             if (stageManager.allKill)
             {
                 isOpen = true;
@@ -182,7 +181,7 @@ public class RandomBoxScript : MonoBehaviour
                 RandomItemPick();
             }
             else
-                StartCoroutine(stageManager.WarningText(0));
+                StartCoroutine(interactManager.WarningText(0));
         }
     }
     public void GetItem()

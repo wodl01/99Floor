@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7544368701911710787}
   - component: {fileID: 7229465573280285760}
   - component: {fileID: 8250620026507526780}
+  - component: {fileID: 687661870951319351}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -96,13 +97,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 2
-  m_AngularDrag: 2
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7229465573280285760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,3 +138,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &687661870951319351
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806363512923535561}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.21}
+  serializedVersion: 2
+  m_Radius: 0.87

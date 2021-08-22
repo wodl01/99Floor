@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: {fileID: 0}
+  isHardOb: 0
+  angleToPlayer: 1
   objectPiece:
   - {fileID: 3215181402356106923, guid: c2701070e3363954094c99d05074e330, type: 3}
   spawnPiecesAmount: 4

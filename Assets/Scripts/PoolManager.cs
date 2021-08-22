@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+    public static PoolManager pool;
 
     [SerializeField] PlayerState playerState;
     [SerializeField] StageManager stageManager;
@@ -19,6 +20,8 @@ public class PoolManager : MonoBehaviour
 
     public Dictionary<string, Queue<GameObject>> poolDictionary;
     public List<Pool> pools;
+
+    private void Awake() => pool = this;
 
     private void Start()
     {
@@ -118,6 +121,20 @@ public class PoolManager : MonoBehaviour
         curSpawnedOb.transform.position = position;
         curSpawnedOb.transform.rotation = rotation;
         curSpawnedOb.transform.localScale = scale;
+
+        curSpawnedOb.gameObject.SetActive(true);
+
+        poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
+
+        return curSpawnedOb.gameObject;
+    }
+
+    public GameObject PoolInstantiate(string tag, Vector3 position, Quaternion rotation)
+    {
+        GameObject curSpawnedOb = poolDictionary[tag].Dequeue();
+
+        curSpawnedOb.transform.position = position;
+        curSpawnedOb.transform.rotation = rotation;
 
         curSpawnedOb.gameObject.SetActive(true);
 

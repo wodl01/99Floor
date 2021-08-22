@@ -46,6 +46,7 @@ public class PlayerHitBoxScript : MonoBehaviour
     public void PlayerHeal(int heal)
     {
         playerState.life += heal;
+        if (playerState.life > playerState.maxLife) playerState.life = playerState.maxLife;
 
         LifeIconUpdate();
     }

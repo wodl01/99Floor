@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     [SerializeField] ItemInfoManager itemInfo;
-    [SerializeField] StageManager stageManager;
+    InteractManager interactManager;
     [SerializeField] PlayerState playerState;
 
     [Header("ItemInfo")]
@@ -101,7 +101,7 @@ public class Shop : MonoBehaviour
         {
             canInteract = true;
             itemInfoPanel.SetActive(true);
-            InteractManager.inter.SetInfo(0, gameObject, true, false);
+            InteractManager.inter.SetInfo(5, gameObject, true, false);
             ItemInfoUpdate();
         }
     }
@@ -130,7 +130,7 @@ public class Shop : MonoBehaviour
             }
 
             else
-                stageManager.WarningText(2);
+                interactManager.WarningText(2);
         }
     }
 

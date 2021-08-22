@@ -83,8 +83,7 @@ public class BulletScript : MonoBehaviour
         }
         if(collision.tag == "BrokenOb")
         {
-            if (!canPassingThrough)
-                DestroyBullet();
+            DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(2);
             EffectOn();
@@ -106,7 +105,7 @@ public class BulletScript : MonoBehaviour
                 break;
             case 2:
                 BrokenObjectScript ob = hitedOb.GetComponent<BrokenObjectScript>();
-                ob.BrokenObHit(gameObject, bulletDmg);
+                ob.BrokenObHit(gameObject, 0, bulletDmg);
                 break;
         }
     }

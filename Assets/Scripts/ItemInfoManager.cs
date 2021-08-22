@@ -132,9 +132,6 @@ public class ItemInfoManager : MonoBehaviour
         }
     }
 
-    public void SellItem(int ItemCode)
-    {
-        playerState.gold += ItemInfos[ItemCode].SellPrice;
-        inventory.goldAmountText.text = playerState.gold.ToString() + "G";
-    }
+    public void SellItem(int ItemCode) => inventory.GoldAmountUpdate(ItemInfos[ItemCode].SellPrice);
+
 }

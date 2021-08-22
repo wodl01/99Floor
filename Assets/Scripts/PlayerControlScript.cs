@@ -179,7 +179,6 @@ public class PlayerControlScript : MonoBehaviour
     {
         if (playerState.bomb > 0)
         {
-            playerState.bomb -= 1;
             GameObject bombOb = Instantiate(bomb, transform.position, Quaternion.identity);
             if (playerAni.movePadActive)
             {
@@ -187,7 +186,7 @@ public class PlayerControlScript : MonoBehaviour
                 bombOb.GetComponent<Rigidbody2D>().AddForce(-force * bombThrowPower);
             }
         }
-        inventory.BombIconUpdate();
+        inventory.BombIconUpdate(-1);
     }
 
     public void RandomEffect()

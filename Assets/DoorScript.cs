@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     [Header("Managers")]
+    [SerializeField] InteractManager inter;
     [SerializeField] StageManager stageManager;
 
     [Header("Inspector")]
@@ -49,14 +50,13 @@ public class DoorScript : MonoBehaviour
     {
         if (canInteract)
         {
-            if (stageManager.boxCheckText.gameObject.activeSelf) return;
             if (stageManager.allKill)
             {
                 StartCoroutine(stageManager.NextMapLoad());
                 buttonIconObject.SetActive(false);
             }
             else
-                StartCoroutine(stageManager.WarningText(1));
+                StartCoroutine(inter.WarningText(1));
         }
     }
 }

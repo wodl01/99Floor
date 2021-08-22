@@ -25,12 +25,21 @@ public class InventoryManager : MonoBehaviour
     {
         inventory = this;
         goldAmountText.text = playerState.gold.ToString() + "G";
-        KeyIconUpdate();
-        BombIconUpdate();
+        KeyIconUpdate(0);
+        BombIconUpdate(0);
     }
 
-    public void KeyIconUpdate()
+    public void GoldAmountUpdate(int index)
     {
+        playerState.gold += index;
+
+        goldAmountText.text = playerState.gold.ToString() + "G";
+    }
+
+    public void KeyIconUpdate(int index)
+    {
+        playerState.key += index;
+
         for (int i = 0; i < keyIcons.Length; i++)
             keyIcons[i].SetActive(false);
 
@@ -38,8 +47,10 @@ public class InventoryManager : MonoBehaviour
             keyIcons[i].SetActive(true);
     }
 
-    public void BombIconUpdate()
+    public void BombIconUpdate(int index)
     {
+        playerState.bomb += index;
+
         for (int i = 0; i < bombIcons.Length; i++)
             bombIcons[i].SetActive(false);
 

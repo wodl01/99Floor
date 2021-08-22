@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class StageManager : MonoBehaviour
 {
     [Header("Manager")]
+    public static StageManager stageManager;
     [SerializeField] PoolManager pool;
     [SerializeField] PlayerState playerState;
     [SerializeField] DoorScript door;
@@ -26,12 +27,16 @@ public class StageManager : MonoBehaviour
     [Header("Ui")]
     public Text curStageText;
     public Text leftEnemyText;
-    public Text boxCheckText;
 
     [Header("Animation")]
     [SerializeField] Animator stageClearAni;
     [SerializeField] Animator fadeAni;
 
+    [Header("Pools")]
+    public List<GameObject> poolDestroyList;
+    public List<GameObject> destroyList;
+
+    private void Awake() => stageManager = this;
 
     private void Update()
     {
@@ -74,31 +79,7 @@ public class StageManager : MonoBehaviour
         leftEnemyText.text = "남은 적:" + enemyAmount.ToString();
     }
 
-    public IEnumerator WarningText(int warningCode)
-    {
-        if (!boxCheckText.gameObject.activeSelf)
-        {
-            switch (warningCode)
-            {
-                case 0:
-                    boxCheckText.text = "적을 모두 무찌르십시오.";
-                    break;
-                case 1:
-                    boxCheckText.text = "스테이지를 클리어 해주십시오.";
-                    break;
-                case 2:
-                    boxCheckText.text = "Gold가 부족합니다.";
-                    break;
-                case 3:
-                    boxCheckText.text = "상자를 열기위한 열쇠가 부족합니다.";
-                    break;
-            }
-            boxCheckText.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
-            boxCheckText.gameObject.SetActive(false);
-        }
-        
-    }
+
 
     public void ClearCheck()
     {
@@ -122,6 +103,19 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().ClearBox();
         PickMap();
+        ObjectsDestroy();
         fadeAni.SetBool("Black", false);
+    }
+
+    public void ObjectsDestroy()
+    {
+        for (int i = 0; i < poolDestroyList.Count; i++)
+        {
+            poolDestroyList[i].SetActive(false);
+        }
+        for (int i = 0; i < destroyList.Count; i++)
+        {
+            Destroy(destroyList[i]);
+        }
     }
 }
