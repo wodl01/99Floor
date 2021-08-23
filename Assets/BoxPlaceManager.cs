@@ -32,7 +32,7 @@ public class BoxPlaceManager : MonoBehaviour
 
     public void SpawnDoor()
     {
-        door.transform.position = doorPos.transform.position - new Vector3(0, 2.115f, 0);
+        door.transform.position = doorPos.transform.position - new Vector3(0, 2.08f, 0);
     }
 
     public void SpawnBox()

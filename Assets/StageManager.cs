@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] DoorScript door;
 
     [Header("Stage")]
+    [SerializeField] GameObject waitRoom;
     [SerializeField] List<GameObject> firstMaps;
     [SerializeField] List<GameObject> secondMaps;
     [SerializeField] GameObject curMap;
@@ -29,7 +30,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator stageClearAni;
-    [SerializeField] Animator fadeAni;
+    public Animator fadeAni;
 
     [Header("Pools")]
     public List<GameObject> poolDestroyList;
@@ -48,9 +49,19 @@ public class StageManager : MonoBehaviour
         door.DoorOpen(false);
 
         curMap.SetActive(false);
+        waitRoom.SetActive(false);
 
-        
-        if(curStage <= 30)
+        if (curStage == 0)
+        {
+            curMap = waitRoom;
+            waitRoom.SetActive(true);
+            curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
+            playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
+
+            door.DoorOpen(true);
+            allKill = true;
+        } 
+        else if(curStage <= 30)
         {
             int randomCode = Random.Range(0, firstMaps.Count);
             firstMaps[randomCode].SetActive(true);
@@ -72,13 +83,14 @@ public class StageManager : MonoBehaviour
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
         }
+        curStage++;
+        curStageText.text = "-" + curStage.ToString() + "층-";
     }
 
     public void SpawnEnemy()
     {
         EnemySpawnManager enemySpawn = curMap.transform.GetChild(0).GetComponent<EnemySpawnManager>();
-        curStage++;
-        curStageText.text = "-" + curStage.ToString() + "층-";
+
         for (int i = 0; i < enemySpawn.enemySpawnPoint.Length; i++)
         {
             int curSpawnCode = enemySpawn.enemySpawnPoint[i].monsterCode;
