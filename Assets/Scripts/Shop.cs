@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] ItemInfoManager itemInfo;
+    [SerializeField] ItemInfoManager itemInfoManager;
     InteractManager interactManager;
     [SerializeField] PlayerState playerState;
 
@@ -17,6 +17,8 @@ public class Shop : MonoBehaviour
     [SerializeField] List<int> rareItemCodes;
     [SerializeField] List<int> epicItemCodes;
     [SerializeField] List<int> legendItemCodes;
+    [SerializeField] List<int> devilItemCodes;
+    [SerializeField] List<int> holyItemCodes;
 
     [SerializeField] int normalPer;
     [SerializeField] int rarePer;
@@ -26,6 +28,8 @@ public class Shop : MonoBehaviour
     [SerializeField] Color rareColor;
     [SerializeField] Color epicColor;
     [SerializeField] Color legendColor;
+    [SerializeField] Color devilColor;
+    [SerializeField] Color holyColor;
 
     [Header("CurState")]
     [SerializeField] bool canInteract;
@@ -40,18 +44,30 @@ public class Shop : MonoBehaviour
     [SerializeField] GameObject[] itemPassiveTexts;
     [SerializeField] Text itemSellPriceText;
 
-    private void OnEnable()
+    [SerializeField] Text itemSellPriceTextDown;
+
+    private void Start()
     {
-        itemInfoPanel.SetActive(false);
-        for (int i = 0; i < itemInfo.ItemInfos.Count; i++)
+        playerState = PlayerState.playerState;
+        interactManager = InteractManager.inter;
+        itemInfoManager = ItemInfoManager.itemInfo;
+
+
+        for (int i = 0; i < itemInfoManager.ItemInfos.Count; i++)
         {
-            switch (itemInfo.ItemInfos[i].Grade)
+            switch (itemInfoManager.ItemInfos[i].Grade)
             {
+                case -2:
+                    devilItemCodes.Add(i);
+                    break;
+                case -1:
+                    holyItemCodes.Add(i);
+                    break;
                 case 0:
                     legendItemCodes.Add(i);
                     break;
                 case 1:
-                    epicItemCodes.Add(i); 
+                    epicItemCodes.Add(i);
                     break;
                 case 2:
                     rareItemCodes.Add(i);
@@ -61,6 +77,9 @@ public class Shop : MonoBehaviour
                     break;
             }
         }
+
+        itemInfoPanel.SetActive(false);
+        canInteract = false;
         RandomItemPick();
     }
 
@@ -92,7 +111,8 @@ public class Shop : MonoBehaviour
             Debug.Log("레전");
         }
 
-        itemSpriteRenderer.sprite = itemInfo.ItemInfos[selectedItemCode].ItemShape;
+        itemSellPriceTextDown.text = itemInfoManager.ItemInfos[selectedItemCode].BuyPrice.ToString() + "G";
+        itemSpriteRenderer.sprite = itemInfoManager.ItemInfos[selectedItemCode].ItemShape;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -121,10 +141,10 @@ public class Shop : MonoBehaviour
     {
         if (canInteract && !isSoldOut)
         {
-            if (playerState.gold >= itemInfo.ItemInfos[selectedItemCode].BuyPrice)
+            if (playerState.gold >= itemInfoManager.ItemInfos[selectedItemCode].BuyPrice)
             {
-                playerState.gold -= itemInfo.ItemInfos[selectedItemCode].BuyPrice;
-                itemInfo.GetItem(selectedItemCode);
+                playerState.gold -= itemInfoManager.ItemInfos[selectedItemCode].BuyPrice;
+                itemInfoManager.GetItem(selectedItemCode);
                 itemInfoPanel.SetActive(false);
                 isSoldOut = true;
             }
@@ -136,10 +156,18 @@ public class Shop : MonoBehaviour
 
     void ItemInfoUpdate()
     {
-        itemNameText.text = itemInfo.ItemInfos[selectedItemCode].Name;
-        itemInfoText.text = itemInfo.ItemInfos[selectedItemCode].ItemInfo;
-        switch (itemInfo.ItemInfos[selectedItemCode].Grade)
+        itemNameText.text = itemInfoManager.ItemInfos[selectedItemCode].Name;
+        itemInfoText.text = itemInfoManager.ItemInfos[selectedItemCode].ItemInfo;
+        switch (itemInfoManager.ItemInfos[selectedItemCode].Grade)
         {
+            case -2:
+                itemGradeText.text = "공허";
+                itemGradeText.color = devilColor;
+                break;
+            case -1:
+                itemGradeText.text = "천공";
+                itemGradeText.color = holyColor;
+                break;
             case 0:
                 itemGradeText.text = "전설";
                 itemGradeText.color = legendColor;
@@ -163,15 +191,15 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < itemPassiveTexts.Length; i++)
             itemPassiveTexts[i].SetActive(false);
 
-        if (itemInfo.ItemInfos[selectedItemCode].MoveSpeed != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].MaxHp != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].MoveSpeed > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MaxHp > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "이동속도 " + plus + itemInfo.ItemInfos[selectedItemCode].MoveSpeed + "%";
+                    itemNormalOptionTexts[i].text = "최대체력 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -179,15 +207,15 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].AttackSpeed != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].AttackSpeed > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "공격속도 " + plus + itemInfo.ItemInfos[selectedItemCode].AttackSpeed + "%";
+                    itemNormalOptionTexts[i].text = "이동속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -195,30 +223,15 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].Dmg != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].Dmg > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "데미지 " + plus + itemInfo.ItemInfos[selectedItemCode].Dmg;
-                    itemNormalOptionTexts[i].gameObject.SetActive(true);
-                    input = true;
-
-                }
-            }
-        }
-        if (itemInfo.ItemInfos[selectedItemCode].BulletAmount != 0)
-        {
-            bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].BulletAmount > 0 ? "+" : "";
-            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
-            {
-                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
-                {
-                    itemNormalOptionTexts[i].text = "탄환개수 " + plus + itemInfo.ItemInfos[selectedItemCode].BulletAmount;
+                    itemNormalOptionTexts[i].text = "공격속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -226,15 +239,30 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].SumAngle != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].Dmg != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].SumAngle > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].Dmg > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "탄퍼짐 " + plus + itemInfo.ItemInfos[selectedItemCode].SumAngle;
+                    itemNormalOptionTexts[i].text = "데미지 " + plus + itemInfoManager.ItemInfos[selectedItemCode].Dmg;
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
+        }
+        if (itemInfoManager.ItemInfos[selectedItemCode].BulletAmount != 0)
+        {
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].BulletAmount > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "탄환개수 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletAmount;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -242,15 +270,15 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].MissPer != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].SumAngle != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].MissPer > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].SumAngle > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "회피확률 " + plus + itemInfo.ItemInfos[selectedItemCode].MissPer + "%";
+                    itemNormalOptionTexts[i].text = "탄퍼짐 " + plus + itemInfoManager.ItemInfos[selectedItemCode].SumAngle;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -258,15 +286,15 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].BulletSpeed != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].MissPer != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].BulletSpeed > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MissPer > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "탄환속도 " + plus + itemInfo.ItemInfos[selectedItemCode].BulletSpeed + "%";
+                    itemNormalOptionTexts[i].text = "회피확률 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MissPer + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -274,15 +302,15 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].RangePer != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed != 0)
         {
             bool input = false;
-            string plus = itemInfo.ItemInfos[selectedItemCode].RangePer > 0 ? "+" : "";
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed > 0 ? "+" : "";
             for (int i = 0; i < itemNormalOptionTexts.Length; i++)
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "탄환거리 " + plus + itemInfo.ItemInfos[selectedItemCode].RangePer + "%";
+                    itemNormalOptionTexts[i].text = "탄환속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 
@@ -290,14 +318,28 @@ public class Shop : MonoBehaviour
             }
         }
 
-        if (itemInfo.ItemInfos[selectedItemCode].PassiveNum.Length != 0)
+        if (itemInfoManager.ItemInfos[selectedItemCode].RangePer != 0)
         {
-            for (int i = 0; i < itemInfo.ItemInfos[selectedItemCode].PassiveNum.Length; i++)
-                itemPassiveTexts[itemInfo.ItemInfos[selectedItemCode].PassiveNum[i] - 1].SetActive(true);
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].RangePer > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "탄환거리 " + plus + itemInfoManager.ItemInfos[selectedItemCode].RangePer + "%";
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
         }
 
-
-        itemSellPriceText.text = "구매:-" + itemInfo.ItemInfos[selectedItemCode].BuyPrice.ToString() + "G";
-        itemSellPriceText.color = playerState.gold >= itemInfo.ItemInfos[selectedItemCode].BuyPrice ? Color.green : Color.red;
+        if (itemInfoManager.ItemInfos[selectedItemCode].PassiveNum.Length != 0)
+        {
+            for (int i = 0; i < itemInfoManager.ItemInfos[selectedItemCode].PassiveNum.Length; i++)
+                itemPassiveTexts[itemInfoManager.ItemInfos[selectedItemCode].PassiveNum[i] - 1].SetActive(true);
+        }
+        itemSellPriceText.text = "구매:-" + itemInfoManager.ItemInfos[selectedItemCode].BuyPrice.ToString() + "G";
+        itemSellPriceText.color = playerState.gold >= itemInfoManager.ItemInfos[selectedItemCode].BuyPrice ? Color.green : Color.red;
     }
 }

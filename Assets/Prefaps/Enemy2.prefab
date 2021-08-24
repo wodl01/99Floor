@@ -414,7 +414,7 @@ MonoBehaviour:
   animator: {fileID: 4706857916023809776}
   isDie: 0
   curHealth: 0
-  maxHealth: 100
+  maxHealth: 10
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0

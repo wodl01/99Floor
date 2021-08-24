@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHitBoxScript : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
+
     [SerializeField] PlayerState playerState;
     ItemPassiveManager passiveManager;
-    [SerializeField] GameObject[] lifeOb;
+    [SerializeField] Image[] lifeOb;
+    [SerializeField] Sprite lifeOn;
+    [SerializeField] Sprite lifeOff;
+    [SerializeField] Sprite lifeNull;
 
     [SerializeField] CircleCollider2D hitBox;
     [SerializeField] SpriteRenderer spriteRender;
@@ -40,6 +46,7 @@ public class PlayerHitBoxScript : MonoBehaviour
                 PlayerHeal(Mathf.CeilToInt(playerState.maxLife / 2));
                 return;
             }
+            gameManager.GameOver();
         }
     }
 
@@ -51,15 +58,19 @@ public class PlayerHitBoxScript : MonoBehaviour
         LifeIconUpdate();
     }
 
-    void LifeIconUpdate()
+    public void LifeIconUpdate()
     {
+        for (int i = 0; i < lifeOb.Length; i++)
+        {
+            lifeOb[i].sprite = lifeNull;
+        }
         for (int i = 0; i < playerState.maxLife; i++)
         {
-            lifeOb[i].SetActive(false);
+            lifeOb[i].sprite = lifeOff;
         }
         for (int i = 0; i < playerState.life; i++)
         {
-            lifeOb[i].SetActive(true);
+            lifeOb[i].sprite = lifeOn;
         }
     }
 
@@ -83,12 +94,4 @@ public class PlayerHitBoxScript : MonoBehaviour
             spriteRender.color = new Color(1, 1, 1, alpha);
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "PublicDamageBullet")
-        {
-            PlayerHit((int)collision.GetComponent<GroupBulletManager>().playerDamage);
-        }
-    }*/
 }

@@ -51,6 +51,8 @@ public class StageManager : MonoBehaviour
         curMap.SetActive(false);
         waitRoom.SetActive(false);
 
+        playerState.player.GetComponent<PlayerControlScript>().hitboxScript.PlayerHit(0);
+
         if (curStage == 0)
         {
             curMap = waitRoom;

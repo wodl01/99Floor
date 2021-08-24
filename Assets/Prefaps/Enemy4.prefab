@@ -266,7 +266,7 @@ MonoBehaviour:
   animator: {fileID: 4383240437486003589}
   isDie: 0
   curHealth: 0
-  maxHealth: 10
+  maxHealth: 20
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0

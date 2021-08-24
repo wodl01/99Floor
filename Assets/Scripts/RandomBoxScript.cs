@@ -304,6 +304,21 @@ public class RandomBoxScript : MonoBehaviour
         for (int i = 0; i < itemPassiveTexts.Length; i++)
             itemPassiveTexts[i].SetActive(false);
 
+        if (itemInfoManager.ItemInfos[selectedItemCode].MaxHp != 0)
+        {
+            bool input = false;
+            string plus = itemInfoManager.ItemInfos[selectedItemCode].MaxHp > 0 ? "+" : "";
+            for (int i = 0; i < itemNormalOptionTexts.Length; i++)
+            {
+                if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
+                {
+                    itemNormalOptionTexts[i].text = "최대체력 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed;
+                    itemNormalOptionTexts[i].gameObject.SetActive(true);
+                    input = true;
+
+                }
+            }
+        }
 
         if (itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed != 0)
         {

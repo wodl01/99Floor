@@ -40,6 +40,12 @@ public class ItemPassiveManager : MonoBehaviour
     [SerializeField] float passive_7_Cool;
     [SerializeField] float passive_7_Max;
 
+    public bool Passive_8;//운석 소환
+    [SerializeField] int dmg_8;
+    [SerializeField] Vector2 scale_8;
+    public float passive_8_Cool;
+    [SerializeField] float passive_8_Max;
+
     private void Awake()
     {
         playerPos = playerState.player.transform;
@@ -55,7 +61,7 @@ public class ItemPassiveManager : MonoBehaviour
             if(passive_1_Cool < 0 && joyPad.isInput)
             {
                 passive_1_Cool = passive_1_Max;
-                PassiveActive(0);
+                PassiveActive(0, new Vector2(0,0));
             }
         }
         if (Passive_7)
@@ -65,13 +71,18 @@ public class ItemPassiveManager : MonoBehaviour
             if (passive_7_Cool < 0 && joyPad.isInput)
             {
                 passive_7_Cool = passive_7_Max;
-                PassiveActive(7);
+                PassiveActive(7, new Vector2(0, 0));
             }
+        }
+        if (Passive_8)
+        {
+            if (passive_8_Cool >= 0)
+                passive_8_Cool -= Time.deltaTime;
         }
     }
 
 
-    void PassiveActive(int code)
+    public void PassiveActive(int code, Vector2 pos)
     {
         switch (code)
         {
@@ -85,6 +96,10 @@ public class ItemPassiveManager : MonoBehaviour
                     blackHole.transform.GetChild(0).GetComponent<BlackHole>().destroyTime = duringTime_7;
                     Debug.Log("블랙홀");
                     break;
+            case 8:
+                passive_8_Cool = passive_8_Max;
+                pool.BulletInstantiate("Bullet3", pos, Quaternion.identity, null, true, true, false, scale_8, new Vector2(0, 0), dmg_8, 0, 10, 0);
+                break;
         }
     }
 }

@@ -67,6 +67,9 @@ public class BulletScript : MonoBehaviour
             if(!canPassingThrough)
             DestroyBullet();
 
+            if (passive.Passive_8 && passive.passive_8_Cool < 0)
+                passive.PassiveActive(8,transform.position);
+                
             hitedOb = collision.gameObject;
             Damaging(0);
             EffectOn();

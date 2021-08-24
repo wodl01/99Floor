@@ -236,6 +236,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lifeOn: {fileID: 21300000, guid: db54c08fcb248ba458d63dc960494b2e, type: 3}
+  lifeOff: {fileID: 21300002, guid: db54c08fcb248ba458d63dc960494b2e, type: 3}
+  lifeNull: {fileID: 21300000, guid: 754e88d1810b3a743a499b49f03cbf6f, type: 3}
   hitBox: {fileID: 1335130669648540539}
   spriteRender: {fileID: 3204419004606747484}
   ani: {fileID: 3307286544396888913}
@@ -409,7 +419,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 22
   m_Sprite: {fileID: 21300000, guid: 5d788183afb4d0d41aa935e2b7fd95ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

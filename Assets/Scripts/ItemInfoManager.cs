@@ -17,6 +17,7 @@ public class ItemInfoManager : MonoBehaviour
         public int Grade;
         public string ItemInfo;
         public Sprite ItemShape;
+        public int MaxHp;
         public int AttackSpeed;
         public int Dmg;
         public int BulletAmount;
@@ -37,6 +38,15 @@ public class ItemInfoManager : MonoBehaviour
     public void GetItem(int ItemCode)
     {
         Debug.Log("먹은 아이템 :" + ItemInfos[ItemCode].Name);
+
+        if (playerState.maxLife + ItemInfos[ItemCode].MaxHp < 1)           //최대체력
+            playerState.maxLife = 1;
+        else if (playerState.maxLife + ItemInfos[ItemCode].MaxHp > 10)
+            playerState.maxLife = 10;
+        else
+            playerState.maxLife += ItemInfos[ItemCode].MaxHp;
+        playerState.player.GetComponent<PlayerControlScript>().hitboxScript.LifeIconUpdate();
+
 
         if (playerState.attackSpeedPer + ItemInfos[ItemCode].AttackSpeed < 50)           //공속
             playerState.attackSpeedPer = 50;
@@ -131,6 +141,9 @@ public class ItemInfoManager : MonoBehaviour
                     break;
                 case 7:
                     passiveManager.Passive_7 = true;
+                    break;
+                case 8:
+                    passiveManager.Passive_8 = true;
                     break;
             }
         }
