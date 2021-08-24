@@ -28,6 +28,7 @@ public class ItemPassiveManager : MonoBehaviour
     public bool Passive_4;//관통샷
 
     public bool Passive_5;//유도
+    public float Passive_5Power;
 
     public bool Passive_6;//몬스터 폭발
     public int dmg_6;

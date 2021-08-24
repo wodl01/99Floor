@@ -39,13 +39,26 @@ public class ItemInfoManager : MonoBehaviour
     {
         Debug.Log("먹은 아이템 :" + ItemInfos[ItemCode].Name);
 
-        if (playerState.maxLife + ItemInfos[ItemCode].MaxHp < 1)           //최대체력
-            playerState.maxLife = 1;
-        else if (playerState.maxLife + ItemInfos[ItemCode].MaxHp > 10)
-            playerState.maxLife = 10;
-        else
-            playerState.maxLife += ItemInfos[ItemCode].MaxHp;
-        playerState.player.GetComponent<PlayerControlScript>().hitboxScript.LifeIconUpdate();
+        if (ItemInfos[ItemCode].MaxHp != 0)
+        {
+            if (playerState.maxLife + ItemInfos[ItemCode].MaxHp < 1)
+                playerState.maxLife = 1;
+            else if (playerState.maxLife + ItemInfos[ItemCode].MaxHp > 10)
+                playerState.maxLife = 10;
+            else
+                playerState.maxLife += ItemInfos[ItemCode].MaxHp;
+            if (ItemInfos[ItemCode].MaxHp > 0)
+            {
+                playerState.life += ItemInfos[ItemCode].MaxHp;
+            }
+            else
+            {
+                if (playerState.life > playerState.maxLife)
+                    playerState.life = playerState.maxLife;
+            }
+            playerState.player.GetComponent<PlayerControlScript>().hitboxScript.LifeIconUpdate();
+        }
+       
 
 
         if (playerState.attackSpeedPer + ItemInfos[ItemCode].AttackSpeed < 50)           //공속

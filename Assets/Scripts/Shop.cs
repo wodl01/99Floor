@@ -199,7 +199,7 @@ public class Shop : MonoBehaviour
             {
                 if (!itemNormalOptionTexts[i].gameObject.activeSelf && !input)
                 {
-                    itemNormalOptionTexts[i].text = "최대체력 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed;
+                    itemNormalOptionTexts[i].text = "최대체력 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MaxHp;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
 

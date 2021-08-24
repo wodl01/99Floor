@@ -7,6 +7,7 @@ public class PlayerControlScript : MonoBehaviour
     public bool isTest;
 
     [Header("Managers & Scripts")]
+    [SerializeField] GameManager gameManager;
     [SerializeField] PlayerState playerState;
     [SerializeField] PoolManager poolManager;
     [SerializeField] ItemPassiveManager passive;
@@ -83,7 +84,7 @@ public class PlayerControlScript : MonoBehaviour
                 float dmg = playerState.dmg;
                 float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                 float destroyTime = (playerState.bulletRangePer / 100);
-                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0,0, direction + 180), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
 
             }
             else
@@ -96,7 +97,7 @@ public class PlayerControlScript : MonoBehaviour
                     float dmg = playerState.dmg;
                     float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                     float destroyTime = (playerState.bulletRangePer / 100);
-                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), bulletSprite, true, passive.Passive_4,passive.Passive_5,bulletScale, boxSize, dmg, 200, destroyTime, speed);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), bulletSprite, true, passive.Passive_4,passive.Passive_5,bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
 
 
                     totalAngle += plusAngle;
@@ -130,7 +131,7 @@ public class PlayerControlScript : MonoBehaviour
                 float dmg = playerState.dmg;
                 float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                 float destroyTime = (playerState.bulletRangePer / 100);
-                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
+                poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
 
             }
             else
@@ -143,7 +144,7 @@ public class PlayerControlScript : MonoBehaviour
                     float dmg = playerState.dmg;
                     float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                     float destroyTime = (playerState.bulletRangePer / 100);
-                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, 200, destroyTime, speed);
+                    poolManager.BulletInstantiate("Bullet1", transform.position, Quaternion.Euler(0, 0, basicAngle + totalAngle), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
 
                     totalAngle += plusAngle;
                 }
