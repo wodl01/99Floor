@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] StageManager stageManager;
+    [SerializeField] PlayerState playerState;
     public int goldAmount;
 
     [Header("Panels")]
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         int curInfo = PlayerPrefs.GetInt("Re");
+        int GoldAmount = PlayerPrefs.GetInt("Gold");
+
+        goldAmount = GoldAmount;
+        playerState.gold = GoldAmount;
 
         Screen.SetResolution(1920, 1080, false);
         mainMenuPanel.SetActive(curInfo == 0 ? true : false);
@@ -58,6 +63,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+        goldAmount = playerState.gold / 2;
+        PlayerPrefs.SetInt("Gold", goldAmount);
     }
 
     public void RestartGame()
@@ -75,6 +82,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("Re", 0);
+        PlayerPrefs.SetInt("Gold", goldAmount);
     }
 
     private void Update()

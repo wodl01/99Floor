@@ -16,6 +16,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] List<GameObject> firstMaps;
     [SerializeField] List<GameObject> secondMaps;
     [SerializeField] GameObject curMap;
+    public float monsterStageStrong;
 
     public int curStage;
     public int maxStage;
@@ -85,6 +86,7 @@ public class StageManager : MonoBehaviour
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
         }
+        door.ChangeTransform();
         curStage++;
         curStageText.text = "-" + curStage.ToString() + "층-";
     }

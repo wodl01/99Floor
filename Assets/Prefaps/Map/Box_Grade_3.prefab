@@ -334,7 +334,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.26}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -345,7 +345,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.52, y: 1.36}
   m_EdgeRadius: 0
 --- !u!1 &4678477033479487162
 GameObject:
@@ -464,10 +464,10 @@ MonoBehaviour:
   itemSellPanel: {fileID: 7579502526948911872}
   itemObject: {fileID: 4678477035126091483}
   itemSpriteRenderer: {fileID: 4678477035126091481}
-  normalPer: 40
-  rarePer: 30
-  epicPer: 20
-  legendPer: 10
+  normalPer: 60
+  rarePer: 20
+  epicPer: 15
+  legendPer: 5
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   rareColor: {r: 0.4198113, g: 0.6324883, b: 1, a: 1}
   epicColor: {r: 0.85176903, g: 0.43867922, b: 1, a: 1}
@@ -533,7 +533,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.49}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -544,7 +544,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 2}
+  m_Size: {x: 2.8447337, y: 3.0629683}
   m_EdgeRadius: 0
 --- !u!1 &4678477035126091483
 GameObject:

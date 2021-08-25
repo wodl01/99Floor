@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411495ccba5bec429f74cb4fa44843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
+  gameManager: {fileID: 0}
   playerState: {fileID: 0}
   poolManager: {fileID: 0}
   passive: {fileID: 0}
@@ -231,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83266afac12c35c43a1ae58144b95c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   playerState: {fileID: 0}
   lifeOb:
   - {fileID: 0}

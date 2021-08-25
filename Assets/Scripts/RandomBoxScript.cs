@@ -315,7 +315,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "최대체력 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MaxHp;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -331,7 +334,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "이동속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MoveSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -347,7 +353,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "공격속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].AttackSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -363,7 +372,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "데미지 " + plus + itemInfoManager.ItemInfos[selectedItemCode].Dmg;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -378,7 +390,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "탄환개수 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletAmount;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -394,7 +409,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "탄퍼짐 " + plus + itemInfoManager.ItemInfos[selectedItemCode].SumAngle;
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -410,7 +428,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "회피확률 " + plus + itemInfoManager.ItemInfos[selectedItemCode].MissPer + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -426,7 +447,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "탄환속도 " + plus + itemInfoManager.ItemInfos[selectedItemCode].BulletSpeed + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }
@@ -442,7 +466,10 @@ public class RandomBoxScript : MonoBehaviour
                     itemNormalOptionTexts[i].text = "탄환거리 " + plus + itemInfoManager.ItemInfos[selectedItemCode].RangePer + "%";
                     itemNormalOptionTexts[i].gameObject.SetActive(true);
                     input = true;
-
+                    if (plus == "+")
+                        itemNormalOptionTexts[i].color = Color.green;
+                    else
+                        itemNormalOptionTexts[i].color = Color.red;
                 }
             }
         }

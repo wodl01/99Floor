@@ -17,6 +17,7 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] bool isDie;
     [SerializeField] float curHealth;
     [SerializeField] float maxHealth;
+    [SerializeField] float maxStageHealth;
 
     [Header("Shape")]
     //[SerializeField] SpriteRenderer spriteRenderer;
@@ -47,10 +48,12 @@ public class EnemyBasicScript : MonoBehaviour
 
     private void OnEnable()
     {
+        stageManager = StageManager.stageManager;
         isDie = false;
         findPlayer = false;
         canMove = true;
-        curHealth = maxHealth;
+        maxStageHealth = maxHealth * (1 + (stageManager.monsterStageStrong * stageManager.curStage));
+        curHealth = maxStageHealth;
     }
 
     public void EnemyHit(float damage)

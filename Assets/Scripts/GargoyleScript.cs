@@ -15,6 +15,8 @@ public class GargoyleScript : MonoBehaviour
     [SerializeField] string speech_Can;
     [SerializeField] string speech_Cant;
 
+    [SerializeField] Transform outPos;
+
     [Header("Ui")]
     [SerializeField] Text leftWishText;
     [SerializeField] Text speechText;
@@ -23,8 +25,11 @@ public class GargoyleScript : MonoBehaviour
     [SerializeField] int gold;
 
     [Header("Goods")]
+    [SerializeField] GameObject keyOb;
+    [SerializeField] GameObject bombOb;
     [SerializeField] int life;
     [SerializeField] int key;
+    [SerializeField] int bomb;
 
     private void Start()
     {
@@ -71,18 +76,37 @@ public class GargoyleScript : MonoBehaviour
         {
             if (playerState.gold >= gold)
             {
-                if(life > 0 && playerState.life != playerState.maxLife)
+                playerState.gold -= gold;
+                if(life > 0)
+                {
+                    if (playerState.life != playerState.maxLife)
+                    {
+                        canWishAmount--;
+                        playerState.player.GetComponent<PlayerControlScript>().hitboxScript.PlayerHeal(life);
+                    }
+                    else
+                        StartCoroutine(interactManager.WarningText(6));
+                }
+                if(key > 0)
                 {
                     canWishAmount--;
-                    playerState.player.GetComponent<PlayerControlScript>().hitboxScript.PlayerHeal(life);
-
-                    inventory.KeyIconUpdate(key);
-                    inventory.GoldAmountUpdate(gold);
-
-                    UiUpdate();
+                    for (int i = 0; i < key; i++)
+                    {
+                        GameObject key = Instantiate(keyOb, outPos.position, Quaternion.identity);
+                        key.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-400, 400), Random.Range(0, -400)));
+                    }
                 }
-                else
-                    StartCoroutine(interactManager.WarningText(6));
+                if (bomb > 0)
+                {
+                    canWishAmount--;
+                    for (int i = 0; i < bomb; i++)
+                    {
+                        GameObject bomb = Instantiate(bombOb, outPos.position, Quaternion.identity);
+                        bomb.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-400, 400), Random.Range(0, -400)));
+                    }
+                }
+                UiUpdate();
+                inventory.GoldAmountUpdate(0);
             }
             else
                 StartCoroutine(interactManager.WarningText(4));

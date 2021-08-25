@@ -7,7 +7,7 @@ public class Teleport : MonoBehaviour
     [SerializeField] float teleportCool;
     public float curTeleportCool;
 
-    [SerializeField] GameObject teleportSpot;
+    [SerializeField] Transform teleportSpot;
     [SerializeField] bool canInteract;
     [SerializeField] GameObject interactUi;
     GameObject player;
@@ -48,7 +48,7 @@ public class Teleport : MonoBehaviour
         {
             curTeleportCool = teleportCool;
 
-            player.transform.position = teleportSpot.transform.position;
+            player.transform.position = teleportSpot.position;
             teleportSpot.GetComponent<Teleport>().curTeleportCool = teleportCool;
         }
     }
