@@ -92,7 +92,7 @@ public class GargoyleScript : MonoBehaviour
                     canWishAmount--;
                     for (int i = 0; i < key; i++)
                     {
-                        GameObject key = Instantiate(keyOb, outPos.position, Quaternion.identity);
+                        GameObject key = PoolManager.pool.PoolInstantiate(keyOb, outPos, Quaternion.identity);
                         key.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-400, 400), Random.Range(0, -400)));
                     }
                 }
@@ -101,7 +101,7 @@ public class GargoyleScript : MonoBehaviour
                     canWishAmount--;
                     for (int i = 0; i < bomb; i++)
                     {
-                        GameObject bomb = Instantiate(bombOb, outPos.position, Quaternion.identity);
+                        GameObject bomb = PoolManager.pool.PoolInstantiate(bombOb, outPos, Quaternion.identity);
                         bomb.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-400, 400), Random.Range(0, -400)));
                     }
                 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class UsefulItemScript : MonoBehaviour
 {
     InventoryManager inventory;
+    StageManager stageManager;
 
     PlayerState playerState;
     [SerializeField] int itemNum;
@@ -13,6 +14,7 @@ public class UsefulItemScript : MonoBehaviour
     private void Start()
     {
         playerState = PlayerState.playerState;
+        stageManager = StageManager.stageManager;
         inventory = InventoryManager.inventory;
     }
 

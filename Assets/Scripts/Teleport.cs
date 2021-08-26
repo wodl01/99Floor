@@ -15,6 +15,7 @@ public class Teleport : MonoBehaviour
     private void Start()
     {
         player = PlayerState.playerState.player;
+        interactUi.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2732457316031818306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -55, y: -3.1, z: -0.040039062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 2732457315763511096}
   - {fileID: 7697239796803846751}
@@ -118,6 +118,7 @@ MonoBehaviour:
   pattern1AttackCount: 0
   pattern1AttackMaxCount: 3
   dustAttack: {fileID: 6638663856930516723}
+  dustAni: {fileID: 983784154171946943}
 --- !u!95 &2732457316031818305
 Animator:
   serializedVersion: 3
@@ -1087,7 +1088,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 41.7
+      scalar: 107.85
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5511,6 +5512,7 @@ GameObject:
   - component: {fileID: 1440938455290748039}
   - component: {fileID: 9075390730526609300}
   - component: {fileID: 6304737551246118139}
+  - component: {fileID: 983784154171946943}
   m_Layer: 0
   m_Name: DustBullet
   m_TagString: Bullet
@@ -5539,7 +5541,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6811074554300142609}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -5547,7 +5549,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.88
+  m_Radius: 5.25
 --- !u!114 &6304737551246118139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,15 +5569,34 @@ MonoBehaviour:
   boxCol: {fileID: 0}
   bulletHost: {fileID: 0}
   target: {fileID: 0}
-  canPassingThrough: 0
+  canPassingThrough: 1
   isPlayerAttack: 0
   isHoming: 0
-  bulletDmg: 0
+  bulletDmg: 1
   bulletSpeed: 0
   homingPower: 0
-  bulletDestroyTime: 0
+  bulletDestroyTime: 5000
   hitedOb: {fileID: 0}
   destroyEffects: []
+--- !u!95 &983784154171946943
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811074554300142609}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00cfa8c73ffaab94aa2340c9c2d6de6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8322781667560748726
 GameObject:
   m_ObjectHideFlags: 0
@@ -15052,6 +15073,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -51.127003
       objectReference: {fileID: 0}
+    - target: {fileID: 4196545941216412137, guid: ef965c23fa271724d95a90e9f075206b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7245640014202140585, guid: ef965c23fa271724d95a90e9f075206b,
         type: 3}
       propertyPath: m_Name
@@ -15059,6 +15085,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef965c23fa271724d95a90e9f075206b, type: 3}
+--- !u!4 &2732457315763511096 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
+    type: 3}
+  m_PrefabInstance: {fileID: 865705235558315421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2732457315763511103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3019726362499246754, guid: ef965c23fa271724d95a90e9f075206b,
@@ -15071,12 +15103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504c87c0de76174ea6fe8ce9a890f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2732457315763511096 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
-    type: 3}
-  m_PrefabInstance: {fileID: 865705235558315421}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &2238593757719616255 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
@@ -15165,6 +15191,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -51.127003
       objectReference: {fileID: 0}
+    - target: {fileID: 4196545941216412137, guid: ef965c23fa271724d95a90e9f075206b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7245640014202140585, guid: ef965c23fa271724d95a90e9f075206b,
         type: 3}
       propertyPath: m_Name
@@ -15184,15 +15215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504c87c0de76174ea6fe8ce9a890f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &5776043040228951960 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4844237059660458234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7697239796803846751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4844237059660458234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5776043040228951960 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
     type: 3}
   m_PrefabInstance: {fileID: 4844237059660458234}
   m_PrefabAsset: {fileID: 0}
@@ -15277,6 +15308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -51.127003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196545941216412137, guid: ef965c23fa271724d95a90e9f075206b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7245640014202140585, guid: ef965c23fa271724d95a90e9f075206b,
         type: 3}
@@ -15390,6 +15426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -51.127003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196545941216412137, guid: ef965c23fa271724d95a90e9f075206b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7245640014202140585, guid: ef965c23fa271724d95a90e9f075206b,
         type: 3}

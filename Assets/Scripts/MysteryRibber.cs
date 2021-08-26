@@ -10,15 +10,16 @@ public class MysteryRibber : MonoBehaviour
     InventoryManager inventory;
     InteractManager interactManager;
 
+    [Header("Goods")]
+    [SerializeField] GameObject goldOb;
+
     [SerializeField] GameObject interactionOb;
     bool canInteract;
-    bool canUse;
 
     [SerializeField] GameObject itemOutPos;
 
     private void Start()
     {
-        canUse = true;
         interactionOb.SetActive(false);
         pool = PoolManager.pool;
         playerState = PlayerState.playerState;
@@ -29,49 +30,55 @@ public class MysteryRibber : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!canUse) return;
-        canInteract = true;
-        interactionOb.SetActive(true);
-        interactManager.SetInfo(7, gameObject, true, false);
+        if(collision.tag == "Player")
+        {
+            canInteract = true;
+            interactionOb.SetActive(true);
+            interactManager.SetInfo(7, gameObject, true, false);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!canUse) return;
-        canInteract = false;
-        interactionOb.SetActive(false);
-        interactManager.SetInfo(7, gameObject, false, false);
+        if (collision.tag == "Player")
+        {
+            canInteract = false;
+            interactionOb.SetActive(false);
+            interactManager.SetInfo(7, gameObject, false, false);
+        }
     }
 
     public void UseRiver()
     {
-        if (canUse)
+        if (playerState.life != 1)
         {
             int randomNum = Random.Range(0, 90);
             if (randomNum >= 0 && randomNum < 30)
             {
                 for (int i = 0; i < 25; i++)
                 {
-                    GameObject gold = pool.PoolInstantiate("Gold_Item", transform.position, Quaternion.identity);
-                    stageManager.poolDestroyList.Add(gold);
-                    gold.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)));
+                    SpawnGold();
                 }
             }
             else if (randomNum >= 30 && randomNum < 60)
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    GameObject gold = pool.PoolInstantiate("Gold_Item", transform.position, Quaternion.identity);
-                    stageManager.poolDestroyList.Add(gold);
-                    gold.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)));
+                    SpawnGold();
                 }
             }
             else
             {
                 playerState.player.GetComponent<PlayerControlScript>().hitboxScript.PlayerHit(playerState.life - 1);
-                canUse = false;
+
             }
         }
         else
             StartCoroutine(interactManager.WarningText(5));
+    }
+
+    public void SpawnGold()
+    {
+        GameObject gold = pool.PoolInstantiate(goldOb, itemOutPos.transform, Quaternion.identity);
+        gold.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-400, 400), Random.Range(0, -400)));
     }
 }

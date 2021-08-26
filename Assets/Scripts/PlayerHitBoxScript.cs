@@ -31,14 +31,13 @@ public class PlayerHitBoxScript : MonoBehaviour
     {
         int randomNum = Random.Range(0, 101);
         if (randomNum <= playerState.missPer) return;
-        if (playerState.life == 0) return;
         if (!canHit) return;
 
         playerState.life -= damage;
         LifeIconUpdate();
         StartCoroutine(HitCool());
 
-        if (playerState.life == 0)
+        if (playerState.life <= 0)
         {
             if (passiveManager.Passive_3)
             {

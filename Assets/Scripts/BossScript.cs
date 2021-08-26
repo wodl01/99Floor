@@ -20,6 +20,12 @@ public class BossScript : MonoBehaviour
     [Header("Particle")]
     [SerializeField] ParticleSystem dustAttack;
 
+    [SerializeField] Animator dustAni;
+
+    private void Start()
+    {
+        player = PlayerState.playerState.player;
+    }
 
     private void OnEnable()
     {
@@ -31,7 +37,7 @@ public class BossScript : MonoBehaviour
         curHp -= dmg;
         if(curHp <= 0)
         {
-            Debug.Log("클리어");
+            StageManager.stageManager.StageClear();
             gameObject.SetActive(false);
         }
     }
@@ -65,12 +71,15 @@ public class BossScript : MonoBehaviour
 
     IEnumerator Main()
     {
-        Debug.Log("AAAAAA");
         dustAttack.Play();
+        dustAni.SetBool("On", true);
+
         Idle();
         patternAni.SetInteger("Pattern", 0);
         yield return new WaitForSeconds(4);
         dustAttack.Stop();
+        dustAni.SetBool("On", false);
+
         dustOb.SetActive(false);
         int randomNum = Random.Range(0, 3);
         switch (randomNum)

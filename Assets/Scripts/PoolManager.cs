@@ -129,17 +129,11 @@ public class PoolManager : MonoBehaviour
         return curSpawnedOb.gameObject;
     }
 
-    public GameObject PoolInstantiate(string tag, Vector3 position, Quaternion rotation)
+    public GameObject PoolInstantiate(GameObject ob, Transform transform, Quaternion rotation)
     {
-        GameObject curSpawnedOb = poolDictionary[tag].Dequeue();
+        GameObject curObject = Instantiate(ob, transform.position, rotation);
+        curObject.transform.parent = stageManager.curMap.transform;
 
-        curSpawnedOb.transform.position = position;
-        curSpawnedOb.transform.rotation = rotation;
-
-        curSpawnedOb.gameObject.SetActive(true);
-
-        poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
-
-        return curSpawnedOb.gameObject;
+        return curObject.gameObject;
     }
 }

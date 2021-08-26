@@ -74,6 +74,7 @@ public class PlayerControlScript : MonoBehaviour
     {
         if (playerState.curShotCoolTime <= 0)
         {
+            SoundManager.Play("Attack_P");
             playerState.curShotCoolTime = playerState.totalShotCoolTime * (100 / playerState.attackSpeedPer);
 
             RandomEffect();
@@ -155,6 +156,7 @@ public class PlayerControlScript : MonoBehaviour
     public void InputRollBtn()
     {
         if (curRollCool > 0 || !playerAni.movePadActive) return;
+        SoundManager.Play("Roll");
         StartCoroutine(Roll());
         curRollCool = rollCoolTime;
     }
@@ -180,7 +182,7 @@ public class PlayerControlScript : MonoBehaviour
     {
         if (playerState.bomb > 0)
         {
-            GameObject bombOb = Instantiate(bomb, transform.position, Quaternion.identity);
+            GameObject bombOb = poolManager.PoolInstantiate(bomb, transform, Quaternion.identity);
             if (playerAni.movePadActive)
             {
                 Vector3 force = Quaternion.AngleAxis(playerAni.moveRotate, Vector3.forward) * Vector3.right;
@@ -188,6 +190,35 @@ public class PlayerControlScript : MonoBehaviour
             }
         }
         inventory.BombIconUpdate(-1);
+    }
+
+    public void Sound(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                if (playerAni.attackPadActive) return;
+                int randomNum = Random.Range(0, 4);
+                switch (randomNum)
+                {
+                    case 0:
+                        SoundManager.Play("FootStep1");
+                        break;
+                    case 1:
+                        SoundManager.Play("FootStep2");
+                        break;
+                    case 2:
+                        SoundManager.Play("FootStep3");
+                        break;
+                    case 3:
+                        SoundManager.Play("FootStep4");
+                        break;
+                }
+                break;
+            case 1:
+                SoundManager.Play("Roll");
+                break;
+        }
     }
 
     public void RandomEffect()

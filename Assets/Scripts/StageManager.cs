@@ -15,7 +15,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] GameObject waitRoom;
     [SerializeField] List<GameObject> firstMaps;
     [SerializeField] List<GameObject> secondMaps;
-    [SerializeField] GameObject curMap;
+    [SerializeField] GameObject bossRoom1;
+    public GameObject curMap;
     public float monsterStageStrong;
 
     public int curStage;
@@ -33,10 +34,6 @@ public class StageManager : MonoBehaviour
     [SerializeField] Animator stageClearAni;
     public Animator fadeAni;
 
-    [Header("Pools")]
-    public List<GameObject> poolDestroyList;
-    public List<GameObject> destroyList;
-
     private void Awake() => stageManager = this;
 
     private void Update()
@@ -49,6 +46,7 @@ public class StageManager : MonoBehaviour
         allKill = false;
         door.DoorOpen(false);
 
+        if(curMap != null)
         curMap.SetActive(false);
         waitRoom.SetActive(false);
 
@@ -75,7 +73,7 @@ public class StageManager : MonoBehaviour
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
         }
-        else if(curStage > 30 && curStage <= 60)
+        else if(curStage > 31 && curStage <= 60)
         {
             int randomCode = Random.Range(0, secondMaps.Count);
             secondMaps[randomCode].SetActive(true);
@@ -85,6 +83,17 @@ public class StageManager : MonoBehaviour
 
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
+        }
+        else if(curStage == 31)
+        {
+            bossRoom1.SetActive(true);
+            curMap = bossRoom1;
+            curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
+            playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
+        }
+        else if(curStage == 61)
+        {
+
         }
         door.ChangeTransform();
         curStage++;
@@ -127,21 +136,7 @@ public class StageManager : MonoBehaviour
     {
         fadeAni.SetBool("Black", true);
         yield return new WaitForSeconds(1);
-        curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().ClearBox();
         PickMap();
-        ObjectsDestroy();
         fadeAni.SetBool("Black", false);
-    }
-
-    public void ObjectsDestroy()
-    {
-        for (int i = 0; i < poolDestroyList.Count; i++)
-        {
-            poolDestroyList[i].SetActive(false);
-        }
-        for (int i = 0; i < destroyList.Count; i++)
-        {
-            Destroy(destroyList[i]);
-        }
     }
 }

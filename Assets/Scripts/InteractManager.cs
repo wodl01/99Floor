@@ -41,14 +41,17 @@ public class InteractManager : MonoBehaviour
             case 0:
                 RandomBoxScript box0 = interactOb.GetComponent<RandomBoxScript>();
                 box0.OpenBox();
+                SoundManager.Play("BoxOpen");
                 break;
             case 1:
                 RandomBoxScript box1 = interactOb.GetComponent<RandomBoxScript>();
                 box1.GetItem();
+                SoundManager.Play("GetItem");
                 break;
             case 2:
                 Teleport tel = interactOb.GetComponent<Teleport>();
                 tel.Tel();
+                SoundManager.Play("Tel");
                 break;
             case 3:
                 Shop shopItem = interactOb.GetComponent<Shop>();
@@ -61,6 +64,7 @@ public class InteractManager : MonoBehaviour
             case 5:
                 Shop shop = interactOb.GetComponent<Shop>();
                 shop.BuyItem();
+                SoundManager.Play("GetItem");
                 break;
             case 6:
                 GargoyleScript gargoyle = interactOb.GetComponent<GargoyleScript>();
@@ -79,6 +83,7 @@ public class InteractManager : MonoBehaviour
             case 1:
                 RandomBoxScript box0 = interactOb.GetComponent<RandomBoxScript>();
                 box0.SellItem();
+                SoundManager.Play("Coin3");
                 break;
         }
     }
@@ -87,6 +92,7 @@ public class InteractManager : MonoBehaviour
     {
         if (!warningText.gameObject.activeSelf)
         {
+            SoundManager.Play("Error");
             switch (warningCode)
             {
                 case 0:
