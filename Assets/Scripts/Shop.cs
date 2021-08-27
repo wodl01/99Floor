@@ -143,12 +143,13 @@ public class Shop : MonoBehaviour
         {
             if (playerState.gold >= itemInfoManager.ItemInfos[selectedItemCode].BuyPrice)
             {
-                playerState.gold -= itemInfoManager.ItemInfos[selectedItemCode].BuyPrice;
+                InventoryManager.inventory.GoldAmountUpdate(-itemInfoManager.ItemInfos[selectedItemCode].BuyPrice);
                 itemInfoManager.GetItem(selectedItemCode);
                 itemInfoPanel.SetActive(false);
                 isSoldOut = true;
-            }
 
+                SoundManager.Play("Coin1");
+            }
             else
                 interactManager.WarningText(2);
         }

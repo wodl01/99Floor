@@ -24,6 +24,10 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         inventory = this;
+    }
+
+    private void Start()
+    {
         goldAmountText.text = playerState.gold.ToString() + "G";
         KeyIconUpdate(0);
         BombIconUpdate(0);

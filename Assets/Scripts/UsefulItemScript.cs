@@ -27,6 +27,8 @@ public class UsefulItemScript : MonoBehaviour
                 case 0:
                     if(playerState.key != 3)
                     {
+                        SoundManager.Play("Coin2");
+
                         inventory.KeyIconUpdate(plusNum);
                         Destroy(gameObject);
                     }
@@ -39,6 +41,8 @@ public class UsefulItemScript : MonoBehaviour
                     }
                     break;
                 case 2:
+                    SoundManager.Play("Coin1");
+
                     inventory.GoldAmountUpdate(plusNum);
                     Destroy(gameObject);
                     break;

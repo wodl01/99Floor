@@ -144,3 +144,4 @@ MonoBehaviour:
   brokeWaitTime: 5
   fadeSpeed: 3
   brokeTime: 8
+  col: {fileID: 61533383174992086}

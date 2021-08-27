@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e29fe1866fb0444838941ce6be403d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gargoyleCode: 1
   interactionPanel: {fileID: 6601007538435365061}
   canInteract: 0
   canWishAmount: 2

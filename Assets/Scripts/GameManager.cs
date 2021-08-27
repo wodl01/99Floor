@@ -7,31 +7,35 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] StageManager stageManager;
     [SerializeField] PlayerState playerState;
-    public int goldAmount;
 
     [Header("Panels")]
     [SerializeField] GameObject mainMenuPanel;
     [SerializeField] GameObject exitAskPanel;
     [SerializeField] GameObject gameOverPanel;
 
-    private void Awake()
+    // 0 매인메뉴
+    // 1 인게임
+
+    private void Start()
     {
         int curInfo = PlayerPrefs.GetInt("Re");
-        int GoldAmount = PlayerPrefs.GetInt("Gold");
 
-        goldAmount = GoldAmount;
-        playerState.gold = GoldAmount;
+        playerState.gold = PlayerPrefs.GetInt("Gold");
+        playerState.key = PlayerPrefs.GetInt("Key");
+        playerState.bomb = PlayerPrefs.GetInt("Bomb");
 
         Screen.SetResolution(1920, 1080, false);
         mainMenuPanel.SetActive(curInfo == 0 ? true : false);
-        if(curInfo == 0)
+        if (curInfo == 0)
         {
             mainMenuPanel.SetActive(true);
+            SoundManager.PlayBGM("MainMenu");
         }
         else
         {
             mainMenuPanel.SetActive(false);
             StartGame();
+            SoundManager.PlayBGM("WaitingRoom");
         }
     }
 
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
+        SoundManager.PlayBGM("WaitingRoom");
         stageManager.fadeAni.SetBool("Black", false);
 
         mainMenuPanel.SetActive(false);
@@ -63,26 +68,34 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        goldAmount = playerState.gold / 2;
-        PlayerPrefs.SetInt("Gold", goldAmount);
+        SaveInfos();
     }
 
     public void RestartGame()
     {
         PlayerPrefs.SetInt("Re", 1);
+        SaveInfos();
         SceneManager.LoadScene("InGame");
     }
 
     public void MainMenu()
     {
         PlayerPrefs.SetInt("Re", 0);
+        SaveInfos();
         SceneManager.LoadScene("InGame");
     }
 
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("Re", 0);
-        PlayerPrefs.SetInt("Gold", goldAmount);
+        SaveInfos();
+    }
+
+    void SaveInfos()
+    {
+        PlayerPrefs.SetInt("Gold", playerState.gold / 2);
+        PlayerPrefs.SetInt("Key", playerState.key);
+        PlayerPrefs.SetInt("Bomb", playerState.bomb);
     }
 
     private void Update()

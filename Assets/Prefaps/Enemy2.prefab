@@ -96,15 +96,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolManager: {fileID: 0}
   passive: {fileID: 0}
-  rigid: {fileID: 0}
-  spriteRender: {fileID: 0}
+  rigid: {fileID: 7563921117758309528}
+  spriteRender: {fileID: 1594737069}
   boxCol: {fileID: 0}
-  bulletHost: {fileID: 0}
+  bulletHost: {fileID: 4706857916023809742}
   target: {fileID: 0}
   canPassingThrough: 1
   isPlayerAttack: 0
   isHoming: 0
-  bulletDmg: 0
+  bulletDmg: 1
   bulletSpeed: 0
   homingPower: 0
   bulletDestroyTime: 0
@@ -415,6 +415,7 @@ MonoBehaviour:
   isDie: 0
   curHealth: 0
   maxHealth: 10
+  maxStageHealth: 0
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0

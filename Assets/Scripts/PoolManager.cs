@@ -61,8 +61,6 @@ public class PoolManager : MonoBehaviour
     {
         BulletScript curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<BulletScript>();
 
-        curSpawnedOb.passive = passiveManager;
-
         if(sprite != null)
         curSpawnedOb.spriteRender.sprite = sprite;
         curSpawnedOb.transform.position = position;
@@ -83,6 +81,7 @@ public class PoolManager : MonoBehaviour
         curSpawnedOb.target = null;
         if (!isPlayerAttack) curSpawnedOb.target = playerState.player;
 
+        curSpawnedOb.transform.parent = stageManager.curMap.transform;
         curSpawnedOb.gameObject.SetActive(true);
 
         poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);

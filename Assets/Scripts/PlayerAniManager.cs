@@ -18,8 +18,11 @@ public class PlayerAniManager : MonoBehaviour
     private void Update()
     {
         if (!player.canMove) return;
+
         if (attackPadActive)
         {
+            player.shotPosMid.rotation = Quaternion.Euler(0, 0, attackRotate);
+            player.weaponSpriteRender.sortingOrder = 23;
             if (Mathf.Abs(attackRotate) <= 45 && Mathf.Abs(attackRotate) > -45)
             {
                 x = -1;
@@ -35,6 +38,7 @@ public class PlayerAniManager : MonoBehaviour
             {
                 x = 0;
                 y = -1;
+                player.weaponSpriteRender.sortingOrder = 21;
             }
             else
             {
@@ -56,6 +60,8 @@ public class PlayerAniManager : MonoBehaviour
         }
         else if (movePadActive)
         {
+            player.shotPosMid.rotation = Quaternion.Euler(0, 0, moveRotate);
+            player.weaponSpriteRender.sortingOrder = 23;
             if (Mathf.Abs(moveRotate) <= 45 && Mathf.Abs(moveRotate) > -45)
             {
                 x = -1;
@@ -71,6 +77,7 @@ public class PlayerAniManager : MonoBehaviour
             {
                 x = 0;
                 y = -1;
+                player.weaponSpriteRender.sortingOrder = 21;
             }
             else
             {

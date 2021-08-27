@@ -46,6 +46,7 @@ public class BrokenObjectScript : MonoBehaviour
 
     void SpawnPieces()
     {
+        SoundManager.Play("Destroy");
         for (int i = 0; i < spawnPiecesAmount; i++)
         {
             int randomPieceNum = Random.Range(0, objectPiece.Length);

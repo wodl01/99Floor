@@ -71,6 +71,8 @@ public class MysteryRibber : MonoBehaviour
                 playerState.player.GetComponent<PlayerControlScript>().hitboxScript.PlayerHit(playerState.life - 1);
 
             }
+
+            SoundManager.Play("Mistery");
         }
         else
             StartCoroutine(interactManager.WarningText(5));

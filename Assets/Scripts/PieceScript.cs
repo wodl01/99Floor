@@ -11,9 +11,12 @@ public class PieceScript : MonoBehaviour
 
     [SerializeField] float brokeTime;
 
+    [SerializeField] BoxCollider2D col;
+
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        col.enabled = true;
     }
 
     private void Update()

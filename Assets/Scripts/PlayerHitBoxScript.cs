@@ -8,13 +8,14 @@ public class PlayerHitBoxScript : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     [SerializeField] PlayerState playerState;
+    [SerializeField] PlayerControlScript player;
     ItemPassiveManager passiveManager;
     [SerializeField] Image[] lifeOb;
     [SerializeField] Sprite lifeOn;
     [SerializeField] Sprite lifeOff;
     [SerializeField] Sprite lifeNull;
 
-    [SerializeField] CircleCollider2D hitBox;
+    [SerializeField] CapsuleCollider2D hitBox;
     [SerializeField] SpriteRenderer spriteRender;
     [SerializeField] Animator ani;
 
@@ -45,6 +46,8 @@ public class PlayerHitBoxScript : MonoBehaviour
                 PlayerHeal(Mathf.CeilToInt(playerState.maxLife / 2));
                 return;
             }
+            player.canMove = false;
+            player.animator.SetBool("Die", true);
             gameManager.GameOver();
         }
     }

@@ -161,7 +161,6 @@ public class RandomBoxScript : MonoBehaviour
         {
             if (playerState.key > 0)
                 InventoryManager.inventory.KeyIconUpdate(-1);
-
             else
             {
                 StartCoroutine(interactManager.WarningText(3));
@@ -181,6 +180,8 @@ public class RandomBoxScript : MonoBehaviour
 
                 InteractManager.inter.SetInfo(0, gameObject, false, false);
                 RandomItemPick();
+
+                SoundManager.Play("BoxOpen");
             }
             else
                 StartCoroutine(interactManager.WarningText(0));

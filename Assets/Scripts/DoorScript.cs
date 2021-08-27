@@ -61,6 +61,8 @@ public class DoorScript : MonoBehaviour
             {
                 StartCoroutine(stageManager.NextMapLoad());
                 buttonIconObject.SetActive(false);
+
+                SoundManager.Play("Door");
             }
             else
                 StartCoroutine(inter.WarningText(1));

@@ -41,7 +41,6 @@ public class InteractManager : MonoBehaviour
             case 0:
                 RandomBoxScript box0 = interactOb.GetComponent<RandomBoxScript>();
                 box0.OpenBox();
-                SoundManager.Play("BoxOpen");
                 break;
             case 1:
                 RandomBoxScript box1 = interactOb.GetComponent<RandomBoxScript>();

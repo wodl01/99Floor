@@ -48,7 +48,7 @@ MonoBehaviour:
   enemyGroup: []
   destroyTime: 0
   holdCycleCoolTime: 0.1
-  holdForce: 20
+  holdForce: 50
   ani: {fileID: 7692716431061107617}
 --- !u!58 &6337522865128782962
 CircleCollider2D:
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689135261
   m_SortingLayer: 2
-  m_SortingOrder: 15
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300006, guid: b351f2bf56de84d43933ac8ecbc0f601, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

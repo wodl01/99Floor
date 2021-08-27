@@ -9,6 +9,8 @@ public class GargoyleScript : MonoBehaviour
     InventoryManager inventory;
     InteractManager interactManager;
 
+    [SerializeField] int gargoyleCode;
+
     [SerializeField] GameObject interactionPanel;
     [SerializeField] bool canInteract;
     [SerializeField] int canWishAmount;
@@ -107,11 +109,32 @@ public class GargoyleScript : MonoBehaviour
                 }
                 UiUpdate();
                 inventory.GoldAmountUpdate(0);
+
+                SoundPlay();
             }
             else
                 StartCoroutine(interactManager.WarningText(4));
         }
         else
             StartCoroutine(interactManager.WarningText(5));
+    }
+
+    void SoundPlay()
+    {
+        switch (gargoyleCode)
+        {
+            case 0:
+                SoundManager.Play("Heal");
+                break;
+            case 1:
+                SoundManager.Play("Devil");
+                break;
+            case 2:
+                SoundManager.Play("BoxOpen");
+                break;
+            case 3:
+                SoundManager.Play("BoxOpen");
+                break;
+        }
     }
 }

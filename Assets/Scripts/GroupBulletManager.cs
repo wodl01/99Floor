@@ -7,6 +7,10 @@ public class GroupBulletManager : MonoBehaviour
     public int playerDamage;
     public float enemyDamage;
 
+    private void Start()
+    {
+        SoundManager.Play("Explosion");
+    }
 
     public void DestroyBullet()
     {

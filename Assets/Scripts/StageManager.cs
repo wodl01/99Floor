@@ -72,6 +72,8 @@ public class StageManager : MonoBehaviour
 
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
+
+            SoundManager.PlayBGM("FirstMap");
         }
         else if(curStage > 31 && curStage <= 60)
         {
@@ -83,6 +85,8 @@ public class StageManager : MonoBehaviour
 
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
             SpawnEnemy();
+
+            SoundManager.PlayBGM("SecondMap");
         }
         else if(curStage == 31)
         {
@@ -90,6 +94,8 @@ public class StageManager : MonoBehaviour
             curMap = bossRoom1;
             curMap.transform.GetChild(0).GetComponent<BoxPlaceManager>().PlaceObject();
             playerState.player.transform.position = curMap.transform.GetChild(1).transform.position;
+
+            SoundManager.PlayBGM("BossMap");
         }
         else if(curStage == 61)
         {

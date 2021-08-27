@@ -62,5 +62,6 @@ public class AttackJoyPad : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
 
         player.MobileFarAttack(rotation);
+
     }
 }

@@ -28,6 +28,11 @@ public class BulletScript : MonoBehaviour
     [Header("Test")]
     [SerializeField] Sprite[] destroyEffects;
 
+    private void Start()
+    {
+        poolManager = PoolManager.pool;
+        passive = ItemPassiveManager.PassiveManager;
+    }
 
     private void FixedUpdate()
     {
@@ -56,8 +61,8 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.tag == "Wall")
         {
-            if(canPassingThrough) return;
-            DestroyBullet();
+            if (!canPassingThrough)
+                DestroyBullet();
             EffectOn();
         }
         if(collision.tag == "Enemy")
@@ -86,7 +91,8 @@ public class BulletScript : MonoBehaviour
         }
         if(collision.tag == "BrokenOb")
         {
-            DestroyBullet();
+            if (!canPassingThrough)
+                DestroyBullet();
             hitedOb = collision.gameObject;
             Damaging(2);
             EffectOn();
