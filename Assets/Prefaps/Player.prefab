@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411495ccba5bec429f74cb4fa44843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
   gameManager: {fileID: 0}
   playerState: {fileID: 0}
   poolManager: {fileID: 0}
@@ -91,6 +91,7 @@ MonoBehaviour:
   rollDuringTime: 0.4
   rollPower: 700
   canMove: 1
+  canAttack: 1
   isLookLeft: 0
 --- !u!50 &3297629069347502166
 Rigidbody2D:

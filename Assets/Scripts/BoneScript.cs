@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoneScript : MonoBehaviour
 {
     [SerializeField] BossScript boss;
+    [SerializeField] EnemyBasicScript enemyScript;
 
     [SerializeField] int maxHp;
     int curHp;
@@ -72,7 +73,7 @@ public class BoneScript : MonoBehaviour
         {
             collision.GetComponent<PlayerControlScript>().hitboxScript.PlayerHit(1);
             if (ItemPassiveManager.PassiveManager.Passive_2)
-                boss.Hit(20);
+                enemyScript.EnemyHit(20, false);
         }
         if(collision.tag == "Wall")
         {
@@ -80,10 +81,5 @@ public class BoneScript : MonoBehaviour
             bulletCollider.enabled = false;
             PoolManager.pool.EffectInstantiate("Effect", wallPos.position, Quaternion.identity, new Vector2(3, 3), false, false, new Vector2(0, 0), 0.05f, boneEffect);
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
     }
 }

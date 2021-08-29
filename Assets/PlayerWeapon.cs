@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+
+
     public int weaponCode;
 
     public Sprite[] weaponSprite;

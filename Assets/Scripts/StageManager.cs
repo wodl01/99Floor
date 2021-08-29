@@ -23,6 +23,7 @@ public class StageManager : MonoBehaviour
     public int maxStage;
 
     public int enemyAmount;
+    public List<GameObject> enemyList;
 
     public bool allKill;
 
@@ -114,16 +115,18 @@ public class StageManager : MonoBehaviour
         {
             int curSpawnCode = enemySpawn.enemySpawnPoint[i].monsterCode;
             if (curSpawnCode == 0) return;
-            pool.EnemyInstantiate("Enemy" + curSpawnCode, enemySpawn.enemySpawnPoint[i].transform.position);
+            GameObject enemy = pool.EnemyInstantiate("Enemy" + curSpawnCode, enemySpawn.enemySpawnPoint[i].transform.position);
             enemyAmount++;
+            enemyList.Add(enemy);
         }
         leftEnemyText.text = "남은 적:" + enemyAmount.ToString();
     }
 
 
 
-    public void ClearCheck()
+    public void ClearCheck(GameObject enemy)
     {
+        enemyList.Remove(enemy);
         leftEnemyText.text = "남은 적:" + enemyAmount.ToString();
         if (enemyAmount == 0)
         {

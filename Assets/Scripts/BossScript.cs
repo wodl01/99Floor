@@ -6,9 +6,6 @@ public class BossScript : MonoBehaviour
 {
     public GameObject player;
 
-    [SerializeField] int maxHp;
-    int curHp;
-
     [SerializeField] BoneScript[] bones;
 
     [Header("Pattern")]
@@ -27,33 +24,6 @@ public class BossScript : MonoBehaviour
         player = PlayerState.playerState.player;
     }
 
-    private void OnEnable()
-    {
-        curHp = maxHp;
-
-    }
-    public void Hit(int dmg)
-    {
-        curHp -= dmg;
-        if(curHp <= 0)
-        {
-            StageManager.stageManager.StageClear();
-            gameObject.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Bullet")
-        {
-            BulletScript bullet = collision.GetComponent<BulletScript>();
-            if (!bullet.isPlayerAttack) return;
-
-            bullet.EffectOn();
-            bullet.gameObject.SetActive(false);
-            Hit((int)bullet.bulletDmg);
-        }
-    }
     void Idle()
     {
         for (int i = 0; i < bones.Length; i++)

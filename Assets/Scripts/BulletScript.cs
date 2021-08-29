@@ -16,6 +16,7 @@ public class BulletScript : MonoBehaviour
     [Header("BulletInfo")]
     public GameObject bulletHost;
     public GameObject target;
+    public bool isInstantDeath;
     public bool canPassingThrough;
     public bool isPlayerAttack;
     public bool isHoming;
@@ -32,6 +33,11 @@ public class BulletScript : MonoBehaviour
     {
         poolManager = PoolManager.pool;
         passive = ItemPassiveManager.PassiveManager;
+    }
+
+    private void OnDisable()
+    {
+        isInstantDeath = false;
     }
 
     private void FixedUpdate()
@@ -73,7 +79,7 @@ public class BulletScript : MonoBehaviour
             DestroyBullet();
 
             if (passive.Passive_8 && passive.passive_8_Cool < 0)
-                passive.PassiveActive(8,transform.position);
+                passive.PassiveActive(8,transform.position, gameObject);
                 
             hitedOb = collision.gameObject;
             Damaging(0);
@@ -105,12 +111,12 @@ public class BulletScript : MonoBehaviour
         {
             case 0:
                 EnemyBasicScript enemy = hitedOb.GetComponent<EnemyBasicScript>();
-                enemy.EnemyHit(bulletDmg);
+                enemy.EnemyHit(bulletDmg, isInstantDeath);
                 break;
             case 1:
                 hitedOb.gameObject.GetComponent<PlayerHitBoxScript>().PlayerHit((int)bulletDmg);
                 if (passive.Passive_2)
-                    bulletHost.GetComponent<EnemyBasicScript>().EnemyHit(20);
+                    bulletHost.GetComponent<EnemyBasicScript>().EnemyHit(20, false);
                 break;
             case 2:
                 BrokenObjectScript ob = hitedOb.GetComponent<BrokenObjectScript>();

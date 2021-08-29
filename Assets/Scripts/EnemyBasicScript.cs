@@ -13,6 +13,9 @@ public class EnemyBasicScript : MonoBehaviour
     public Rigidbody2D rigid;
     public Animator animator;
 
+    [Header("Infos")]
+    [SerializeField] bool isBoss;
+
     [Header("Hp")]
     [SerializeField] bool isDie;
     [SerializeField] float curHealth;
@@ -20,7 +23,9 @@ public class EnemyBasicScript : MonoBehaviour
     [SerializeField] float maxStageHealth;
 
     [Header("Shape")]
-    //[SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Shader white;
+    [SerializeField] Shader original;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     [Header("Target")]
     public GameObject player;
@@ -52,15 +57,25 @@ public class EnemyBasicScript : MonoBehaviour
         isDie = false;
         findPlayer = false;
         canMove = true;
-        maxStageHealth = maxHealth * (1 + (stageManager.monsterStageStrong * stageManager.curStage));
+        if (isBoss)
+            maxStageHealth = maxHealth;
+        else
+            maxStageHealth = maxHealth * (1 + (stageManager.monsterStageStrong * stageManager.curStage));
         curHealth = maxStageHealth;
     }
 
-    public void EnemyHit(float damage)
+    public void EnemyHit(float damage, bool instantDeath)
     {
         curHealth -= damage;
 
         findPlayer = true;
+
+        if (instantDeath)
+            pool.DamageInstantiate(transform.position, (int)damage, 0, 0.3f, false);
+        else
+            pool.DamageInstantiate(transform.position, (int)damage, 2, 0.3f, false);
+
+        StartCoroutine(Blink());
 
         if (curHealth <= 0 && !isDie)
         {
@@ -69,13 +84,22 @@ public class EnemyBasicScript : MonoBehaviour
 
             if (passive.Passive_6) pool.BulletInstantiate("Explosion_1", transform.position, Quaternion.identity, null, true, true, false, passive.scale_6, new Vector2(1, 1), passive.dmg_6, 0, 10, 0);
             
-            stageManager.ClearCheck();
+            stageManager.ClearCheck(gameObject);
             gameObject.SetActive(false);
         }
     }
 
+    IEnumerator Blink()
+    {
+        spriteRenderer.material.shader = white;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.material.shader = original;
+    }
+
     private void FixedUpdate()
     {
+        if (animator == null) return;
+
         if (curMoveCool >= 0)
             curMoveCool -= Time.deltaTime;
         if (curAttackCool >= 0)

@@ -25,7 +25,7 @@ public class GroupBulletManager : MonoBehaviour
         }
         else if(collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyBasicScript>().EnemyHit(enemyDamage);
+            collision.GetComponent<EnemyBasicScript>().EnemyHit(enemyDamage, false);
         }
         else if(collision.tag == "BrokenOb")
         {

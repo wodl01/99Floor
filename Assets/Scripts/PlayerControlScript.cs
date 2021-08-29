@@ -28,7 +28,7 @@ public class PlayerControlScript : MonoBehaviour
 
     [Header("WeaponFire")]
     public Transform shotPosMid;
-    [SerializeField] Transform shotPos;
+    public Transform shotPos;
     public SpriteRenderer weaponSpriteRender;
     [SerializeField] Sprite weapon;
     [SerializeField] Sprite nullsprite;
@@ -54,11 +54,12 @@ public class PlayerControlScript : MonoBehaviour
 
     [Header("CurState")]
     public bool canMove;
+    public bool dashing;
     public bool canAttack;
     public bool isLookLeft;
     private void FixedUpdate()
     {
-        Move();
+        MoveTest();
         FarAttack();
 
         if(curRollCool >= 0) curRollCool -= Time.deltaTime;
@@ -67,7 +68,7 @@ public class PlayerControlScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) UseBomb();
     }
 
-    void Move()
+    void MoveTest()
     {
         if (!isTest) return;
         float inputX = Input.GetAxisRaw("Horizontal");
@@ -93,8 +94,9 @@ public class PlayerControlScript : MonoBehaviour
                 float dmg = playerState.dmg;
                 float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                 float destroyTime = (playerState.bulletRangePer / 100);
-                poolManager.BulletInstantiate("Bullet1", shotPos.position, Quaternion.Euler(0,0, direction + 180), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
-
+                GameObject bullet = poolManager.BulletInstantiate("Bullet1", shotPos.position, Quaternion.Euler(0,0, direction + 180), bulletSprite, true, passive.Passive_4, passive.Passive_5, bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
+                if (passive.Passive_10)
+                    passive.PassiveActive(10, transform.position, bullet);
             }
             else
             {
@@ -106,13 +108,16 @@ public class PlayerControlScript : MonoBehaviour
                     float dmg = playerState.dmg;
                     float speed = 0.15f * (playerState.bulletSpeedPer / 100);
                     float destroyTime = (playerState.bulletRangePer / 100);
-                    poolManager.BulletInstantiate("Bullet1", shotPos.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), bulletSprite, true, passive.Passive_4,passive.Passive_5,bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
+                    GameObject bullet = poolManager.BulletInstantiate("Bullet1", shotPos.position, Quaternion.Euler(0, 0, direction + totalAngle + 180), bulletSprite, true, passive.Passive_4,passive.Passive_5,bulletScale, boxSize, dmg, passive.Passive_5Power, destroyTime, speed);
+                    if (passive.Passive_10)
+                        passive.PassiveActive(10, transform.position, bullet);
 
                     totalAngle += plusAngle;
                 }
             }
         }
     }
+
     void FarAttack()
     {
         if (playerState.curShotCoolTime >= 0)
@@ -177,6 +182,7 @@ public class PlayerControlScript : MonoBehaviour
     IEnumerator Roll()
     {
         canMove = false;
+        dashing = true;
         rigid.velocity = new Vector2(0, 0);
         Vector3 force = Quaternion.AngleAxis(playerAni.moveRotate, Vector3.forward) * Vector3.right;
         rigid.AddForce(-force * ((playerState.moveSpeedPer * rollPower) / 100));
@@ -186,9 +192,14 @@ public class PlayerControlScript : MonoBehaviour
         sprite.flipX = !isLookLeft;
 
         yield return new WaitForSeconds(rollDuringTime);
+        canMove = true;
+        dashing = false;
+
         animator.SetBool("Roll", false);
         hitBox.enabled = true;
-        canMove = true;
+
+        if (passive.Passive_9)
+            passive.PassiveActive(9, passive.NearestObFinder().transform.position, gameObject);
     }
 
     public void UseBomb()

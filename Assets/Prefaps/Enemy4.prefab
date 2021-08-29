@@ -83,7 +83,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBasic: {fileID: 5210570290415889437}
-  enemy2: {fileID: 0}
 --- !u!1 &3520029328247832134
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,9 +263,14 @@ MonoBehaviour:
   passive: {fileID: 0}
   rigid: {fileID: 4792861291533243007}
   animator: {fileID: 4383240437486003589}
+  isBoss: 0
   isDie: 0
   curHealth: 0
   maxHealth: 20
+  maxStageHealth: 0
+  white: {fileID: 4800000, guid: de6e11d1da7713244ac893fe494a719a, type: 3}
+  original: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  spriteRenderer: {fileID: 5308034354457223126}
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0

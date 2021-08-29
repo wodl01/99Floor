@@ -57,7 +57,7 @@ public class JoyPadScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (player.isTest) return;
         if (isInput)
             MoveCharacter(inputDirection);
-        else
+        else if(!player.dashing)
             player.rigid.velocity = new Vector2(0, 0);
     }
 

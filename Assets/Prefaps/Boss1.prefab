@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2732457316031818304}
   - component: {fileID: 2732457316031818305}
   - component: {fileID: 2732457316031818309}
+  - component: {fileID: 6401663710883256372}
   m_Layer: 0
   m_Name: Boss1
-  m_TagString: Boss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  maxHp: 200
   bones:
   - {fileID: 2732457315763511103}
   - {fileID: 7697239796803846744}
@@ -154,6 +154,43 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.39
+--- !u!114 &6401663710883256372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732457316031818306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6706e6e12f49b9642b94da2b4bcb1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: {fileID: 0}
+  stageManager: {fileID: 0}
+  passive: {fileID: 0}
+  rigid: {fileID: 0}
+  animator: {fileID: 0}
+  isDie: 0
+  curHealth: 0
+  maxHealth: 200
+  maxStageHealth: 0
+  player: {fileID: 0}
+  findPlayer: 0
+  canMove: 0
+  goDiagonal: 0
+  actCode: 0
+  freeMoveSpeed: 0
+  attackMoveSpeed: 0
+  curMoveCool: 0
+  curAttackCool: 0
+  maxMoveCool: 0
+  maxAttackCool: 0
+  isSpecialBullet: 0
+  attackSprite: {fileID: 0}
+  attackSize: {x: 0, y: 0}
+  attackBoxSize: {x: 0, y: 0}
+  attackBoxOffset: {x: 0, y: 0}
 --- !u!1 &2732457316405655908
 GameObject:
   m_ObjectHideFlags: 0
@@ -15085,9 +15122,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef965c23fa271724d95a90e9f075206b, type: 3}
---- !u!4 &2732457315763511096 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
+--- !u!61 &2238593757719616255 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
     type: 3}
   m_PrefabInstance: {fileID: 865705235558315421}
   m_PrefabAsset: {fileID: 0}
@@ -15103,9 +15140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504c87c0de76174ea6fe8ce9a890f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &2238593757719616255 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
+--- !u!4 &2732457315763511096 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
     type: 3}
   m_PrefabInstance: {fileID: 865705235558315421}
   m_PrefabAsset: {fileID: 0}
@@ -15215,15 +15252,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504c87c0de76174ea6fe8ce9a890f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7697239796803846751 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4844237059660458234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &5776043040228951960 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1374318591673823074, guid: ef965c23fa271724d95a90e9f075206b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4844237059660458234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7697239796803846751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019726362499246757, guid: ef965c23fa271724d95a90e9f075206b,
     type: 3}
   m_PrefabInstance: {fileID: 4844237059660458234}
   m_PrefabAsset: {fileID: 0}

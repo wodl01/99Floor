@@ -35,6 +35,7 @@ public class PlayerHitBoxScript : MonoBehaviour
         if (!canHit) return;
 
         playerState.life -= damage;
+        PoolManager.pool.DamageInstantiate(transform.position, damage, 0, 0.3f, false);
         LifeIconUpdate();
         StartCoroutine(HitCool());
 
@@ -56,6 +57,8 @@ public class PlayerHitBoxScript : MonoBehaviour
     {
         playerState.life += heal;
         if (playerState.life > playerState.maxLife) playerState.life = playerState.maxLife;
+
+        PoolManager.pool.DamageInstantiate(transform.position, heal, 1, 0.4f, true);
 
         LifeIconUpdate();
     }

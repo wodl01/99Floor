@@ -10,6 +10,8 @@ public class PoolManager : MonoBehaviour
     [SerializeField] StageManager stageManager;
     [SerializeField] ItemPassiveManager passiveManager;
 
+    [SerializeField] GameObject dmgTextParentOb;
+
     [System.Serializable]
     public class Pool
     {
@@ -40,15 +42,17 @@ public class PoolManager : MonoBehaviour
 
                 if (curObj.tag == "Bullet")
                     curObj.GetComponent<BulletScript>().poolManager = this;
-
-                if (curObj.tag == "Enemy")
+                else if (curObj.tag == "Enemy")
                 {
                     EnemyBasicScript enemy = curObj.GetComponent<EnemyBasicScript>();
                     enemy.pool = this;
                     enemy.stageManager = stageManager;
                     enemy.player = playerState.player;
                 }
-
+                else if (curObj.tag == "DamageText")
+                {
+                    curObj.transform.parent = dmgTextParentOb.transform;
+                }
 
                 curObj.SetActive(false);
                 objectPool.Enqueue(curObj);
@@ -124,6 +128,34 @@ public class PoolManager : MonoBehaviour
         curSpawnedOb.gameObject.SetActive(true);
 
         poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
+
+        return curSpawnedOb.gameObject;
+    }
+
+    public GameObject BulletEffectInstantiate(string tag, Vector3 position, GameObject followTarget)
+    {
+        FollowTarget curSpawnedOb = poolDictionary[tag].Dequeue().GetComponent<FollowTarget>();
+        curSpawnedOb.target = followTarget.transform;
+
+        curSpawnedOb.gameObject.SetActive(true);
+
+        poolDictionary[tag].Enqueue(curSpawnedOb.gameObject);
+
+        return curSpawnedOb.gameObject;
+    }
+
+    public GameObject DamageInstantiate(Vector3 position ,int amount ,int damageType, float deleteTime, bool isPlus)
+    {
+        DamageText curSpawnedOb = poolDictionary["Dmg"].Dequeue().GetComponent<DamageText>();
+
+        curSpawnedOb.transform.position = position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+
+        curSpawnedOb.deleteTime = deleteTime;
+        curSpawnedOb.DamageOn(amount, damageType, isPlus);
+
+        curSpawnedOb.gameObject.SetActive(true);
+
+        poolDictionary["Dmg"].Enqueue(curSpawnedOb.gameObject);
 
         return curSpawnedOb.gameObject;
     }

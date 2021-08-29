@@ -83,7 +83,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBasic: {fileID: 5210570290415889437}
-  enemy2: {fileID: 0}
 --- !u!1 &3520029328247832134
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +152,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c488e94e3a94e5b44b655ae8e966b6a4, type: 3}
-  m_Color: {r: 1, g: 0.8726415, b: 0.8806014, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -264,9 +263,14 @@ MonoBehaviour:
   passive: {fileID: 0}
   rigid: {fileID: 4792861291533243007}
   animator: {fileID: 2605736204274372611}
+  isBoss: 0
   isDie: 0
   curHealth: 0
   maxHealth: 5
+  maxStageHealth: 0
+  white: {fileID: 4800000, guid: de6e11d1da7713244ac893fe494a719a, type: 3}
+  original: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  spriteRenderer: {fileID: 5308034354457223126}
   player: {fileID: 0}
   findPlayer: 0
   canMove: 0
